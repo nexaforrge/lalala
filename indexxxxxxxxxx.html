@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Join Lootera Army on Telegram — free study notes, exam tips, and a community that helps you ace it.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B0A10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lootera Army — Free Study Notes & Community">
+<meta property="og:description" content="Free study notes, exam tips, and a community that helps you ace it.">
+<meta property="og:image" content="lootera.jpg">
+<meta property="og:url" content="https://t.me/+eLQyAX4lsRFjZTU9">
+<meta property="og:site_name" content="Lootera Army">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --void:#0B0A10;
+    --panel:#171320;
+    --panel-hi:#1F1929;
+    --border:rgba(255,255,255,.08);
+    --gold:#FFB627;
+    --gold-deep:#E29A0E;
+    --crimson:#E8283F;
+    --crimson-deep:#C21730;
+    --blue:#2F8FFF;
+    --blue-deep:#1466D6;
+    --ink:#F7F3EA;
+    --dim:rgba(247,243,234,.62);
+    --faint:rgba(247,243,234,.36);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{
+    min-height:100vh; min-height:100dvh;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(232,40,63,.16) 0%, transparent 40%),
+      radial-gradient(circle at 90% 15%, rgba(47,143,255,.14) 0%, transparent 42%),
+      radial-gradient(circle at 50% 100%, rgba(255,182,39,.08) 0%, transparent 50%),
+      var(--void);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+
+  .frame{
+    position:relative; width:100%; max-width:410px;
+    border-radius:22px; padding:1.5px;
+    background:linear-gradient(155deg, rgba(255,182,39,.5), rgba(232,40,63,.25) 40%, rgba(47,143,255,.35) 75%, rgba(255,182,39,.4));
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    animation:cardIn .65s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes cardIn{ from{ opacity:0; transform:translateY(22px) scale(.97);} to{ opacity:1; transform:none;} }
+
+  .card{
+    position:relative;
+    border-radius:20.5px;
+    background:linear-gradient(180deg, var(--panel-hi) 0%, var(--panel) 60%);
+    padding: clamp(30px, 7vw, 40px) clamp(20px, 6vw, 28px) 26px;
+    text-align:center;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .card::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:22px 22px;
+    mask-image:radial-gradient(ellipse at 50% 0%, #000 0%, transparent 65%);
+  }
+
+  .ribbon-wrap{ position:absolute; top:18px; left:-38px; z-index:2; width:170px; transform:rotate(-40deg); }
+  .ribbon{
+    display:block; width:100%; text-align:center;
+    background:linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color:#241804; font-family:'Inter',sans-serif; font-weight:800;
+    font-size:.62rem; letter-spacing:.09em; text-transform:uppercase;
+    padding:5px 0 6px;
+    box-shadow:0 6px 14px rgba(0,0,0,.35);
+    animation:ribbonIn .7s .15s cubic-bezier(.2,.8,.2,1) backwards;
+  }
+  @keyframes ribbonIn{ from{ opacity:0; transform:translateY(-14px);} to{ opacity:1; transform:none;} }
+
+  .avatar-wrap{
+    position:relative; width: clamp(100px, 27vw, 124px); height: clamp(100px, 27vw, 124px);
+    margin:44px auto 26px; z-index:1;
+  }
+  .ring-outer{
+    position:absolute; inset:-16px; border-radius:50%;
+    border:2px solid rgba(255,182,39,.35);
+    animation:spin 14s linear infinite;
+  }
+  .ring-mid{
+    position:absolute; inset:-8px; border-radius:50%;
+    border:2px dashed rgba(232,40,63,.4);
+    animation:spin 10s linear infinite reverse;
+  }
+  .avatar-ring{
+    position:absolute; inset:0; border-radius:50%;
+    background:linear-gradient(155deg, var(--gold), var(--crimson) 55%, var(--blue));
+    animation:spin 9s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .avatar{
+    position:absolute; inset:5px; border-radius:50%;
+    overflow:hidden; background:linear-gradient(145deg, #2A2038, #1B1624);
+    display:flex; align-items:center; justify-content:center;
+    animation:float 4.5s ease-in-out infinite;
+    box-shadow:0 12px 28px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06) inset;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+  @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-5px); } }
+
+  .live-dot{
+    position:absolute; bottom:6px; right:-2px; width:22px; height:22px;
+    background:#22C55E; border:3px solid var(--panel); border-radius:50%;
+    box-shadow:0 0 0 0 rgba(34,197,94,.6);
+    animation:pulseDot 2s ease-out infinite;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .live-dot::after{ content:""; width:6px; height:6px; border-radius:50%; background:#fff; }
+  @keyframes pulseDot{
+    0%{ box-shadow:0 0 0 0 rgba(34,197,94,.55); }
+    70%{ box-shadow:0 0 0 10px rgba(34,197,94,0); }
+    100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); }
+  }
+
+  .name{
+    position:relative; z-index:1;
+    font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+    font-size: clamp(1.7rem, 7.5vw, 2.4rem); color:#fff; letter-spacing:.02em;
+    line-height:1.05;
+    display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
+  }
+  .name .hl{ color:var(--gold); }
+  .verified{ width: clamp(18px, 5vw, 22px); height: clamp(18px, 5vw, 22px); flex-shrink:0; }
+
+  .tagline{
+    position:relative; z-index:1; margin-top:8px;
+    font-size:.85rem; color:var(--dim); font-weight:500;
+    letter-spacing:.03em;
+  }
+
+  .stats{
+    position:relative; z-index:1;
+    display:flex; align-items:stretch; justify-content:center;
+    margin:22px 0 4px; border:1px solid var(--border); border-radius:14px;
+    background:rgba(0,0,0,.18); overflow:hidden;
+  }
+  .stat{ flex:1; padding:12px 8px; }
+  .stat + .stat{ border-left:1px solid var(--border); }
+  .stat .num{
+    font-family:'JetBrains Mono', monospace; font-weight:700;
+    font-size:1.05rem; color:var(--gold); display:block; line-height:1.2;
+  }
+  .stat .lbl{
+    font-size:.66rem; color:var(--faint); text-transform:uppercase;
+    letter-spacing:.08em; margin-top:2px; display:block;
+  }
+
+  .desc{
+    position:relative; z-index:1;
+    margin-top:20px; font-size:.98rem; line-height:1.6; font-weight:400;
+    color:var(--dim); max-width:30ch; margin-left:auto; margin-right:auto;
+  }
+  .desc strong{ color:#fff; font-weight:700; }
+
+  .buttons{ position:relative; z-index:1; display:flex; flex-direction:column; gap:12px; margin-top:24px; }
+
+  .btn{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    gap:10px; width:100%; min-height:54px; padding:14px 18px; border-radius:12px;
+    font-family:'Inter', sans-serif; font-weight:800; font-size:clamp(.9rem, 4vw, 1rem);
+    letter-spacing:.02em; text-transform:uppercase; text-decoration:none; cursor:pointer;
+    color:#fff; overflow:hidden; -webkit-tap-highlight-color:transparent;
+    border:1px solid rgba(255,255,255,.14);
+    transition:transform .25s cubic-bezier(.25,.46,.45,.94), box-shadow .25s ease, filter .25s ease;
+  }
+  .btn:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+  .btn:active{ transform:scale(.97); }
+
+  .btn-blue{
+    background:linear-gradient(120deg, var(--blue-deep), var(--blue) 60%, #66B0FF);
+    box-shadow:0 14px 30px rgba(20,102,214,.4), 0 2px 0 rgba(255,255,255,.15) inset;
+  }
+  .btn-blue:hover{ transform:translateY(-2px); box-shadow:0 20px 38px rgba(20,102,214,.5), 0 2px 0 rgba(255,255,255,.2) inset; filter:brightness(1.05); }
+
+  .btn-crimson{
+    background:linear-gradient(120deg, var(--crimson-deep), var(--crimson) 60%, #FF6B7C);
+    box-shadow:0 14px 30px rgba(194,23,48,.4), 0 2px 0 rgba(255,255,255,.15) inset;
+  }
+  .btn-crimson:hover{ transform:translateY(-2px); box-shadow:0 20px 38px rgba(194,23,48,.5), 0 2px 0 rgba(255,255,255,.2) inset; filter:brightness(1.05); }
+
+  .btn::before{
+    content:""; position:absolute; top:0; left:-130%; width:55%; height:100%;
+    background:linear-gradient(115deg, transparent, rgba(255,255,255,.3), transparent);
+    transform:skewX(-20deg); animation:shimmer 3.4s ease-in-out infinite;
+  }
+  .btn-crimson::before{ animation-delay:.6s; }
+  @keyframes shimmer{ 0%{ left:-130%; } 45%,100%{ left:140%; } }
+
+  .btn .tg-icon{ width:20px; height:20px; flex-shrink:0; position:relative; z-index:2; }
+  .btn span{ position:relative; z-index:2; }
+
+  .fineprint{
+    position:relative; z-index:1;
+    margin-top:18px; font-size:.73rem; color:var(--faint);
+    display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;
+  }
+  .fineprint .dot{ width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,.22); }
+
+  @media (max-width:360px){
+    .card{ padding:26px 16px 22px; }
+    .stat .num{ font-size:.94rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="frame">
+    <div class="card">
+
+      <div class="ribbon-wrap">
+        <span class="ribbon">Best Telegram Community</span>
+      </div>
+
+      <div class="avatar-wrap">
+        <div class="ring-outer"></div>
+        <div class="ring-mid"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar">
+          <img src="diva.jpg" alt="Lootera Army community avatar" loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <span class="live-dot" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="name">
+        Lootera <span class="hl">Army</span>
+        <svg class="verified" viewBox="0 0 24 24" aria-label="Verified">
+          <path fill="#2F8FFF" d="M12 2l2.4 1.9 3-.6 1 2.9 2.9 1-.6 3L22 12l-1.9 2.4.6 3-2.9 1-1 2.9-3-.6L12 22l-2.4-1.9-3 .6-1-2.9-2.9-1 .6-3L2 12l1.9-2.4-.6-3 2.9-1 1-2.9 3 .6z"/>
+          <path stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9.8 12.4l1.7 1.7 3.4-4.2"/>
+        </svg>
+      </h1>
+      <p class="tagline">The squad that actually shows up</p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="num">10,000+</span>
+          <span class="lbl">Members</span>
+        </div>
+        <div class="stat">
+          <span class="num">Daily</span>
+          <span class="lbl">Drops</span>
+        </div>
+        <div class="stat">
+          <span class="num">Live</span>
+          <span class="lbl">Events</span>
+        </div>
+      </div>
+
+      <p class="desc">
+        <strong>Talk games, share clips, catch drops</strong> — join the community on Telegram.
+      </p>
+
+      <div class="buttons">
+        <a href="https://t.me/+eLQyAX4lsRFjZTU9" class="btn btn-blue" target="_blank" rel="noopener">
+          <svg class="tg-icon" viewBox="0 0 240 240" aria-hidden="true">
+            <circle cx="120" cy="120" r="120" fill="#fff"/>
+            <path fill="#1466D6" d="M170.6 72.3 149 178.4c-1.6 7.2-5.9 9-11.9 5.6l-33-24.3-15.9 15.3c-1.8 1.8-3.3 3.3-6.7 3.3l2.4-33.9L145 87.9c3.3-2.9-.7-4.6-5.1-1.6L67.4 132l-32.9-10.3c-7.1-2.2-7.3-7.1 1.6-10.5L161 65.6c6-2.2 11.2 1.4 9.6 6.7z"/>
+          </svg>
+          <span>Join Telegram Now</span>
+        </a>
+        <a href="https://t.me/+eLQyAX4lsRFjZTU9" class="btn btn-crimson" target="_blank" rel="noopener">
+          <svg class="tg-icon" viewBox="0 0 240 240" aria-hidden="true">
+            <circle cx="120" cy="120" r="120" fill="#fff"/>
+            <path fill="#C21730" d="M170.6 72.3 149 178.4c-1.6 7.2-5.9 9-11.9 5.6l-33-24.3-15.9 15.3c-1.8 1.8-3.3 3.3-6.7 3.3l2.4-33.9L145 87.9c3.3-2.9-.7-4.6-5.1-1.6L67.4 132l-32.9-10.3c-7.1-2.2-7.3-7.1 1.6-10.5L161 65.6c6-2.2 11.2 1.4 9.6 6.7z"/>
+          </svg>
+          <span>Join Telegram Now</span>
+        </a>
+      </div>
+
+      <p class="fineprint">
+        Free to join <span class="dot"></span> Leave anytime <span class="dot"></span> No tracking
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
