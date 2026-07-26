@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WinGo Big/Small Predictor</title>
+    <style>
+        /* ─── Reset & Base ─── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at 50% 0%, #1a1a2e, #0f0f1a);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding: 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 540px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 48px;
+            padding: 32px 28px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #f7b731, #f5a623);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.2);
+            padding: 6px 14px 6px 10px;
+            border-radius: 100px;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            font-size: 12px;
+            font-weight: 600;
+            color: #f87171;
+            letter-spacing: 0.3px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse-dot 1.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.7);
+            }
+        }
+
+        /* ─── Cards ─── */
+        .result-card,
+        .prediction-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 28px;
+            padding: 22px 24px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 20px;
+            transition: border-color 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card .label,
+        .prediction-card .label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 8px;
+        }
+
+        .result-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .result-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .badge.big {
+            background: rgba(52, 211, 153, 0.18);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.2);
+        }
+        .badge.small {
+            background: rgba(251, 191, 36, 0.18);
+            color: #fcd34d;
+            border-color: rgba(251, 191, 36, 0.2);
+        }
+
+        .badge.color-red {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        .badge.color-green {
+            background: rgba(52, 211, 153, 0.18);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.2);
+        }
+        .badge.color-violet {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .result-period {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 8px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        /* ─── Prediction Card ─── */
+        .prediction-card.win {
+            border-color: rgba(52, 211, 153, 0.4);
+            background: rgba(52, 211, 153, 0.06);
+            box-shadow: 0 0 40px rgba(52, 211, 153, 0.05);
+        }
+        .prediction-card.loss {
+            border-color: rgba(239, 68, 68, 0.2);
+            background: rgba(239, 68, 68, 0.04);
+        }
+        .prediction-card.pending {
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .status-badge {
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: all 0.4s;
+        }
+
+        .status-badge.win {
+            background: rgba(52, 211, 153, 0.2);
+            color: #6ee7b7;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.15);
+        }
+        .status-badge.loss {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+        .status-badge.pending {
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .prediction-bigsmall {
+            font-size: 56px;
+            font-weight: 900;
+            text-align: center;
+            margin: 8px 0 6px;
+            letter-spacing: 4px;
+            line-height: 1.2;
+            transition: all 0.2s;
+        }
+
+        .prediction-bigsmall.big {
+            color: #6ee7b7;
+            text-shadow: 0 0 40px rgba(52, 211, 153, 0.25);
+        }
+        .prediction-bigsmall.small {
+            color: #fcd34d;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.25);
+        }
+        .prediction-bigsmall.win {
+            animation: pop-in 0.35s ease-out forwards;
+        }
+        .prediction-bigsmall.loss {
+            animation: pop-in 0.35s ease-out forwards;
+        }
+
+        .prediction-meta {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .prediction-meta .badge {
+            font-size: 12px;
+            padding: 3px 14px;
+        }
+
+        .prediction-period {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            letter-spacing: 0.3px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 12px;
+            border-radius: 100px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ─── Glow ring ─── */
+        .glow-ring {
+            position: absolute;
+            inset: -2px;
+            border-radius: 28px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .glow-ring.active {
+            opacity: 1;
+            box-shadow: 0 0 60px rgba(52, 211, 153, 0.15), inset 0 0 60px rgba(52, 211, 153, 0.05);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── Confetti ─── */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confetti-fall 2.2s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+            }
+        }
+
+        /* ─── Pop animation ─── */
+        @keyframes pop-in {
+            0% {
+                transform: scale(0.7);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ─── Stats ─── */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 12px 6px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .stat-item .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .stat-item .stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
+        }
+
+        .stat-item .stat-value.green { color: #6ee7b7; }
+        .stat-item .stat-value.red { color: #f87171; }
+        .stat-item .stat-value.gold { color: #fbbf24; }
+
+        /* ─── Text ─── */
+        .text-muted {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 13px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .text-muted small {
+            display: inline-block;
+            animation: pulse-text 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ─── Number colors ─── */
+        .num-red { color: #f87171 !important; }
+        .num-green { color: #6ee7b7 !important; }
+        .num-violet { color: #a78bfa !important; }
+
+        /* ─── Status indicator ─── */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .status-indicator .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+        .status-indicator .dot.ok { background: #6ee7b7; }
+        .status-indicator .dot.err { background: #f87171; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 460px) {
+            .container {
+                padding: 20px 16px;
+                border-radius: 32px;
+            }
+            .result-number {
+                font-size: 36px;
+                min-width: 44px;
+            }
+            .prediction-bigsmall {
+                font-size: 40px;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header h1 {
+                font-size: 18px;
+            }
+            .result-row {
+                gap: 12px;
+            }
+            .prediction-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎯 WinGo Big/Small</h1>
+            <div class="live-badge">
+                <span class="live-dot"></span> LIVE
+                <span class="status-indicator" style="margin-left:4px;">
+                    <span class="dot ok" id="statusDot"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="label">📊 Latest Result Period</div>
+            <div class="result-row">
+                <div class="result-number" id="resultNumber">—</div>
+                <div class="result-meta">
+                    <span class="badge" id="resultBigSmall">—</span>
+                    <span class="badge" id="resultColor">—</span>
+                </div>
+            </div>
+            <div class="result-period" id="resultPeriod">Waiting for data…</div>
+        </div>
+
+        <div class="prediction-card pending" id="predictionCard">
+            <div class="glow-ring" id="glowRing"></div>
+
+            <div class="prediction-header">
+                <span class="label">🔮 Your Prediction</span>
+                <span class="status-badge pending" id="statusBadge">PENDING</span>
+            </div>
+
+            <div class="prediction-bigsmall" id="predictionBigSmall">?</div>
+
+            <div class="prediction-meta" id="predictionMeta" style="display: none;">
+                <span class="badge" id="predColor">—</span>
+            </div>
+
+            <div class="prediction-period" id="predictionPeriod">Prediction for Period: —</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value green" id="statWins">0</div>
+                <div class="stat-label">Wins</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value red" id="statLosses">0</div>
+                <div class="stat-label">Losses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value gold" id="statRate">0%</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
+        </div>
+
+        <div class="text-muted">
+            <small>⏳ Checks every 10s &bull; Press <kbd>SPACE</kbd> to force check</small>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebrationContainer"></div>
+
+    <script>
+       // ─────────────────────────────────────────────────────────────
+        //  STATE
+        // ─────────────────────────────────────────────────────────────
+        const state = {
+            total: 0,
+            wins: 0,
+            losses: 0,
+            lastPeriod: null,
+            lastBigSmall: null,      // Tracks the most recent outcome ('Big' or 'Small')
+            prevBigSmall: null,      // Tracks the outcome before last ('Big' or 'Small')
+            currentPrediction: null, // { bigSmall, targetPeriod }
+            isProcessing: false,
+        };
+
+        // ─────────────────────────────────────────────────────────────
+        //  DOM REFS
+        // ─────────────────────────────────────────────────────────────
+        const $ = (id) => document.getElementById(id);
+        const resultNumber = $('resultNumber');
+        const resultBigSmall = $('resultBigSmall');
+        const resultColor = $('resultColor');
+        const resultPeriod = $('resultPeriod');
+        const predictionBigSmall = $('predictionBigSmall');
+        const statusBadge = $('statusBadge');
+        const predictionCard = $('predictionCard');
+        const glowRing = $('glowRing');
+        const predictionPeriod = $('predictionPeriod');
+        const statTotal = $('statTotal');
+        const statWins = $('statWins');
+        const statLosses = $('statLosses');
+        const statRate = $('statRate');
+        const celebrationContainer = $('celebrationContainer');
+        const statusDot = $('statusDot');
+
+        // ─────────────────────────────────────────────────────────────
+        //  HELPERS
+        // ─────────────────────────────────────────────────────────────
+        function getNumberColorClass(num) {
+            const n = parseInt(num, 10);
+            if (isNaN(n)) return '';
+            if (n === 0 || n === 2 || n === 4 || n === 6 || n === 8) return 'num-red';
+            if (n === 1 || n === 3 || n === 7 || n === 9) return 'num-green';
+            if (n === 5) return 'num-violet';
+            return '';
+        }
+
+        function cleanPeriodString(period) {
+            if (!period) return '';
+            return String(period).trim().replace(/[^0-9]/g, '');
+        }
+
+        function getColorName(num) {
+            const n = parseInt(num, 10);
+            if (isNaN(n)) return '—';
+            if (n === 0 || n === 2 || n === 4 || n === 6 || n === 8) return 'Red';
+            if (n === 1 || n === 3 || n === 7 || n === 9) return 'Green';
+            if (n === 5) return 'Violet';
+            return '—';
+        }
+
+        function getBigSmall(num) {
+            const n = parseInt(num, 10);
+            if (isNaN(n)) return '—';
+            return n >= 5 ? 'Big' : 'Small';
+        }
+
+        function getColorClass(color) {
+            const c = (color || '').toLowerCase();
+            if (c === 'red') return 'color-red';
+            if (c === 'green') return 'color-green';
+            if (c === 'violet') return 'color-violet';
+            return '';
+        }
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  STREAK-AWARE PREDICTION LOGIC
+        // ─────────────────────────────────────────────────────────────
+        function generateStreakPrediction(targetPeriod) {
+            // Fallback clause: If we don't have historical context yet, split down the middle
+            if (!state.lastBigSmall) {
+                const fallback = Math.random() < 0.5 ? 'Big' : 'Small';
+                return { bigSmall: fallback, targetPeriod: targetPeriod };
+            }
+
+            let prediction = state.lastBigSmall;
+
+            // Check if alternating streak is active (Big -> Small or Small -> Big)
+            if (state.prevBigSmall && state.lastBigSmall !== state.prevBigSmall) {
+                // If it is alternating, predict the opposite of the last result to continue the zigzag pattern
+                prediction = state.lastBigSmall === 'Big' ? 'Small' : 'Big';
+                console.log(`Pattern Alert: Alternating detected (${state.prevBigSmall} -> ${state.lastBigSmall}). Predicting: ${prediction}`);
+            } else {
+                // Otherwise, follow the standard trend rule: copy the exact last outcome
+                console.log(`Pattern Alert: Standard trend tracking. Copying last result: ${prediction}`);
+            }
+
+            return {
+                bigSmall: prediction,
+                targetPeriod: targetPeriod
+            };
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  CONFETTI
+        // ─────────────────────────────────────────────────────────────
+        function fireConfetti(count = 70) {
+            const container = celebrationContainer;
+            const colors = ['#6ee7b7', '#fbbf24', '#f87171', '#a78bfa', '#60a5fa', '#f472b6', '#34d399', '#fb923c'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti';
+                const size = randomInt(6, 14);
+                const x = randomInt(5, 95);
+                const delay = Math.random() * 1.2;
+                const dur = 1.6 + Math.random() * 1.4;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const shape = Math.random() > 0.5 ? '50%' : '2px';
+                Object.assign(el.style, {
+                    left: x + '%',
+                    top: '-10px',
+                    width: size + 'px',
+                    height: size * (0.6 + Math.random() * 0.8) + 'px',
+                    background: color,
+                    borderRadius: shape,
+                    animationDuration: dur + 's',
+                    animationDelay: delay + 's',
+                    transform: `rotate(${randomInt(0, 360)}deg)`,
+                });
+                container.appendChild(el);
+                setTimeout(() => el.remove(), (dur + delay) * 1000 + 300);
+            }
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  STATS PERSISTENCE
+        // ─────────────────────────────────────────────────────────────
+        function saveStats() {
+            try {
+                localStorage.setItem('wingo_stats', JSON.stringify({
+                    total: state.total,
+                    wins: state.wins,
+                    losses: state.losses,
+                }));
+            } catch (_) { /* ignore */ }
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  RENDER FUNCTIONS
+        // ─────────────────────────────────────────────────────────────
+        function renderResult(data) {
+            const num = data.number;
+            const bigSmall = data.bigSmall || getBigSmall(num);
+            const color = data.color || getColorName(num);
+            const period = cleanPeriodString(data.issueNumber || data.issue || '—');
+
+            resultNumber.textContent = num;
+            resultNumber.className = 'result-number ' + getNumberColorClass(num);
+
+            resultBigSmall.textContent = bigSmall;
+            resultBigSmall.className = 'badge ' + (bigSmall.toLowerCase() === 'big' ? 'big' : 'small');
+
+            resultColor.textContent = color;
+            resultColor.className = 'badge ' + getColorClass(color);
+
+            resultPeriod.textContent = 'Period: ' + period;
+        }
+
+        function renderPrediction(pred, status) {
+            const bigSmall = pred.bigSmall;
+
+            predictionBigSmall.textContent = bigSmall;
+            predictionBigSmall.className = 'prediction-bigsmall ' + bigSmall.toLowerCase();
+            predictionBigSmall.classList.remove('win', 'loss');
+            
+            if (status === 'win') predictionBigSmall.classList.add('win');
+            else if (status === 'loss') predictionBigSmall.classList.add('loss');
+
+            statusBadge.textContent = status.toUpperCase();
+            statusBadge.className = 'status-badge ' + status;
+
+            predictionCard.className = 'prediction-card ' + status;
+            glowRing.className = 'glow-ring' + (status === 'win' ? ' active' : '');
+
+            predictionPeriod.textContent = 'Prediction for Period: ' + pred.targetPeriod;
+
+            predictionBigSmall.classList.remove('pop-in');
+            void predictionBigSmall.offsetWidth;
+            predictionBigSmall.classList.add('pop-in');
+        }
+
+        function setStatusDot(ok) {
+            statusDot.className = 'dot ' + (ok ? 'ok' : 'err');
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  API FETCH
+        // ─────────────────────────────────────────────────────────────
+        async function fetchLatest() {
+            const url = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?ts=' + Date.now();
+            const res = await fetch(url, { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const json = await res.json();
+            const list = json?.data?.list || json?.data || [];
+            if (!list.length) throw new Error('Empty response');
+            return list[0];
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  CORE TICK
+        // ─────────────────────────────────────────────────────────────
+        async function tick() {
+            if (state.isProcessing) return;
+            state.isProcessing = true;
+
+            try {
+                const latest = await fetchLatest();
+                const currentPeriod = cleanPeriodString(latest.issueNumber || latest.issue || '');
+                
+                if (!currentPeriod) {
+                    throw new Error('Could not parse valid period number from API');
+                }
+
+                const nextPeriodNum = String(BigInt(currentPeriod) + 1n);
+                const actualBigSmall = getBigSmall(latest.number);
+
+                // 1. If same period, just refresh current layout state
+                if (state.lastPeriod === currentPeriod) {
+                    renderResult(latest);
+                    setStatusDot(true);
+                    state.isProcessing = false;
+                    return;
+                }
+
+                // Update pattern memory rolling window before evaluating new predictions
+                if (state.lastBigSmall && state.lastBigSmall !== actualBigSmall) {
+                     state.prevBigSmall = state.lastBigSmall;
+                } else if (state.lastBigSmall) {
+                     state.prevBigSmall = state.lastBigSmall;
+                }
+                state.lastBigSmall = actualBigSmall;
+
+                // 2. Evaluate previous prediction IF it matches this fresh arriving period
+                if (state.currentPrediction && state.currentPrediction.targetPeriod === currentPeriod) {
+                    const predBigSmall = state.currentPrediction.bigSmall;
+                    const isWin = (actualBigSmall === predBigSmall);
+
+                    state.total++;
+                    if (isWin) {
+                        state.wins++;
+                        fireConfetti(70);
+                    } else {
+                        state.losses++;
+                    }
+                    saveStats();
+                    
+                    statTotal.textContent = state.total;
+                    statWins.textContent = state.wins;
+                    statLosses.textContent = state.losses;
+                    statRate.textContent = (state.total === 0 ? 0 : Math.round((state.wins / state.total) * 100)) + '%';
+
+                    renderPrediction(state.currentPrediction, isWin ? 'win' : 'loss');
+                    renderResult(latest);
+
+                    state.lastPeriod = currentPeriod;
+                    
+                    // Generate new calculation using streak rules
+                    const newPred = generateStreakPrediction(nextPeriodNum);
+                    state.currentPrediction = newPred;
+
+                    setTimeout(() => {
+                        renderPrediction(newPred, 'pending');
+                    }, 2500);
+
+                } else {
+                    // First Run setup
+                    renderResult(latest);
+                    state.lastPeriod = currentPeriod;
+
+                    const newPred = generateStreakPrediction(nextPeriodNum);
+                    state.currentPrediction = newPred;
+                    renderPrediction(newPred, 'pending');
+                }
+
+                setStatusDot(true);
+
+            } catch (err) {
+                console.error('Tick error:', err);
+                setStatusDot(false);
+                resultPeriod.textContent = '⚠️ Connection error — retrying…';
+                setTimeout(() => {
+                    if (!state.isProcessing) tick();
+                }, 10000);
+            } finally {
+                state.isProcessing = false;
+            }
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        //  INIT
+        // ─────────────────────────────────────────────────────────────
+        function init() {
+            try {
+                const raw = localStorage.getItem('wingo_stats');
+                if (raw) {
+                    const data = JSON.parse(raw);
+                    state.total = data.total || 0;
+                    state.wins = data.wins || 0;
+                    state.losses = data.losses || 0;
+                }
+            } catch (_) {}
+            
+            statTotal.textContent = state.total;
+            statWins.textContent = state.wins;
+            statLosses.textContent = state.losses;
+            statRate.textContent = (state.total === 0 ? 0 : Math.round((state.wins / state.total) * 100)) + '%';
+
+            tick();
+            setInterval(tick, 10000);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && !e.repeat) {
+                    e.preventDefault();
+                    if (!state.isProcessing) tick();
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && !state.isProcessing) {
+                    tick();
+                }
+            });
+
+            console.log('🎯 WinGo Streak Engine Online');
+        }
+
+        init();
+    </script>
+</body>
+</html>

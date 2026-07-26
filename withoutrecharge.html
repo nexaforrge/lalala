@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;user-select:none;}
+body{background:transparent;display:flex;align-items:center;justify-content:center;height:100vh;font-family:'Orbitron',sans-serif;}
+
+#mini{width:55px;height:55px;cursor:pointer;}
+#mini img{width:100%;height:100%;border-radius:14px;border:2px solid #00ff88;}
+
+#main{
+  width:230px;height:250px;
+  display:none;
+  border-radius:22px;
+  padding:10px;
+  background:linear-gradient(180deg,#0d3b22,#02150c);
+  box-shadow:0 0 25px #00ff88aa inset,0 0 25px #00ff8855;
+  position:relative;
+}
+
+.header{
+  text-align:center;
+  color:#b6ffd6;
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:8px;
+  text-shadow:0 0 10px #00ff88;
+}
+
+.card{
+  background:#0b1f17;
+  border-radius:18px;
+  padding:14px;
+  border:1px solid #00ff8855;
+  text-align:center;
+  box-shadow:0 0 15px #00ff8833 inset;
+}
+
+.number{
+  font-size:42px;
+  color:#00ff88;
+  text-shadow:0 0 20px #00ff88;
+}
+
+.period{
+  font-size:11px;
+  color:#ddd;
+  margin-top:6px;
+}
+
+.success{
+  color:#00ff88;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.btn-row{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.btn{
+  flex:1;
+  padding:8px;
+  border-radius:12px;
+  border:none;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.btn-start{
+  background:#00ff88;
+  color:#000;
+}
+
+.btn-hide{
+  background:#3a4a44;
+  color:#ccc;
+}
+
+.close-btn{
+  position:absolute;
+  right:10px;
+  top:5px;
+  color:#ff4d4d;
+  font-size:14px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="mini" onclick="openM()">
+  <img src="https://i.ibb.co/NgvnRXbJ/image.jpg">
+</div>
+
+<div id="main">
+  <div class="close-btn" onclick="closeM()">✖</div>
+  <div class="header">✦ NUMBER AI</div>
+  <div id="content"></div>
+</div>
+
+<script>
+var state='ready',lastP='',cache=null;
+
+function getP(){
+  var d=new Date();
+  var day=d.getUTCFullYear()+String(d.getUTCMonth()+1).padStart(2,'0')+String(d.getUTCDate()).padStart(2,'0');
+  var min=d.getUTCHours()*60+d.getUTCMinutes();
+  return day+'1000'+(10001+min);
+}
+
+function openM(){
+  document.getElementById("main").style.display='block';
+  document.getElementById("mini").style.display='none';
+  if(window.TeamBridge){TeamBridge.resizeView(230,250);}
+  render();
+}
+
+function closeM(){
+  document.getElementById("main").style.display='none';
+  document.getElementById("mini").style.display='block';
+  if(window.TeamBridge){TeamBridge.resizeView(80,80);}
+}
+
+function render(){
+  var c=document.getElementById("content");
+
+  c.innerHTML=`
+  <div class="card">
+    <div style="color:#ccc;font-size:11px;">READY TO START</div>
+    <div class="btn-row">
+      <button class="btn btn-start" onclick="start()">START</button>
+    </div>
+  </div>`;
+}
+
+function start(){
+  var p=getP();
+
+  if(p===lastP && cache){
+    show(cache.n,cache.s,p);
+    return;
+  }
+
+  state='scanning';
+
+  document.getElementById("content").innerHTML=`
+  <div class="card">
+    <div style="color:#00ff88;font-size:11px;">SCANNING...</div>
+  </div>`;
+
+  setTimeout(function(){
+    var n=Math.floor(Math.random()*10);
+    var s=(n<=4)?'SMALL':'BIG';
+    cache={n:n,s:s};
+    lastP=p;
+    show(n,s,p);
+  },3000);
+}
+
+function show(n,s,p){
+  state='result';
+
+  document.getElementById("content").innerHTML=`
+  <div class="card">
+    <div class="number">${n}</div>
+    <div class="period">PERIOD: #${p.slice(-4)}</div>
+    <div class="success">SUCCESS</div>
+
+    <div class="btn-row">
+      <button class="btn btn-start" onclick="render()">START</button>
+      <button class="btn btn-hide" onclick="closeM()">HIDE</button>
+    </div>
+  </div>`;
+
+  if(window.TeamBridge){
+    TeamBridge.speak(s+' '+n);
+  }
+}
+</script>
+
+</body>
+</html>
