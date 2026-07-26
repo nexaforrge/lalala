@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="RAMxYAARWIN – #1 Telegram Hub" />
+    <meta property="og:description" content="Join the most trusted prediction channel — real-time signals, AI-powered insight, one squad." />
+    <meta property="og:image" content="divagamer.jpg" />
+    <meta property="og:url" content="https://rawats7.github.io/divagame.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="RAMxYAARWIN — the #1 Telegram hub for crypto signals, AI alerts, and a next-gen community." />
+    <title>RAMxYAARWIN – #1 Telegram Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(0,243,255,0.35) transparent; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,243,255,0.35); border-radius: 10px; }
+
+        :root {
+            --bg: #050510;
+            --cyan: #00f3ff;
+            --cyan-dim: rgba(0,243,255,0.4);
+            --magenta: #ff00c8;
+            --magenta-dim: rgba(255,0,200,0.4);
+            --purple: #a200ff;
+            --ink: #eef5ff;
+            --muted: rgba(238,245,255,0.7);
+            --up: #00ffaa;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .scanlines {
+            position: fixed; inset: 0; z-index: 3; pointer-events: none;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px);
+            opacity: 0.55; mix-blend-mode: overlay;
+        }
+        .vignette {
+            position: fixed; inset: 0; z-index: 2; pointer-events: none;
+            box-shadow: inset 0 0 200px rgba(5,5,16,0.8), inset 0 0 80px rgba(0,243,255,0.06);
+        }
+
+        #webCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.9; }
+
+        .hero-outer {
+            min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center;
+            padding: 24px; position: relative; z-index: 10;
+        }
+
+        .hero {
+            width: 100%; max-width: 440px; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; gap: 24px; padding: 40px 26px; position: relative;
+
+            /* TRANSPARENT BACKGROUND – no panel, no blur */
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+
+            border: 1px solid rgba(0,243,255,0.25);
+            box-shadow: 0 0 50px rgba(0,243,255,0.08), 0 25px 60px rgba(0,0,0,0.4);
+            border-radius: 28px;
+            overflow: hidden;
+        }
+
+        /* neon corner brackets */
+        .corner { position: absolute; width: 26px; height: 26px; }
+        .corner.tl { top: 12px; left: 12px; border-top: 3px solid var(--cyan); border-left: 3px solid var(--cyan); border-radius: 4px 0 0 0; }
+        .corner.tr { top: 12px; right: 12px; border-top: 3px solid var(--magenta); border-right: 3px solid var(--magenta); border-radius: 0 4px 0 0; }
+        .corner.bl { bottom: 12px; left: 12px; border-bottom: 3px solid var(--magenta); border-left: 3px solid var(--magenta); border-radius: 0 0 0 4px; }
+        .corner.br { bottom: 12px; right: 12px; border-bottom: 3px solid var(--cyan); border-right: 3px solid var(--cyan); border-radius: 0 0 4px 0; }
+
+        .feed-tag {
+            font-family: 'Orbitron', sans-serif; font-size: 0.68rem; letter-spacing: 3px;
+            color: var(--cyan); text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+        }
+        .feed-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 15px var(--cyan); animation: pulseDot 1.8s ease-in-out infinite; }
+        @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+
+        .profile-avatar-wrapper { position: relative; width: 140px; height: 140px; }
+        .avatar-ring {
+            position: absolute; inset: -8px; border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--cyan)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: ringRotate 6s linear infinite;
+        }
+        @keyframes ringRotate { to { transform: rotate(360deg); } }
+        .profile-photo {
+            position: absolute; inset: 4px; border-radius: 50%; overflow: hidden; z-index: 2;
+            box-shadow: 0 0 35px rgba(0,243,255,0.35), 0 0 15px rgba(255,0,200,0.25);
+        }
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .channel-name {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 7.5vw, 2.7rem);
+            line-height: 1;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--magenta) 50%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 18px rgba(0,243,255,0.4));
+            display: flex; align-items: baseline; justify-content: center; gap: 0.1em; flex-wrap: wrap;
+        }
+        .ticker-caret {
+            display: inline-block; width: 0.5em; height: 1.2em; background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan); animation: caretBlink 1s steps(1) infinite;
+            margin-left: 2px; vertical-align: middle;
+        }
+        @keyframes caretBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+        .btn-primary-wrapper { position: relative; display: inline-block; width: 100%; }
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%;
+            background: rgba(0,243,255,0.08);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(0,243,255,0.5);
+            color: #fff; font-weight: 700; font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase;
+            padding: 19px 28px; text-decoration: none; cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative; overflow: hidden; white-space: nowrap;
+            border-radius: 14px;
+            box-shadow: 0 0 30px rgba(0,243,255,0.15), inset 0 0 20px rgba(0,243,255,0.08);
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .btn-primary::before {
+            content: "";
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,0,200,0.3) 0%, transparent 70%);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        .btn-primary:hover { border-color: var(--magenta); box-shadow: 0 0 60px rgba(255,0,200,0.4), inset 0 0 30px rgba(255,0,200,0.15); transform: translateY(-3px); }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary i.fa-arrow-right { transition: transform 0.3s ease; }
+        .btn-primary:hover i.fa-arrow-right { transform: translateX(8px); }
+
+        .hero .sub {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; max-width: 560px;
+            color: var(--muted); font-weight: 400; line-height: 1.7;
+        }
+        .hero .sub strong { color: var(--cyan); font-weight: 700; }
+
+        .hero-stats {
+            display: flex; width: 100%;
+            border-top: 1px solid rgba(0,243,255,0.25); border-bottom: 1px solid rgba(255,0,200,0.25);
+        }
+        .hero-stats .stat-item {
+            flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 14px 6px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .hero-stats .stat-item:last-child { border-right: none; }
+        .hero-stats .stat-item .label {
+            font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+        }
+        .hero-stats .stat-item .value {
+            font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.15rem;
+            color: var(--cyan); text-shadow: 0 0 12px rgba(0,243,255,0.7);
+        }
+        .hero-stats .stat-item.neutral .value { color: var(--ink); text-shadow: none; }
+        .hero-stats .stat-item.gold .value { color: var(--magenta); text-shadow: 0 0 12px rgba(255,0,200,0.7); }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 640px) {
+            .hero { border-radius: 18px; max-width: 100%; width: 100vw; min-height: 100vh; border-left: none; border-right: none; }
+            .hero-stats .stat-item .value { font-size: 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="scanlines"></div>
+<canvas id="webCanvas"></canvas>
+
+<div class="hero-outer">
+<section class="hero">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="feed-tag reveal"><span class="dot"></span> LIVE SIGNAL FEED</div>
+
+    <div class="profile-avatar-wrapper reveal">
+        <div class="avatar-ring"></div>
+        <div class="profile-photo">
+            <img src="divagamer.jpg" alt="Profile" />
+        </div>
+    </div>
+
+    <h1 class="channel-name reveal">
+        RAM<span style="color:var(--cyan); -webkit-text-fill-color:var(--cyan);">x</span>YAARWIN<span class="ticker-caret"></span>
+    </h1>
+
+    <span class="btn-primary-wrapper reveal">
+        <a href="https://t.me/+5hOKGysSI05lMTg1" target="_blank" class="btn-primary" id="joinHeroBtn">
+            <span>join_channel.exe</span> <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </span>
+
+    <p class="sub reveal">The <strong>#1</strong> Telegram hub for <strong>AI-powered signals</strong>, exclusive insight, and a next-gen community.</p>
+
+    <div class="hero-stats reveal">
+        <div class="stat-item">
+            <span class="label">Accuracy</span>
+            <span class="value">94.2%</span>
+        </div>
+        <div class="stat-item gold">
+            <span class="label">Members</span>
+            <span class="value">5,000+</span>
+        </div>
+        <div class="stat-item neutral">
+            <span class="label">Uptime</span>
+            <span class="value">24 / 7</span>
+        </div>
+    </div>
+
+</section>
+</div>
+
+<script>
+    // ---------- WEB / NETWORK BACKGROUND ANIMATION ----------
+    (function() {
+        const canvas = document.getElementById('webCanvas');
+        const ctx = canvas.getContext('2d');
+        let nodes = [], animationId;
+        const NODE_COUNT = 55;
+        const CONNECT_DIST = 120;
+        const MOUSE_RADIUS = 160;
+
+        let mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initNodes();
+        }
+
+        class Node {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = (Math.random() - 0.5) * 0.35;
+                this.radius = 2 + Math.random() * 2.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < -20) this.x = canvas.width + 20;
+                if (this.x > canvas.width + 20) this.x = -20;
+                if (this.y < -20) this.y = canvas.height + 20;
+                if (this.y > canvas.height + 20) this.y = -20;
+
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MOUSE_RADIUS && dist > 0) {
+                    const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.6;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx += Math.cos(angle) * force * 0.25;
+                    this.vy += Math.sin(angle) * force * 0.25;
+                }
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                const maxSpeed = 0.9;
+                if (speed > maxSpeed) {
+                    this.vx = (this.vx / speed) * maxSpeed;
+                    this.vy = (this.vy / speed) * maxSpeed;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0,243,255,0.85)';
+                ctx.shadowColor = '#00f3ff';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function initNodes() {
+            nodes = [];
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push(new Node());
+            }
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function drawLines() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < CONNECT_DIST) {
+                        const alpha = (1 - dist / CONNECT_DIST) * 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(255,0,200,${alpha})`;
+                        ctx.lineWidth = 0.7;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(n => { n.update(); n.draw(); });
+            drawLines();
+            animationId = requestAnimationFrame(animate);
+        }
+        animate();
+
+        document.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        document.addEventListener('touchmove', e => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) cancelAnimationFrame(animationId);
+            else animate();
+        });
+    })();
+
+    (function() {
+        const revealEls = document.querySelectorAll('.reveal');
+        revealEls.forEach((el, i) => setTimeout(() => el.classList.add('revealed'), 110 * i));
+    })();
+</script>
+</body>
+</html>

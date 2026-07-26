@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* Center everything on the page */
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+
+  th, td {
+    border: 1px solid #333;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  th {
+    background: #1a1a2e;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  tbody tr:hover {
+    background: #e8f0fe;
+  }
+
+  tfoot td {
+    background: #d9ead3;
+    font-weight: 800;
+    font-size: 1.1em;
+    border-top: 3px solid #2e7d32;
+  }
+
+  tfoot td:last-child {
+    color: #1b5e20;
+  }
+
+  .amt {
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .sn {
+    text-align: center;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<table>
+  <thead>
+    <tr><th>S.N</th><th>Description</th><th>Amount</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="sn">01</td><td>RANJIT Chacha (kiraya ramnagr to home)</td><td class="amt">₹600</td></tr>
+    <tr><td class="sn">02</td><td>Puran Bhaiya (Hospital)</td><td class="amt">₹2,000</td></tr>
+    <tr><td class="sn">03</td><td>Manju Chachi for hospital in ramnagar</td><td class="amt">₹1,500</td></tr>
+    <tr><td class="sn">04</td><td>Bidula se liye (Mummy leg treatment)</td><td class="amt">₹3,000</td></tr>
+    <tr><td class="sn">05</td><td>Puran Bhai (kiraya home to ramnagar)</td><td class="amt">₹500</td></tr>
+    <tr><td class="sn">06</td><td>Dang Kamal (4 quintal wheat)</td><td class="amt">₹12,000</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="2" style="text-align:right; font-size:1.1em;">TOTAL</td><td class="amt" style="font-size:1.2em;">₹19,600</td></tr>
+  </tfoot>
+</table>
+</body>
+</html>

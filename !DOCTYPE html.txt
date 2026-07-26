@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ffb400;
+            --dark-glass: rgba(10, 10, 10, 0.9);
+            --border-glass: rgba(255, 180, 0, 0.4);
+            --panel-bg: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: transparent !important;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== FLOATING CIRCLE BUTTON ===== */
+        #miniBtn {
+            width: 70px;
+            height: 70px;
+            background: var(--panel-bg);
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(255, 180, 0, 0.5), inset 0 0 15px rgba(255, 180, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: float 4s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        #miniBtn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.1);
+        }
+
+        /* ===== MAIN PANEL ===== */
+        #main {
+            width: 260px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 18px;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+        }
+
+        /* Decorative corners */
+        #main::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 20px;
+            height: 20px;
+            border-top: 3px solid var(--accent);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px 0 0 0;
+        }
+        #main::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+            border-radius: 0 0 6px 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 180, 0, 0.2);
+        }
+
+        .brand-title {
+            font-weight: 900;
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 0 0 8px var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #cls-btn {
+            background: rgba(255, 180, 0, 0.15);
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 11px;
+            cursor: pointer;
+            border: 1px solid var(--border-glass);
+        }
+
+        /* ===== SCREEN ===== */
+        .display-container {
+            width: 100%;
+            background: #000;
+            border-radius: 18px;
+            padding: 3px;
+            border: 1px solid rgba(255, 180, 0, 0.3);
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen {
+            width: 100%;
+            min-height: 130px;
+            background: radial-gradient(circle at center, #221a00, #000);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            font-size: 8px;
+            font-weight: bold;
+            color: var(--accent);
+            background: rgba(255, 180, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .period-display {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: monospace;
+        }
+
+        .res-text {
+            font-weight: 900;
+            font-size: 30px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .res-text .big {
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255, 50, 50, 0.6);
+        }
+        .res-text .small {
+            color: #4ecdc4;
+            text-shadow: 0 0 20px rgba(78, 205, 196, 0.6);
+        }
+        .res-text .num {
+            color: #fff;
+            text-shadow: 0 0 20px var(--accent);
+        }
+
+        .sub-text {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 6px;
+        }
+
+        .bottom-info {
+            position: absolute;
+            bottom: 8px;
+            font-size: 8px;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .scanning-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            animation: scanMove 1.8s linear infinite;
+            z-index: 5;
+            display: none;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 100%;
+            height: 44px;
+            background: linear-gradient(to right, rgba(255, 180, 0, 0.3), rgba(255, 180, 0, 0.1));
+            border: 1px solid var(--border-glass);
+            border-left: 5px solid var(--accent);
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 11px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-btn:active {
+            transform: scale(0.97);
+            background: var(--accent);
+            color: #000;
+        }
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .secondary-btn {
+            flex: 1;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #ccc;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .secondary-btn:active {
+            transform: scale(0.95);
+        }
+        .secondary-btn.active {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .tg-btn {
+            width: 45px;
+            height: 38px;
+            background: rgba(255, 180, 0, 0.15);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .tg-btn:active {
+            transform: scale(0.93);
+        }
+        .tg-btn svg {
+            width: 20px;
+            fill: var(--accent);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 400px) {
+            #main {
+                width: 230px;
+                padding: 14px;
+            }
+            .res-text {
+                font-size: 24px;
+            }
+            .action-btn {
+                height: 40px;
+                font-size: 10px;
+            }
+            .secondary-btn {
+                height: 34px;
+                font-size: 9px;
+            }
+            .tg-btn {
+                height: 34px;
+                width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FLOATING CIRCLE ===== -->
+    <div id="miniBtn" onclick="openM()">
+        <img src="https://i.ibb.co/qFWVjPjh/IMG-20260427-165046-375.png" alt="Logo">
+    </div>
+
+    <!-- ===== MAIN PANEL ===== -->
+    <div id="main">
+        <div class="header">
+            <span class="brand-title">JAICLUB PREMIUM</span>
+            <div id="cls-btn" onclick="closeM()">✕</div>
+        </div>
+
+        <div class="display-container">
+            <div class="screen" id="innerScreen">
+                <!-- Rendered by JS -->
+            </div>
+            <div id="scanLine" class="scanning-line"></div>
+        </div>
+
+        <div class="btn-stack" id="btnArea">
+            <!-- Rendered by JS -->
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  CONFIG
+        // ============================================================
+        const API_URL = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?ts=';
+        const WIN_GO_URL = 'https://www.jaiclub48.com/#/saasLottery/WinGo?gameCode=WinGo_30S&lottery=WinGo';
+        const TG_URL = 'https://t.me/+T1cr_hi2iilkZDY1';
+
+        // ============================================================
+        //  STATE
+        // ============================================================
+        let showNumber = false;
+        let isScanning = false;
+        let currentPeriod = '';
+        let cachedResult = null; // { period, display, raw }
+
+        // ============================================================
+        //  DOM REFS
+        // ============================================================
+        const miniBtn = document.getElementById('miniBtn');
+        const mainPanel = document.getElementById('main');
+        const screenEl = document.getElementById('innerScreen');
+        const btnArea = document.getElementById('btnArea');
+        const scanLine = document.getElementById('scanLine');
+
+        // ============================================================
+        //  PERIOD HELPER
+        // ============================================================
+        function getPeriodId() {
+            const d = new Date();
+            const y = d.getUTCFullYear();
+            const mo = String(d.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(d.getUTCDate()).padStart(2, '0');
+            const totalMin = d.getUTCHours() * 60 + d.getUTCMinutes();
+            return y + mo + day + '1000' + (10001 + totalMin);
+        }
+
+        // ============================================================
+        //  API — FETCH LATEST RESULT
+        // ============================================================
+        async function fetchLatestResult() {
+            const res = await fetch(API_URL + Date.now(), { cache: 'no-store' });
+            const json = await res.json();
+
+            // Try multiple possible response shapes
+            let list = json?.data?.list || json?.data || json?.list || json?.rows || json?.data?.records || [];
+            if (!Array.isArray(list) || !list.length) throw new Error('No data from API');
+
+            // Sort by issueNumber descending
+            list.sort((a, b) => {
+                const pa = String(a.issueNumber || a.issue || a.period || a.periodNo || a.Id || '');
+                const pb = String(b.issueNumber || b.issue || b.period || b.periodNo || b.Id || '');
+                return pb.localeCompare(pa);
+            });
+
+            const latest = list[0];
+            const period = String(latest.issueNumber || latest.issue || latest.period || latest.periodNo || latest.Id ||
+                '');
+            const raw = latest.number ?? latest.result ?? latest.openCode ?? latest.open ?? latest.code;
+            if (!period || raw === undefined) throw new Error('Invalid data');
+
+            const numVal = parseInt(String(raw), 10);
+            const isBig = !isNaN(numVal) && numVal >= 5;
+            const label = isBig ? 'BIG' : 'SMALL';
+            const display = !isNaN(numVal) ? label + ' ' + numVal : String(raw);
+
+            return { period, display, raw: numVal, label };
+        }
+
+        // ============================================================
+        //  RENDER
+        // ============================================================
+        function render(state, payload) {
+            // state: 'idle' | 'scanning' | 'result' | 'error'
+            const screen = screenEl;
+            const btns = btnArea;
+
+            // Clear scan line
+            scanLine.style.display = 'none';
+
+            if (state === 'idle') {
+                screen.innerHTML = `
+                    <div class="status-tag">READY</div>
+                    <div class="period-display">ID: ----</div>
+                    <div class="res-text" style="font-size:20px;">⏳ TAP SCAN</div>
+                    <div class="sub-text">Fetch the latest WinGo result</div>
+                    <div class="bottom-info">LIVE DATA</div>
+                `;
+                btns.innerHTML = `
+                    <button class="action-btn" onclick="startScan()">⚡ SCAN RESULT</button>
+                    <div class="row">
+                        <button class="secondary-btn ${showNumber ? 'active' : ''}" onclick="toggleNumber()">
+                            NUMBERS: ${showNumber ? 'ON' : 'OFF'}
+                        </button>
+                        <button class="secondary-btn" onclick="openWinGo()">🎯 OPEN WIN GO</button>
+                        <div class="tg-btn" onclick="openTG()">${tgIcon()}</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (state === 'scanning') {
+                scanLine.style.display = 'block';
+                screen.innerHTML = `
+                    <div class="status-tag" style="color:#00ccff;">SCANNING</div>
+                    <div class="period-display">ID: ${currentPeriod.slice(-6) || '···'}</div>
+                    <div class="res-text" style="font-size:18px; letter-spacing:2px;">FETCHING...</div>
+                    <div class="sub-text">Connecting to server</div>
+                    <div class="bottom-info">PLEASE WAIT</div>
+                `;
+                btns.innerHTML = `
+                    <button class="action-btn" disabled style="opacity:0.6;">⏳ SCANNING...</button>
+                    <div class="row">
+                        <button class="secondary-btn ${showNumber ? 'active' : ''}" onclick="toggleNumber()">
+                            NUMBERS: ${showNumber ? 'ON' : 'OFF'}
+                        </button>
+                        <button class="secondary-btn" onclick="openWinGo()">🎯 OPEN WIN GO</button>
+                        <div class="tg-btn" onclick="openTG()">${tgIcon()}</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (state === 'result') {
+                const p = payload;
+                const displayText = p.display || '—';
+                const periodId = p.period || '----';
+
+                // Color the BIG/SMALL part
+                let htmlDisplay = displayText;
+                if (p.label === 'BIG') {
+                    htmlDisplay = displayText.replace('BIG', '<span class="big">BIG</span>');
+                } else if (p.label === 'SMALL') {
+                    htmlDisplay = displayText.replace('SMALL', '<span class="small">SMALL</span>');
+                } else {
+                    htmlDisplay = displayText;
+                }
+                // Highlight number
+                if (showNumber && p.raw !== undefined && !isNaN(p.raw)) {
+                    htmlDisplay = htmlDisplay.replace(/\d+/, '<span class="num">$&</span>');
+                } else if (!showNumber && p.label) {
+                    // Show only BIG/SMALL without number
+                    htmlDisplay = p.label;
+                } else if (!showNumber && p.raw === undefined) {
+                    // fallback
+                    htmlDisplay = displayText;
+                }
+
+                screen.innerHTML = `
+                    <div class="status-tag" style="color:#00ff88;">✓ CAPTURED</div>
+                    <div class="period-display">ID: ${periodId.slice(-6)}</div>
+                    <div class="res-text">${htmlDisplay}</div>
+                    <div class="sub-text">Period ended — result verified</div>
+                    <div class="bottom-info">● LIVE</div>
+                `;
+                btns.innerHTML = `
+                    <button class="action-btn" onclick="startScan()">🔄 REFRESH</button>
+                    <div class="row">
+                        <button class="secondary-btn ${showNumber ? 'active' : ''}" onclick="toggleNumber()">
+                            NUMBERS: ${showNumber ? 'ON' : 'OFF'}
+                        </button>
+                        <button class="secondary-btn" onclick="openWinGo()">🎯 OPEN WIN GO</button>
+                        <div class="tg-btn" onclick="openTG()">${tgIcon()}</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (state === 'error') {
+                const msg = payload || 'Something went wrong';
+                screen.innerHTML = `
+                    <div class="status-tag" style="color:#ff4444;">⚠ ERROR</div>
+                    <div class="period-display">ID: ----</div>
+                    <div class="res-text" style="font-size:16px; color:#ff6666;">${msg}</div>
+                    <div class="sub-text">Tap RETRY to try again</div>
+                    <div class="bottom-info">● OFFLINE</div>
+                `;
+                btns.innerHTML = `
+                    <button class="action-btn" onclick="startScan()">🔄 RETRY</button>
+                    <div class="row">
+                        <button class="secondary-btn ${showNumber ? 'active' : ''}" onclick="toggleNumber()">
+                            NUMBERS: ${showNumber ? 'ON' : 'OFF'}
+                        </button>
+                        <button class="secondary-btn" onclick="openWinGo()">🎯 OPEN WIN GO</button>
+                        <div class="tg-btn" onclick="openTG()">${tgIcon()}</div>
+                    </div>
+                `;
+                return;
+            }
+        }
+
+        // ============================================================
+        //  ACTIONS
+        // ============================================================
+        function toggleNumber() {
+            showNumber = !showNumber;
+            // Re-render current state
+            if (cachedResult) {
+                render('result', cachedResult);
+            } else {
+                render('idle');
+            }
+        }
+
+        function openWinGo() {
+            if (window.TeamBridge) {
+                TeamBridge.loadUrl(WIN_GO_URL);
+            } else {
+                window.open(WIN_GO_URL, '_blank');
+            }
+        }
+
+        function openTG() {
+            if (window.TeamBridge) {
+                TeamBridge.openExternal(TG_URL);
+            } else {
+                window.open(TG_URL, '_blank');
+            }
+        }
+
+        function tgIcon() {
+            return `<svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.96-.924c-.643-.203-.658-.643.136-.953l11.55-4.458c.535-.199 1.005.128.844.943z"/></svg>`;
+        }
+
+        // ============================================================
+        //  SCAN
+        // ============================================================
+        async function startScan() {
+            if (isScanning) return;
+            isScanning = true;
+            currentPeriod = getPeriodId();
+
+            render('scanning');
+
+            try {
+                const data = await fetchLatestResult();
+                cachedResult = data;
+                currentPeriod = data.period || currentPeriod;
+                render('result', data);
+            } catch (err) {
+                console.warn('Scan error:', err);
+                render('error', err.message || 'API fetch failed');
+            } finally {
+                isScanning = false;
+            }
+        }
+
+        // ============================================================
+        //  PANEL OPEN / CLOSE
+        // ============================================================
+        function openM() {
+            mainPanel.style.display = 'flex';
+            miniBtn.style.display = 'none';
+            if (window.TeamBridge) TeamBridge.resizeView(260, 360);
+            // Reset to idle
+            cachedResult = null;
+            render('idle');
+        }
+
+        function closeM() {
+            mainPanel.style.display = 'none';
+            miniBtn.style.display = 'flex';
+            scanLine.style.display = 'none';
+            if (window.TeamBridge) TeamBridge.resizeView(80, 80);
+        }
+
+        // ============================================================
+        //  AUTO-PERIOD UPDATE (for display)
+        // ============================================================
+        setInterval(() => {
+            const newPeriod = getPeriodId();
+            if (newPeriod !== currentPeriod && !isScanning) {
+                currentPeriod = newPeriod;
+                // If we have a cached result, keep showing it; otherwise idle
+                if (!cachedResult) {
+                    render('idle');
+                }
+            }
+        }, 3000);
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        window.onload = function() {
+            render('idle');
+        };
+
+        // Handle TeamBridge resize on open/close
+        if (window.TeamBridge) {
+            // initial resize for mini state
+            TeamBridge.resizeView(80, 80);
+        }
+    </script>
+</body>
+</html>

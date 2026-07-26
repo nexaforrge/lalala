@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="RAMxYAARWIN – #1 Telegram Hub" />
+    <meta property="og:description" content="Join the most trusted prediction channel — real-time signals, AI-powered insight, one squad." />
+    <meta property="og:image" content="divagamer.jpg" />
+    <meta property="og:url" content="https://rawats7.github.io/divagame.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="RAMxYAARWIN — the #1 Telegram hub for crypto signals, AI alerts, and a next-gen community." />
+    <title>RAMxYAARWIN – #1 Telegram Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(212,160,23,0.35) transparent; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.35); }
+
+        :root {
+            --bg: #08070a;
+            --panel: #0f0d10;
+            --gold: #f0b429;
+            --gold-dim: #7a5c14;
+            --up: #21c97a;
+            --down: #e5484d;
+            --ink: #f3ede1;
+            --muted: rgba(243,237,225,0.42);
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* scanline / CRT overlay */
+        .scanlines {
+            position: fixed; inset: 0; z-index: 3; pointer-events: none;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0px, rgba(0,0,0,0.14) 1px, transparent 1px, transparent 3px);
+            opacity: 0.5; mix-blend-mode: overlay;
+        }
+        .vignette { position: fixed; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 220px rgba(0,0,0,0.75); }
+
+        #tickerCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.85; }
+
+        .hero-outer { min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; z-index: 10; }
+
+        .hero {
+            width: 100%; max-width: 440px; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; gap: 24px; padding: 40px 26px; position: relative;
+            border: 1px solid rgba(240,180,41,0.22);
+            background: transparent;
+            backdrop-filter: none; -webkit-backdrop-filter: none;
+            box-shadow: 0 0 0 1px rgba(240,180,41,0.06);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            animation: scanSweep 3.5s linear infinite;
+        }
+        @keyframes scanSweep { 0% { transform: translateY(0); opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
+
+        @media (max-width: 640px) {
+            .hero-outer { padding: 0; }
+            .hero { max-width: 100%; width: 100vw; min-height: 100vh; border-left: none; border-right: none; }
+        }
+
+        /* corner brackets — terminal / targeting reticle framing */
+        .corner { position: absolute; width: 22px; height: 22px; border: 2px solid var(--gold); opacity: 0.7; }
+        .corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+        .corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+        .corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+        .corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+        .feed-tag {
+            font-size: 0.72rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .feed-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--up); box-shadow: 0 0 10px var(--up); animation: blink 1.4s ease-in-out infinite; }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+        /* Profile photo — square terminal-frame, not circular */
+        .profile-avatar-wrapper { position: relative; width: 132px; height: 132px; }
+        .profile-frame {
+            position: absolute; inset: -10px; border: 1px solid rgba(240,180,41,0.4);
+        }
+        .profile-frame::before, .profile-frame::after {
+            content: attr(data-label); position: absolute; font-size: 0.6rem; letter-spacing: 1px; color: var(--gold-dim);
+        }
+        .profile-photo {
+            position: absolute; inset: 0; overflow: hidden; z-index: 2;
+            filter: grayscale(0.15) contrast(1.05);
+            box-shadow: 0 0 0 1px rgba(240,180,41,0.5), 0 0 40px rgba(240,180,41,0.18);
+        }
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .profile-photo::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(240,180,41,0.15) 100%);
+        }
+
+        /* 2. Channel name — ticker-symbol treatment */
+        .channel-name {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: clamp(2rem, 8.5vw, 2.9rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink);
+            display: flex; align-items: baseline; justify-content: center; gap: 0.1em; flex-wrap: wrap;
+        }
+        .channel-name .sym-ram { color: var(--ink); }
+        .channel-name .sym-x {
+            font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.55em;
+            color: var(--up); animation: tick 2.2s steps(1) infinite;
+        }
+        @keyframes tick { 0%,45% { color: var(--up); } 50%,95% { color: var(--down); } 100% { color: var(--up); } }
+        .channel-name .sym-win { color: var(--gold); text-shadow: 0 0 24px rgba(240,180,41,0.35); }
+        .ticker-caret { display: inline-block; width: 0.5em; background: var(--gold); animation: caretBlink 1s steps(1) infinite; margin-left: 2px; }
+        @keyframes caretBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+        /* 3. Button — flat terminal command button */
+        .btn-primary-wrapper { position: relative; display: inline-block; width: 100%; }
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%;
+            background: var(--gold);
+            color: #0c0a06; font-weight: 700; font-size: 1.05rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; text-transform: uppercase;
+            padding: 18px 32px; text-decoration: none; border: none; cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative; overflow: hidden; white-space: nowrap;
+            clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+        }
+        .btn-primary:hover { background: #ffcf5c; transform: translateY(-2px); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary::before {
+            content: ">"; font-weight: 700; opacity: 0.6;
+        }
+        .btn-primary i.fa-arrow-right { transition: transform 0.3s ease; }
+        .btn-primary:hover i.fa-arrow-right { transform: translateX(8px); }
+
+        /* 3. Text */
+        .hero .sub { font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; max-width: 560px; color: var(--muted); font-weight: 400; line-height: 1.7; }
+        .hero .sub strong { color: var(--gold); font-weight: 700; }
+
+        /* 4. Stats — readout row */
+        .hero-stats {
+            display: flex; width: 100%; border-top: 1px solid rgba(240,180,41,0.2); border-bottom: 1px solid rgba(240,180,41,0.2);
+        }
+        .hero-stats .stat-item {
+            flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 12px 6px;
+            border-right: 1px solid rgba(240,180,41,0.15);
+        }
+        .hero-stats .stat-item:last-child { border-right: none; }
+        .hero-stats .stat-item .label { font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+        .hero-stats .stat-item .value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.1rem; color: var(--up); }
+        .hero-stats .stat-item.neutral .value { color: var(--ink); }
+        .hero-stats .stat-item.gold .value { color: var(--gold); }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 640px) {
+            .hero-stats .stat-item .value { font-size: 0.95rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="scanlines"></div>
+<canvas id="tickerCanvas"></canvas>
+
+<div class="hero-outer">
+<section class="hero">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="feed-tag reveal"><span class="dot"></span> LIVE SIGNAL FEED</div>
+
+    <!-- 1. Profile photo -->
+    <div class="profile-avatar-wrapper reveal">
+        <div class="profile-frame"></div>
+        <div class="profile-photo">
+            <img src="divagamer.jpg" alt="Profile" />
+        </div>
+    </div>
+
+    <!-- 2. Channel name -->
+    <h1 class="channel-name reveal">
+        <span class="sym-ram">RAM</span><span class="sym-x">x</span><span class="sym-win">YAARWIN</span><span class="ticker-caret">&nbsp;</span>
+    </h1>
+
+    <!-- 3. Button -->
+    <span class="btn-primary-wrapper reveal">
+        <a href="https://t.me/+5hOKGysSI05lMTg1" target="_blank" class="btn-primary" id="joinHeroBtn">
+            <span>join_channel.exe</span> <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </span>
+
+    <!-- 3. Text -->
+    <p class="sub reveal">The <strong>#1</strong> Telegram hub for <strong>AI-powered signals</strong>, exclusive insight, and a next-gen community.</p>
+
+    <!-- 4. stats -->
+    <div class="hero-stats reveal">
+        <div class="stat-item">
+            <span class="label">Accuracy</span>
+            <span class="value">94.2%</span>
+        </div>
+        <div class="stat-item gold">
+            <span class="label">Members</span>
+            <span class="value">5,000+</span>
+        </div>
+        <div class="stat-item neutral">
+            <span class="label">Uptime</span>
+            <span class="value">24 / 7</span>
+        </div>
+    </div>
+
+</section>
+</div>
+
+<script>
+    // Background: animated candlestick / sparkline ticker instead of a particle web —
+    // reads as a live market feed behind the card.
+    (function() {
+        const canvas = document.getElementById('tickerCanvas');
+        const ctx = canvas.getContext('2d');
+        let bars = [], offset = 0, animationId;
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initBars(); }
+        function initBars() {
+            bars = [];
+            const barWidth = 10;
+            const count = Math.ceil(canvas.width / barWidth) + 4;
+            let last = canvas.height * 0.5;
+            for (let i = 0; i < count; i++) {
+                const open = last;
+                const close = open + (Math.random() - 0.5) * 70;
+                const high = Math.max(open, close) + Math.random() * 24;
+                const low = Math.min(open, close) - Math.random() * 24;
+                bars.push({ open, close, high, low });
+                last = close;
+            }
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const barWidth = 10;
+            const gap = 4;
+            const baseY = canvas.height * 0.62;
+            const scale = 0.9;
+
+            for (let i = 0; i < bars.length; i++) {
+                const b = bars[i];
+                const x = i * (barWidth + gap) - offset;
+                const up = b.close <= b.open;
+                ctx.strokeStyle = up ? 'rgba(33,201,122,0.28)' : 'rgba(229,72,77,0.28)';
+                ctx.fillStyle = up ? 'rgba(33,201,122,0.16)' : 'rgba(229,72,77,0.16)';
+                ctx.lineWidth = 1;
+
+                ctx.beginPath();
+                ctx.moveTo(x + barWidth / 2, baseY - b.high * scale);
+                ctx.lineTo(x + barWidth / 2, baseY - b.low * scale);
+                ctx.stroke();
+
+                const top = baseY - Math.max(b.open, b.close) * scale;
+                const height = Math.max(2, Math.abs(b.close - b.open) * scale);
+                ctx.fillRect(x, top, barWidth, height);
+            }
+            offset += 0.35;
+            if (offset > barWidth + gap) {
+                offset -= (barWidth + gap);
+                bars.shift();
+                const lastBar = bars[bars.length - 1];
+                const open = lastBar.close;
+                const close = open + (Math.random() - 0.5) * 70;
+                const high = Math.max(open, close) + Math.random() * 24;
+                const low = Math.min(open, close) - Math.random() * 24;
+                bars.push({ open, close, high, low });
+            }
+            animationId = requestAnimationFrame(draw);
+        }
+        draw();
+        document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(animationId); else draw(); });
+    })();
+
+    (function() {
+        const revealEls = document.querySelectorAll('.reveal');
+        revealEls.forEach((el, i) => setTimeout(() => el.classList.add('revealed'), 110 * i));
+    })();
+</script>
+</body>
+</html>

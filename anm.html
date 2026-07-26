@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SURESHOT BY KING — Free Telegram Trading Community</title>
+    <meta name="description" content="Join 18,400+ members in the SURESHOT BY KING Telegram channel. Get disciplined, risk-first market calls with transparent tracking. Free community — sirf discipline laani hai.">
+    <meta name="keywords" content="trading, telegram, calls, market, discipline, free, community, king, sureshot">
+    <meta name="author" content="KING">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SURESHOT BY KING — Free Telegram Trading Community">
+    <meta property="og:description" content="Disciplined calls, risk-first approach, transparent tracking. Join 18,400+ members now.">
+    <meta property="og:image" content="kingbhai.jpg">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SURESHOT BY KING">
+    <meta name="twitter:description" content="Free Telegram community for disciplined trading calls.">
+    <meta name="twitter:image" content="kingbhai.jpg">
+    <meta name="theme-color" content="#0d0b1a">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1020509430945885');fbq('track','PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1020509430945885&ev=PageView&noscript=1"/></noscript>
+
+    <style>
+        :root {
+            --bg: #0d0b1a;
+            --card-bg: rgba(20, 18, 36, 0.7);
+            --ink: #f0eef5;
+            --soft: #b4b0c8;
+            --muted: #76738f;
+            --neon-cyan: #00f0ff;
+            --neon-pink: #ff2d95;
+            --neon-purple: #c055ff;
+            --gold: #ffb800;
+            --blue-btn: #1d9bf0;
+            --blue-dark: #0d7bdc;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; -webkit-tap-highlight-color:transparent; }
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #vanta-bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Glass card */
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05) inset;
+            padding: 42px 28px 38px;
+            text-align: center;
+        }
+
+        /* Logo with massive energy ring */
+        .logo-wrapper {
+            display: inline-block;
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+        }
+
+        /* Energy ring 1 (cyan) */
+        .logo-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-cyan);
+            animation: spinRing 3s linear infinite, pulseRing 1.8s ease-in-out infinite alternate;
+            box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan);
+            opacity: 0.8;
+        }
+
+        /* Energy ring 2 (pink) - counter rotate */
+        .logo-wrapper::after {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-pink);
+            animation: spinRingReverse 4s linear infinite, pulseRing 2s ease-in-out infinite alternate-reverse;
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+            opacity: 0.6;
+        }
+
+        @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinRingReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        @keyframes pulseRing {
+            0% { transform: rotate(var(--rot, 0deg)) scale(0.95); opacity: 0.8; }
+            100% { transform: rotate(var(--rot, 0deg)) scale(1.1); opacity: 0.4; }
+        }
+        /* Assign rotation variables */
+        .logo-wrapper::before { --rot: 0deg; }
+        .logo-wrapper::after { --rot: 0deg; }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255,45,149,0.5), 0 0 80px rgba(0,240,255,0.4);
+            border: 3px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo img { width:100%; height:100%; object-fit:cover; display:block; }
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(255,45,149,0.8), 0 0 100px rgba(0,240,255,0.6);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 7px 18px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(6px);
+        }
+        .badge svg { width:12px; height:12px; }
+        .badge svg path { stroke: var(--gold); }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 46px;
+            line-height: 1.1;
+            margin: 0 0 18px;
+            background: linear-gradient(135deg, #ffffff, var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0,240,255,0.4));
+            min-height: 56px;
+        }
+        h1 span {
+            background: linear-gradient(135deg, var(--gold), #ff6b9d, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            font-weight: 600;
+            filter: drop-shadow(0 0 25px rgba(255,45,149,0.7));
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.9em;
+            background: var(--neon-cyan);
+            margin-left: 3px;
+            vertical-align: text-bottom;
+            animation: blink 0.9s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity:0; } }
+
+        .sub {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--soft);
+            max-width: 400px;
+            margin: 0 auto 32px;
+        }
+
+        /* Blue CTA */
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #1d9bf0 0%, #0d7bdc 55%, #0a6dc9 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            padding: 18px 38px;
+            border-radius: 20px;
+            box-shadow: 0 12px 32px -8px rgba(29,155,240,0.6), 0 0 0 1px rgba(255,255,255,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .cta svg { width: 22px; height: 22px; fill: #fff; }
+        .cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 44px -8px rgba(29,155,240,0.9), 0 0 0 1px rgba(255,255,255,0.4);
+        }
+
+        .members {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .members b { color: #e0dce8; font-weight: 600; }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            font-size: 11px;
+            color: #76738f;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(13,11,26,0.6);
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+        }
+        footer a { color: #c055ff; text-decoration: none; font-weight: 600; }
+
+        @media (max-width: 480px) {
+            .card { padding: 30px 18px 28px; border-radius: 30px; }
+            .logo-wrapper { width: 130px; height: 130px; }
+            h1 { font-size: 34px; }
+            .sub { font-size: 14px; max-width: 280px; }
+            .cta { padding: 15px 28px; font-size: 14px; border-radius: 16px; }
+        }
+        @media (max-width: 360px) {
+            .logo-wrapper { width: 110px; height: 110px; }
+            h1 { font-size: 28px; }
+            .cta { padding: 13px 22px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="vanta-bg"></div>
+
+    <div class="page">
+        <div class="card">
+            <!-- Massive logo with spinning energy rings -->
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <img src="kingbhai.jpg" alt="Channel Logo">
+                </div>
+            </div>
+
+            <div class="badge">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Verified Telegram Channel
+            </div>
+
+            <h1 id="typewriter"></h1>
+            <p class="sub">Roz market ke saaf, disciplined calls — bina noise ke. Risk-first approach, transparent tracking, aur ek community jo sirf sikhne aur kamaane pe focused hai.</p>
+
+            <a class="cta" href="https://t.me/+63u_MhUQuXhjZGNl" target="_blank" rel="noopener">
+                <svg viewBox="0 0 240 240" fill="none"><path d="M186.5 61.5L28.8 122.9c-11 4.4-10.9 10.5-2 13.2l40.4 12.6 15.6 47.7c1.9 5.2 3.4 7.3 6.9 7.3 3.6 0 5.2-1.7 7.2-3.6l19.3-18.6 40.1 29.6c7.4 4.1 12.7 2 14.6-6.9l26.4-124.4c2.7-11-4.1-16-14.8-11.9z"/></svg>
+                JOIN FREE COMMUNITY
+            </a>
+            <div class="members">Currently trusted by <b>18,400+</b> members</div>
+        </div>
+
+        <footer>
+            Ads managed by <a href="https://t.me/+Xd0Cn_fQXqY5NjM1" target="_blank" rel="noopener">GBM</a> · Not financial advice. Trade at your own risk.
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
+    <script>
+        (function() {
+            function initVanta() {
+                if (typeof THREE === 'undefined' || typeof VANTA === 'undefined') {
+                    return setTimeout(initVanta, 100);
+                }
+                VANTA.HALO({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    backgroundColor: 0x0d0b1a,
+                    size: 1.9,
+                    amplitudeFactor: 2.3,
+                    xOffset: 0.2,
+                    yOffset: 0.1
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(initVanta, 80));
+            } else {
+                setTimeout(initVanta, 80);
+            }
+        })();
+
+        // Typing effect
+        (function() {
+            const h1 = document.getElementById('typewriter');
+            const prefix = 'SURESHOT BY ';
+            const name = 'KING';
+            let idx = 0, phase = 0, spanEl = null;
+
+            function type() {
+                if (phase === 0) {
+                    if (idx < prefix.length) {
+                        h1.innerHTML = prefix.substring(0, idx + 1) + '<span class="cursor">|</span>';
+                        idx++;
+                        setTimeout(type, 80);
+                    } else {
+                        h1.innerHTML = prefix +
+                            '<span id="typed-name" style="background: linear-gradient(135deg, var(--gold), #ff6b9d, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; font-weight: 600; filter: drop-shadow(0 0 25px rgba(255,45,149,0.7));"></span>' +
+                            '<span class="cursor">|</span>';
+                        spanEl = document.getElementById('typed-name');
+                        idx = 0;
+                        phase = 1;
+                        setTimeout(type, 110);
+                    }
+                } else if (phase === 1) {
+                    if (idx < name.length) {
+                        spanEl.textContent = name.substring(0, idx + 1);
+                        idx++;
+                        setTimeout(type, 95);
+                    } else {
+                        h1.innerHTML = prefix +
+                            '<span style="background: linear-gradient(135deg, var(--gold), #ff6b9d, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; font-weight: 600; filter: drop-shadow(0 0 25px rgba(255,45,149,0.7));">' +
+                            name + '</span>';
+                    }
+                }
+            }
+            type();
+        })();
+    </script>
+</body>
+</html>

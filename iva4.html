@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="RAMxYAARWIN – #1 Telegram Hub" />
+    <meta property="og:description" content="Join the most trusted prediction channel — real-time signals, AI-powered insight, one squad." />
+    <meta property="og:image" content="divagamer.jpg" />
+    <meta property="og:url" content="https://rawats7.github.io/divagame.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="RAMxYAARWIN — the #1 Telegram hub for crypto signals, AI alerts, and a next-gen community." />
+    <title>RAMxYAARWIN – #1 Telegram Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(139,92,246,0.4) transparent; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); }
+
+        :root {
+            --bg: #08040f;
+            --violet: #9b6bff;
+            --violet-deep: #6d3bd6;
+            --cyan: #2ee6d6;
+            --coral: #ff5d8f;
+            --ink: #f6f3ff;
+            --muted: rgba(246,243,255,0.52);
+            --line: rgba(155,107,255,0.28);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .grain {
+            position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .vignette { position: fixed; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 260px rgba(0,0,0,0.8); }
+
+        #pulseCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.9; }
+
+        .hero-outer { min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; z-index: 10; }
+
+        .hero {
+            width: 100%; max-width: 440px; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; gap: 26px; padding: 40px 26px; position: relative;
+            border: 1px solid var(--line);
+            background: transparent;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
+            animation: scanSweep 4s linear infinite;
+        }
+        @keyframes scanSweep { 0% { transform: translateY(0); opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
+
+        @media (max-width: 640px) {
+            .hero-outer { padding: 0; }
+            .hero { max-width: 100%; width: 100vw; min-height: 100vh; border-left: none; border-right: none; }
+        }
+
+        .corner { position: absolute; width: 22px; height: 22px; border: 2px solid var(--cyan); opacity: 0.75; }
+        .corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+        .corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; border-color: var(--violet); }
+        .corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; border-color: var(--violet); }
+        .corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+        .feed-tag {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: 0.72rem; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase;
+            display: flex; align-items: center; gap: 9px;
+            text-shadow: 0 0 14px rgba(46,230,214,0.5);
+        }
+        .feed-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 12px var(--coral); animation: blink 1.4s ease-in-out infinite; }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+        .profile-avatar-wrapper { position: relative; width: 136px; height: 136px; }
+        .profile-frame {
+            position: absolute; inset: -10px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+        }
+        .profile-photo {
+            position: absolute; inset: 0; overflow: hidden; z-index: 2;
+            border-radius: 22px;
+            filter: saturate(1.1) contrast(1.05);
+            box-shadow: 0 0 0 1px rgba(155,107,255,0.55), 0 0 50px rgba(155,107,255,0.35), 0 0 90px rgba(46,230,214,0.15);
+        }
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .profile-photo::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(46,230,214,0.12) 0%, transparent 40%, rgba(155,107,255,0.18) 100%);
+        }
+
+        .channel-name {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.9rem, 8vw, 2.7rem);
+            line-height: 1.05;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: var(--ink);
+            display: flex; align-items: baseline; justify-content: center; gap: 0.08em; flex-wrap: wrap;
+            text-shadow: 0 2px 24px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.9);
+        }
+        .channel-name .sym-ram {
+            background: linear-gradient(120deg, var(--cyan), var(--violet) 70%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .channel-name .sym-x {
+            font-weight: 900; font-size: 0.6em; color: var(--coral);
+            text-shadow: 0 0 20px rgba(255,93,143,0.6);
+        }
+        .channel-name .sym-win {
+            color: var(--ink);
+            text-shadow: 0 0 30px rgba(155,107,255,0.55), 0 2px 24px rgba(0,0,0,0.9);
+        }
+        .ticker-caret { display: inline-block; width: 0.45em; background: var(--cyan); animation: caretBlink 1s steps(1) infinite; margin-left: 2px; box-shadow: 0 0 12px var(--cyan); }
+        @keyframes caretBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+        .btn-primary-wrapper { position: relative; display: inline-block; width: 100%; }
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%;
+            background: linear-gradient(100deg, var(--cyan), var(--violet) 65%, var(--coral));
+            background-size: 200% 100%;
+            color: #0a0512; font-weight: 700; font-size: 1.02rem;
+            font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.3px; text-transform: uppercase;
+            padding: 18px 32px; text-decoration: none; border: none; cursor: pointer;
+            transition: background-position 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative; overflow: hidden; white-space: nowrap;
+            border-radius: 14px;
+            box-shadow: 0 0 30px rgba(155,107,255,0.35), 0 0 60px rgba(46,230,214,0.15);
+        }
+        .btn-primary:hover { background-position: 100% 0; transform: translateY(-2px); box-shadow: 0 0 40px rgba(155,107,255,0.5), 0 0 80px rgba(46,230,214,0.25); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary i.fa-arrow-right { transition: transform 0.3s ease; }
+        .btn-primary:hover i.fa-arrow-right { transform: translateX(8px); }
+
+        .hero .sub { font-family: 'Space Grotesk', sans-serif; font-size: 0.94rem; max-width: 560px; color: var(--muted); font-weight: 400; line-height: 1.7; text-shadow: 0 1px 12px rgba(0,0,0,0.95); }
+        .hero .sub strong { color: var(--cyan); font-weight: 700; }
+
+        .hero-stats {
+            display: flex; width: 100%; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            background: rgba(10,4,20,0.35); border-radius: 12px; overflow: hidden;
+        }
+        .hero-stats .value, .hero-stats .label { text-shadow: 0 1px 10px rgba(0,0,0,0.95); }
+        .hero-stats .stat-item {
+            flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 14px 6px;
+            border-right: 1px solid var(--line);
+        }
+        .hero-stats .stat-item:last-child { border-right: none; }
+        .hero-stats .stat-item .label { font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+        .hero-stats .stat-item .value { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--cyan); }
+        .hero-stats .stat-item.neutral .value { color: var(--ink); }
+        .hero-stats .stat-item.gold .value { color: var(--violet); }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 640px) {
+            .hero-stats .stat-item .value { font-size: 0.92rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="grain"></div>
+<canvas id="pulseCanvas"></canvas>
+
+<div class="hero-outer">
+<section class="hero">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="feed-tag reveal"><span class="dot"></span> LIVE SIGNAL FEED</div>
+
+    <!-- 1. Profile photo -->
+    <div class="profile-avatar-wrapper reveal">
+        <div class="profile-frame"></div>
+        <div class="profile-photo">
+            <img src="divagamer.jpg" alt="Profile" />
+        </div>
+    </div>
+
+    <!-- 2. Channel name -->
+    <h1 class="channel-name reveal">
+        <span class="sym-ram">RAM</span><span class="sym-x">x</span><span class="sym-win">YAARWIN</span><span class="ticker-caret">&nbsp;</span>
+    </h1>
+
+    <!-- 3. Button -->
+    <span class="btn-primary-wrapper reveal">
+        <a href="https://t.me/+5hOKGysSI05lMTg1" target="_blank" class="btn-primary" id="joinHeroBtn">
+            <span>join_channel.exe</span> <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </span>
+
+    <!-- 3. Text -->
+    <p class="sub reveal">The <strong>#1</strong> Telegram hub for <strong>AI-powered signals</strong>, exclusive insight, and a next-gen community.</p>
+
+    <!-- 4. stats -->
+    <div class="hero-stats reveal">
+        <div class="stat-item">
+            <span class="label">Accuracy</span>
+            <span class="value">94.2%</span>
+        </div>
+        <div class="stat-item gold">
+            <span class="label">Members</span>
+            <span class="value">5,000+</span>
+        </div>
+        <div class="stat-item neutral">
+            <span class="label">Uptime</span>
+            <span class="value">24 / 7</span>
+        </div>
+    </div>
+
+</section>
+</div>
+
+<script>
+    // Background: glowing signal-pulse network — concentric broadcast rings plus
+    // drifting connected nodes, in violet/cyan/coral instead of trading candles.
+    (function() {
+        const canvas = document.getElementById('pulseCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, nodes = [], pulses = [], animationId, lastPulse = 0;
+
+        const COLORS = ['rgba(155,107,255,', 'rgba(46,230,214,', 'rgba(255,93,143,'];
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+            initNodes();
+        }
+        function initNodes() {
+            nodes = [];
+            const count = Math.max(18, Math.floor((W * H) / 42000));
+            for (let i = 0; i < count; i++) {
+                nodes.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    vx: (Math.random() - 0.5) * 0.25,
+                    vy: (Math.random() - 0.5) * 0.25,
+                    r: 1.4 + Math.random() * 1.8,
+                    c: COLORS[i % COLORS.length]
+                });
+            }
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function spawnPulse() {
+            const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+            pulses.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: 0,
+                max: 140 + Math.random() * 220,
+                c: c
+            });
+        }
+
+        function draw(t) {
+            ctx.clearRect(0, 0, W, H);
+
+            if (t - lastPulse > 900) { spawnPulse(); lastPulse = t; }
+
+            // pulses (broadcast rings)
+            for (let i = pulses.length - 1; i >= 0; i--) {
+                const p = pulses[i];
+                p.r += 1.15;
+                const life = 1 - p.r / p.max;
+                if (life <= 0) { pulses.splice(i, 1); continue; }
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.strokeStyle = p.c + (life * 0.35) + ')';
+                ctx.lineWidth = 1.4;
+                ctx.stroke();
+            }
+
+            // nodes
+            for (const n of nodes) {
+                n.x += n.vx; n.y += n.vy;
+                if (n.x < 0 || n.x > W) n.vx *= -1;
+                if (n.y < 0 || n.y > H) n.vy *= -1;
+            }
+
+            // connections
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const a = nodes[i], b = nodes[j];
+                    const dx = a.x - b.x, dy = a.y - b.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.strokeStyle = 'rgba(155,107,255,' + ((1 - dist / 150) * 0.18) + ')';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // node glow dots
+            for (const n of nodes) {
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fillStyle = n.c + '0.85)';
+                ctx.shadowColor = n.c + '1)';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            animationId = requestAnimationFrame(draw);
+        }
+        animationId = requestAnimationFrame(draw);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) cancelAnimationFrame(animationId);
+            else animationId = requestAnimationFrame(draw);
+        });
+    })();
+
+    (function() {
+        const revealEls = document.querySelectorAll('.reveal');
+        revealEls.forEach((el, i) => setTimeout(() => el.classList.add('revealed'), 110 * i));
+    })();
+</script>
+</body>
+</html>

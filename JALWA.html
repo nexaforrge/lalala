@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIN GO PRO</title>
+
+<style>
+body {
+    margin: 0;
+    background: #0b0b0b;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(90deg,#f7b500,#ff8c00);
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(255,180,0,0.5);
+}
+
+/* WALLET */
+.wallet {
+    margin: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(45deg,#1a1a1a,#111);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    margin: 10px;
+    gap: 8px;
+}
+
+.tab {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    border-radius: 10px;
+    background: #1a1a1a;
+}
+
+.active {
+    background: linear-gradient(45deg,#f7b500,#ff8c00);
+    color: black;
+}
+
+/* TIMER */
+.timer {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 10px;
+    color: #00ffd5;
+}
+
+/* RESULT */
+.result {
+    text-align: center;
+    font-size: 85px;
+    font-weight: bold;
+    margin: 15px;
+    transition: 0.3s;
+}
+
+/* COLORS */
+.red { color:#ff3b3b }
+.green { color:#00ff7f }
+.violet { color:#c400ff }
+
+/* BALLS */
+.balls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ball {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.btn {
+    flex:1;
+    margin: 5px;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.green-btn { background:#00ff7f }
+.red-btn { background:#ff3b3b }
+.violet-btn { background:#c400ff }
+
+/* CARD */
+.card {
+    margin: 10px;
+    padding: 12px;
+    background: #151515;
+    border-radius: 12px;
+}
+
+/* HISTORY */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    border-bottom: 1px solid #333;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">🔥 WIN GO 🔥</div>
+
+<div class="wallet">
+    <div>Balance</div>
+    <div style="color:gold;">₹1000</div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="switchGame('30S',this)">30S</div>
+    <div class="tab" onclick="switchGame('1M',this)">1M</div>
+    <div class="tab" onclick="switchGame('3M',this)">3M</div>
+    <div class="tab" onclick="switchGame('5M',this)">5M</div>
+</div>
+
+<div class="timer" id="timer">--</div>
+<div class="result" id="result">--</div>
+
+<div class="balls" id="balls"></div>
+
+<div class="buttons">
+    <div class="btn green-btn">GREEN</div>
+    <div class="btn violet-btn">VIOLET</div>
+    <div class="btn red-btn">RED</div>
+</div>
+
+<div class="card">
+    <h3>History</h3>
+    <div id="history"></div>
+</div>
+
+<script>
+
+// APIs
+const APIS = {
+"30S":"https://draw.ar-lottery01.com/WinGo/WinGo_30S.json",
+"1M":"https://draw.ar-lottery01.com/WinGo/WinGo_1M.json",
+"3M":"https://draw.ar-lottery01.com/WinGo/WinGo_3M.json",
+"5M":"https://draw.ar-lottery01.com/WinGo/WinGo_5M.json"
+};
+
+let currentGame="30S";
+
+// COLOR
+function getColor(n){
+if(n==0||n==5)return"violet";
+if(n%2==0)return"red";
+return"green";
+}
+
+// BALLS UI
+function renderBalls(num){
+let html="";
+for(let i=0;i<10;i++){
+html+=`<div class="ball ${i==num?getColor(i):''}">${i}</div>`;
+}
+document.getElementById("balls").innerHTML=html;
+}
+
+// ANIMATION
+function animate(n){
+let el=document.getElementById("result");
+let i=0;
+let int=setInterval(()=>{
+el.innerText=Math.floor(Math.random()*10);
+i++;
+if(i>10){
+clearInterval(int);
+el.innerText=n;
+el.className="result "+getColor(n);
+renderBalls(n);
+}
+},80);
+}
+
+// RESULT
+async function getResult(){
+let r=await fetch(APIS[currentGame]);
+let d=await r.json();
+let n=d?.data?.number||d?.data?.preDrawCode;
+if(n)animate(parseInt(n));
+}
+
+// HISTORY
+async function getHistory(){
+let r=await fetch(APIS[currentGame]);
+let d=await r.json();
+
+let list=d?.data?.list||d?.data?.lastTen||[];
+
+let html="";
+list.slice(0,10).forEach(i=>{
+let n=i.number||i.preDrawCode;
+html+=`<div class="history-item">
+<span>${i.issue||'-'}</span>
+<span class="${getColor(n)}">${n}</span>
+</div>`;
+});
+
+document.getElementById("history").innerHTML=html;
+}
+
+// SWITCH
+function switchGame(g,el){
+currentGame=g;
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+el.classList.add("active");
+getResult();
+getHistory();
+}
+
+// TIMER
+let t=30;
+setInterval(()=>{
+t--;
+if(t<=0){
+if(currentGame=="30S")t=30;
+if(currentGame=="1M")t=60;
+if(currentGame=="3M")t=180;
+if(currentGame=="5M")t=300;
+}
+document.getElementById("timer").innerText=t+"s";
+},1000);
+
+// AUTO
+setInterval(getResult,4000);
+setInterval(getHistory,6000);
+
+getResult();
+getHistory();
+
+</script>
+
+</body>
+</html>

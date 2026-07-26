@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>JAI CLUB | Elite Betting Tips & Premium Predictions</title>
+  <meta name="description" content="JAI CLUB - India's #1 betting tips community. Get daily winning predictions, expert analysis, and exclusive Telegram signals. Register now for premium access!">
+  <meta name="keywords" content="JAI CLUB, betting tips, cricket prediction, telegram betting, casino tips, winning predictions, IPL betting tips">
+  <meta name="author" content="JAI CLUB">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.jaiclub.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.jaiclub.com/">
+  <meta property="og:title" content="JAI CLUB | Elite Betting Tips & Premium Predictions">
+  <meta property="og:description" content="Daily winning predictions, expert betting tips, and exclusive Telegram community. Join now!">
+  <meta property="og:image" content="https://placehold.co/1200x630/0f0f2d/ff3366?text=JAI+CLUB">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JAI CLUB | Elite Betting Tips & Premium Predictions">
+  <meta name="twitter:description" content="Unlock exclusive predictions. Join Telegram & Register for premium access.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/0f0f2d/ff3366?text=JAI+CLUB">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a1a;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #ffffff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a2e; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #ff3366, #7c3aed); border-radius: 10px; }
+
+    /* Glassmorphism */
+    .glass-card {
+      background: rgba(20, 20, 40, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 51, 102, 0.3);
+      border-radius: 24px;
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: #ff3366;
+      box-shadow: 0 0 25px rgba(255, 51, 102, 0.3);
+      transform: translateY(-5px);
+    }
+
+    /* Neon Buttons */
+    .neon-btn {
+      background: linear-gradient(135deg, #ff3366, #7c3aed);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+    }
+    .neon-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ff3366;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 51, 102, 0.1);
+      border-color: #7c3aed;
+    }
+
+    /* Header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 51, 102, 0.3);
+    }
+
+    /* Mobile Bottom Bar */
+    .mobile-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 10, 26, 0.98);
+      backdrop-filter: blur(20px);
+      display: flex;
+      gap: 12px;
+      padding: 12px 20px;
+      border-top: 1px solid #ff3366;
+      z-index: 1100;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .mobile-bottom-bar { display: flex; }
+      body { padding-bottom: 80px; }
+    }
+
+    /* Floating Elements */
+    .floating-telegram {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #0088cc;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px #0088cc;
+      z-index: 1050;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .floating-register {
+      position: fixed;
+      bottom: 100px;
+      left: 20px;
+      background: linear-gradient(135deg, #ff3366, #7c3aed);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      z-index: 1050;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff3366;
+    }
+    @media (max-width: 768px) {
+      .floating-telegram { bottom: 90px; right: 16px; width: 50px; height: 50px; }
+      .floating-register { bottom: 90px; left: 16px; padding: 10px 18px; font-size: 0.85rem; }
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff3366;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1050;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    /* Marquee */
+    .marquee {
+      background: linear-gradient(90deg, #ff3366, #7c3aed);
+      padding: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Countdown */
+    .countdown-timer {
+      background: rgba(0,0,0,0.6);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-family: monospace;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Prediction Blur */
+    .blur-content {
+      filter: blur(8px);
+      pointer-events: none;
+      user-select: none;
+    }
+    .locked-badge {
+      position: relative;
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Stats Counter */
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff3366, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    .popup-active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Marquee Announcement -->
+<div class="marquee">
+  <div class="marquee-content">
+    🔥 HOT UPDATE: User just won ₹5,000 | 🎯 87% Win Rate This Week | 💎 Limited Offer: 150% Welcome Bonus | 📱 Join Telegram for Instant Tips & Predictions
+  </div>
+</div>
+
+<!-- Sticky Header -->
+<header class="sticky-header">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 24px;">
+    <div style="font-size: 1.8rem; font-weight: 800;">
+      JAI<span style="color: #ff3366;">CLUB</span>
+    </div>
+    <nav style="display: flex; gap: 25px; align-items: center;">
+      <a href="#" onclick="showPage('home')" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Home</a>
+      <a href="#" onclick="showPage('telegram')" style="color: white; text-decoration: none;"><i class="fab fa-telegram"></i> Join TG</a>
+      <a href="#" onclick="showPage('prediction')" style="color: white; text-decoration: none;"><i class="fas fa-chart-line"></i> Predictions</a>
+      <a href="#" onclick="showPage('blog')" style="color: white; text-decoration: none;"><i class="fas fa-blog"></i> Blog</a>
+      <a href="#" onclick="showPage('contact')" style="color: white; text-decoration: none;"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="display: flex; gap: 12px;">
+      <a href="https://t.me/jaiclub" target="_blank" class="neon-btn" style="padding: 8px 20px;"><i class="fab fa-telegram"></i> Join Telegram</a>
+      <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn" style="padding: 8px 20px;"><i class="fas fa-gift"></i> Register Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Container -->
+<div id="homePage" class="page-content">
+  <!-- Hero Section -->
+  <section class="container" style="padding: 60px 0 40px;">
+    <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+      <span style="background: #ff3366; padding: 5px 15px; border-radius: 50px; font-size: 0.85rem;">🔥 LIMITED TIME OFFER</span>
+      <h1 style="font-size: 3.5rem; margin: 25px 0; background: linear-gradient(135deg, #fff, #ff3366, #7c3aed); background-clip: text; -webkit-background-clip: text; color: transparent;">India's #1 Betting Tips Community</h1>
+      <p style="font-size: 1.2rem;">Join 25,000+ members getting daily winning predictions, expert analysis, and exclusive Telegram signals with 89% accuracy rate.</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 35px 0;">
+        <a href="https://t.me/jaiclub" target="_blank" class="neon-btn"><i class="fab fa-telegram"></i> Join Telegram Free</a>
+        <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn btn-outline"><i class="fas fa-trophy"></i> Get Welcome Bonus</a>
+      </div>
+      <div class="countdown-timer" style="display: inline-block;">
+        ⏳ Bonus Ends In: <span id="timerDisplay">23:59:59</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="container" style="padding: 40px 0;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+      <div class="glass-card" style="padding: 30px;">
+        <div class="stat-number" id="memberCount">25,847+</div>
+        <div>Active Members</div>
+      </div>
+      <div class="glass-card" style="padding: 30px;">
+        <div class="stat-number">89%</div>
+        <div>Win Rate</div>
+      </div>
+      <div class="glass-card" style="padding: 30px;">
+        <div class="stat-number">₹2.5Cr+</div>
+        <div>Total Winnings</div>
+      </div>
+      <div class="glass-card" style="padding: 30px;">
+        <div class="stat-number">24/7</div>
+        <div>Expert Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Cards -->
+  <section class="container" style="padding: 40px 0;">
+    <h2 style="text-align: center; margin-bottom: 40px;">🔥 Premium Features</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+      <div class="glass-card" style="padding: 30px; text-align: center; cursor: pointer;" onclick="window.open('https://t.me/jaiclub', '_blank')">
+        <i class="fab fa-telegram" style="font-size: 3rem; color: #ff3366;"></i>
+        <h3 style="margin: 15px 0;">Telegram VIP Signals</h3>
+        <p>Real-time betting tips with 89% accuracy. Join now for free!</p>
+        <span class="neon-btn" style="display: inline-block; margin-top: 15px;">Join Now →</span>
+      </div>
+      <div class="glass-card" style="padding: 30px; text-align: center; cursor: pointer;" onclick="window.open('https://external-register.com/jaiclub', '_blank')">
+        <i class="fas fa-chart-simple" style="font-size: 3rem; color: #7c3aed;"></i>
+        <h3 style="margin: 15px 0;">Premium Predictions</h3>
+        <p>Unlock exclusive match predictions & insider insights.</p>
+        <span class="neon-btn" style="display: inline-block; margin-top: 15px;">Register Now →</span>
+      </div>
+      <div class="glass-card" style="padding: 30px; text-align: center; cursor: pointer;" onclick="window.open('https://external-register.com/jaiclub', '_blank')">
+        <i class="fas fa-coins" style="font-size: 3rem; color: #ffd700;"></i>
+        <h3 style="margin: 15px 0;">Welcome Bonus 150%</h3>
+        <p>Get up to ₹25,000 bonus on first deposit. Limited time!</p>
+        <span class="neon-btn" style="display: inline-block; margin-top: 15px;">Claim Bonus →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container" style="padding: 40px 0;">
+    <h2 style="text-align: center;">⭐ What Our Members Say</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div class="glass-card" style="padding: 25px;">
+        <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i>
+        <p style="margin: 15px 0;">"Best betting community! Daily tips are spot on. Made ₹15,000 last week alone."</p>
+        <b>- Rahul Sharma</b>
+      </div>
+      <div class="glass-card" style="padding: 25px;">
+        <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i>
+        <p style="margin: 15px 0;">"Telegram group is incredible. Quick support and accurate IPL predictions."</p>
+        <b>- Priya Mehta</b>
+      </div>
+      <div class="glass-card" style="padding: 25px;">
+        <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i>
+        <p style="margin: 15px 0;">"Register bonus gave me a great start. Highly recommended for beginners!"</p>
+        <b>- Amit Kumar</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container" style="padding: 40px 0;">
+    <h2 style="text-align: center;">❓ Frequently Asked Questions</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 30px;">
+      <div class="glass-card" style="padding: 20px;"><strong>How to get free predictions?</strong><br>Join our Telegram channel for daily free tips!</div>
+      <div class="glass-card" style="padding: 20px;"><strong>Is JAI CLUB legit?</strong><br>100% legit with 25,000+ active members and verified winning records.</div>
+      <div class="glass-card" style="padding: 20px;"><strong>How to claim welcome bonus?</strong><br>Click "Register Now" and follow the instructions.</div>
+      <div class="glass-card" style="padding: 20px;"><strong>Premium content access?</strong><br>Register to unlock all predictions and VIP insights.</div>
+    </div>
+  </section>
+</div>
+
+<!-- Join Telegram Page -->
+<div id="telegramPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 80px 0;">
+    <div class="glass-card" style="max-width: 800px; margin: 0 auto; padding: 50px; text-align: center;">
+      <i class="fab fa-telegram" style="font-size: 4rem; color: #0088cc;"></i>
+      <h1 style="margin: 20px 0;">Join Our Telegram Community</h1>
+      <p style="font-size: 1.1rem;">Get instant access to daily winning predictions, expert tips, and exclusive insights!</p>
+      <div style="text-align: left; margin: 30px 0;">
+        <p><i class="fas fa-check-circle" style="color: #ff3366;"></i> ✅ 3-5 Free Tips Daily</p>
+        <p><i class="fas fa-check-circle" style="color: #ff3366;"></i> ✅ Live Match Updates</p>
+        <p><i class="fas fa-check-circle" style="color: #ff3366;"></i> ✅ Expert Analysis & Insights</p>
+        <p><i class="fas fa-check-circle" style="color: #ff3366;"></i> ✅ 24/7 Community Support</p>
+      </div>
+      <a href="https://t.me/jaiclub" target="_blank" class="neon-btn" style="font-size: 1.2rem; padding: 15px 40px;"><i class="fab fa-telegram"></i> Join Telegram Now</a>
+      <p style="margin-top: 20px;">⬇️ Also Register for Premium Access ⬇️</p>
+      <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn btn-outline" style="margin-top: 15px;"><i class="fas fa-gift"></i> Register Now & Get Bonus</a>
+    </div>
+  </section>
+</div>
+
+<!-- Prediction Page with Blurred Content -->
+<div id="predictionPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <h1 style="text-align: center;">🎯 Today's Premium Predictions</h1>
+    <p style="text-align: center;">Join Telegram or Register to unlock all predictions</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div class="glass-card locked-badge" style="padding: 25px; position: relative;">
+        <div class="blur-content">
+          <h3>🏏 IPL 2025: MI vs CSK</h3>
+          <p>Prediction: CSK to win</p>
+          <p>Confidence: 92%</p>
+          <p>Best Bet: CSK Top Batsman</p>
+        </div>
+        <div style="text-align: center; margin-top: 15px; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 10px;">
+          🔒 <a href="#" onclick="showPage('telegram')" style="color: #ff3366;">Join Telegram to Unlock</a>
+        </div>
+      </div>
+      <div class="glass-card" style="padding: 25px;">
+        <div class="blur-content">
+          <h3>⚽ Premier League: LIV vs ARS</h3>
+          <p>Prediction: Over 2.5 Goals</p>
+          <p>Confidence: 88%</p>
+          <p>Best Bet: Both Teams Score</p>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">🔒 <a href="#" onclick="showPage('telegram')" style="color: #ff3366;">Register for Full Access</a></div>
+      </div>
+      <div class="glass-card" style="padding: 25px;">
+        <div class="blur-content">
+          <h3>🎾 Tennis: Djokovic vs Alcaraz</h3>
+          <p>Prediction: Alcaraz to Win</p>
+          <p>Confidence: 85%</p>
+          <p>Best Bet: Over 3.5 Sets</p>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">🔒 <a href="#" onclick="showPage('telegram')" style="color: #ff3366;">Unlock Now</a></div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="https://t.me/jaiclub" target="_blank" class="neon-btn"><i class="fab fa-telegram"></i> Join Telegram to Unlock All</a>
+      <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn btn-outline" style="margin-left: 15px;"><i class="fas fa-unlock-alt"></i> Register for VIP Access</a>
+    </div>
+  </section>
+</div>
+
+<!-- Blog Listing Page (10 Blogs) -->
+<div id="blogPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <h1 style="text-align: center;">📚 Betting Tips & Strategies Blog</h1>
+    <p style="text-align: center;">Expert insights to improve your winning rate</p>
+    
+    <div class="blog-grid" style="margin-top: 40px;">
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(1)">
+        <img src="https://placehold.co/600x400/ff3366/white?text=Cricket+Tips" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Cricket Betting Tips">
+        <h3>Top 10 Cricket Betting Tips for IPL 2025</h3>
+        <p>Expert strategies to maximize your winning chances in IPL matches...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(2)">
+        <img src="https://placehold.co/600x400/7c3aed/white?text=Football+Strategy" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Football Betting">
+        <h3>Football Betting 101: Understanding Odds</h3>
+        <p>Learn how to read betting odds and make informed decisions...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(3)">
+        <img src="https://placehold.co/600x400/ff3366/white?text=Bankroll+Mgmt" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Bankroll Management">
+        <h3>Bankroll Management: The Key to Long-term Success</h3>
+        <p>Essential tips to protect your capital and maximize profits...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(4)">
+        <img src="https://placehold.co/600x400/7c3aed/white?text=Live+Betting" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Live Betting">
+        <h3>Live Betting Strategies: How to Profit in Real-time</h3>
+        <p>Master the art of in-play betting with these proven techniques...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(5)">
+        <img src="https://placehold.co/600x400/ff3366/white?text=Horse+Racing" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Horse Racing">
+        <h3>Horse Racing Betting Guide for Beginners</h3>
+        <p>Everything you need to know about betting on horse racing...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(6)">
+        <img src="https://placehold.co/600x400/7c3aed/white?text=Arbitrage" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Arbitrage Betting">
+        <h3>Arbitrage Betting: Risk-Free Profits Explained</h3>
+        <p>Discover how to guarantee profits using arbitrage opportunities...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(7)">
+        <img src="https://placehold.co/600x400/ff3366/white?text=Psychology" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Betting Psychology">
+        <h3>Betting Psychology: Avoid Common Mistakes</h3>
+        <p>Master your mindset and avoid emotional betting traps...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(8)">
+        <img src="https://placehold.co/600x400/7c3aed/white?text=Value+Betting" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Value Betting">
+        <h3>Value Betting: How to Identify +EV Opportunities</h3>
+        <p>Professional strategies to find value in betting markets...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(9)">
+        <img src="https://placehold.co/600x400/ff3366/white?text=Mobile+Betting" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Mobile Betting">
+        <h3>Best Mobile Betting Apps in India 2025</h3>
+        <p>Top-rated apps for seamless betting on the go...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+      <div class="glass-card" style="padding: 20px;" onclick="showSingleBlog(10)">
+        <img src="https://placehold.co/600x400/7c3aed/white?text=Tournament+Tips" style="width: 100%; border-radius: 15px; margin-bottom: 15px;" alt="Tournament Tips">
+        <h3>How to Bet on Major Tournaments: World Cup Guide</h3>
+        <p>Pro tips for betting on ICC World Cup and major events...</p>
+        <span style="color: #ff3366;">Read More →</span>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="https://t.me/jaiclub" target="_blank" class="neon-btn"><i class="fab fa-telegram"></i> Join Telegram for Daily Tips</a>
+    </div>
+  </section>
+</div>
+
+<!-- Single Blog Page (Dynamic) -->
+<div id="singleBlogPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <button onclick="showPage('blog')" style="background: none; border: none; color: #ff3366; cursor: pointer; margin-bottom: 20px;">← Back to Blog</button>
+    <div id="singleBlogContent" class="glass-card" style="padding: 40px;"></div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="https://t.me/jaiclub" target="_blank" class="neon-btn"><i class="fab fa-telegram"></i> Get More Tips on Telegram</a>
+      <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn btn-outline" style="margin-left: 15px;"><i class="fas fa-trophy"></i> Register for Premium Tips</a>
+    </div>
+  </section>
+</div>
+
+<!-- Contact Page -->
+<div id="contactPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+      <div class="glass-card" style="padding: 40px;">
+        <h2>📞 Contact Us</h2>
+        <p><i class="fab fa-telegram"></i> Telegram: <a href="https://t.me/jaiclub" style="color: #ff3366;">@jaiclub</a></p>
+        <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/919876543210" style="color: #ff3366;">+91 9876543210</a></p>
+        <p><i class="fas fa-envelope"></i> Email: support@jaiclub.com</p>
+        <p><i class="fas fa-clock"></i> Support: 24/7</p>
+      </div>
+      <div class="glass-card" style="padding: 40px;">
+        <h3>Send Message</h3>
+        <form id="contactForm">
+          <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid #ff3366; border-radius: 10px; color: white;">
+          <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid #ff3366; border-radius: 10px; color: white;">
+          <textarea placeholder="Message" rows="4" style="width: 100%; padding: 12px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid #ff3366; border-radius: 10px; color: white;"></textarea>
+          <button type="submit" class="neon-btn" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Privacy Policy -->
+<div id="privacyPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <div class="glass-card" style="padding: 40px;">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: March 2025</p>
+      <h3>Information Collection</h3>
+      <p>We collect email, name, and Telegram username when you register. Your data is used only for providing betting tips and never shared with third parties.</p>
+      <h3>Data Security</h3>
+      <p>We implement industry-standard security measures to protect your information.</p>
+      <h3>Cookies</h3>
+      <p>We use cookies to improve user experience. By using our site, you consent to cookies.</p>
+      <h3>Contact</h3>
+      <p>For privacy concerns, email privacy@jaiclub.com</p>
+    </div>
+  </section>
+</div>
+
+<!-- Terms & Conditions -->
+<div id="termsPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <div class="glass-card" style="padding: 40px;">
+      <h1>Terms & Conditions</h1>
+      <p>1. You must be 18+ to use our services.</p>
+      <p>2. JAI CLUB provides predictions only; gambling is at your own risk.</p>
+      <p>3. We are not responsible for any financial losses.</p>
+      <p>4. Users must follow responsible gambling practices.</p>
+      <p>5. Registration bonuses are subject to external partner terms.</p>
+      <p>6. We reserve the right to modify terms anytime.</p>
+    </div>
+  </section>
+</div>
+
+<!-- Disclaimer -->
+<div id="disclaimerPage" class="page-content" style="display: none;">
+  <section class="container" style="padding: 60px 0;">
+    <div class="glass-card" style="padding: 40px;">
+      <h1>Disclaimer</h1>
+      <p>JAI CLUB is a betting tips and predictions platform. We do not operate any gambling website.</p>
+      <p>All predictions are for informational purposes only. Gambling involves financial risk and may be addictive. Please gamble responsibly.</p>
+      <p>Users are responsible for complying with local laws regarding online betting.</p>
+      <p>Past performance does not guarantee future results.</p>
+    </div>
+  </section>
+</div>
+
+<!-- Floating Elements -->
+<div class="floating-telegram" onclick="window.open('https://t.me/jaiclub', '_blank')">
+  <i class="fab fa-telegram" style="font-size: 1.8rem;"></i>
+</div>
+<div class="floating-register" onclick="window.open('https://external-register.com/jaiclub', '_blank')">
+  <i class="fas fa-gift"></i> Register & Get ₹5000
+</div>
+<div class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</div>
+<div class="mobile-bottom-bar">
+  <a href="https://t.me/jaiclub" target="_blank" class="neon-btn" style="flex:1; text-align:center;"><i class="fab fa-telegram"></i> Join TG</a>
+  <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn" style="flex:1; text-align:center;"><i class="fas fa-trophy"></i> Register</a>
+</div>
+
+<!-- Popup -->
+<div id="popupModal" class="popup-overlay">
+  <div class="glass-card" style="padding: 40px; max-width: 400px; text-align: center;">
+    <i class="fas fa-gift" style="font-size: 3rem; color: #ff3366;"></i>
+    <h3 style="margin: 15px 0;">🔥 Limited Time Offer!</h3>
+    <p>Join Telegram & Register to get 150% Welcome Bonus + Free Predictions!</p>
+    <a href="https://t.me/jaiclub" target="_blank" class="neon-btn" style="margin: 10px 0; display: block;"><i class="fab fa-telegram"></i> Join Telegram</a>
+    <a href="https://external-register.com/jaiclub" target="_blank" class="neon-btn btn-outline" style="display: block;">Register Now</a>
+    <button onclick="closePopup()" style="margin-top: 15px; background: none; border: none; color: #888; cursor: pointer;">Close</button>
+  </div>
+</div>
+
+<footer style="background: #050510; padding: 40px 0; margin-top: 60px;">
+  <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+    <div>
+      <h3>JAI CLUB</h3>
+      <p>India's most trusted betting tips community since 2023.</p>
+      <div style="margin-top: 15px;">
+        <a href="https://t.me/jaiclub" target="_blank" style="color: white; margin-right: 15px;"><i class="fab fa-telegram fa-2x"></i></a>
+        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="#" style="color: white;"><i class="fab fa-twitter fa-2x"></i></a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p><a href="#" onclick="showPage('home')" style="color: #ff3366;">Home</a></p>
+      <p><a href="#" onclick="showPage('telegram')" style="color: #ff3366;">Join Telegram</a></p>
+      <p><a href="#" onclick="showPage('prediction')" style="color: #ff3366;">Predictions</a></p>
+      <p><a href="#" onclick="showPage('blog')" style="color: #ff3366;">Blog</a></p>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <p><a href="#" onclick="showPage('privacy')" style="color: #ff3366;">Privacy Policy</a></p>
+      <p><a href="#" onclick="showPage('terms')" style="color: #ff3366;">Terms & Conditions</a></p>
+      <p><a href="#" onclick="showPage('disclaimer')" style="color: #ff3366;">Disclaimer</a></p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fab fa-telegram"></i> @jaiclub</p>
+      <p><i class="fas fa-envelope"></i> support@jaiclub.com</p>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;">
+    <p>© 2025 JAI CLUB. 18+ Only. Gamble Responsibly.</p>
+  </div>
+</footer>
+
+<script>
+  // Countdown Timer
+  let timeLeft = 24 * 3600;
+  const timerElem = document.getElementById('timerDisplay');
+  if(timerElem) {
+    setInterval(() => {
+      let hours = Math.floor(timeLeft / 3600);
+      let minutes = Math.floor((timeLeft % 3600) / 60);
+      let seconds = timeLeft % 60;
+      timerElem.innerText = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+      if(timeLeft > 0) timeLeft--;
+    }, 1000);
+  }
+
+  // Page Navigation
+  function showPage(pageName) {
+    const pages = ['home', 'telegram', 'prediction', 'blog', 'singleBlogPage', 'contact', 'privacy', 'terms', 'disclaimer'];
+    pages.forEach(p => {
+      const el = document.getElementById(p + 'Page');
+      if(el) el.style.display = 'none';
+    });
+    const target = document.getElementById(pageName + 'Page');
+    if(target) target.style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function showSingleBlog(blogId) {
+    const blogs = {
+      1: { title: "Top 10 Cricket Betting Tips for IPL 2025", content: "<h2>Cricket Betting Tips</h2><p>1. Analyze pitch conditions... 2. Check player form... 3. Weather forecast matters... 4. Head-to-head statistics... 5. Team composition... 6. Toss impact... 7. Live odds movement... 8. Expert insights... 9. Bankroll management... 10. Stay updated with JAI CLUB Telegram for live tips!</p><p>Join our Telegram for daily free predictions!</p>" },
+      2: { title: "Football Betting 101: Understanding Odds", content: "<h2>Understanding Betting Odds</h2><p>Decimal odds, fractional odds, American odds explained. How to calculate potential winnings. Value betting strategies...</p>" },
+      3: { title: "Bankroll Management: The Key to Long-term Success", content: "<h2>Bankroll Management Strategies</h2><p>Never bet more than 5% per tip. Set loss limits. Track your bets. Use staking plans...</p>" },
+      4: { title: "Live Betting Strategies", content: "<h2>In-Play Betting Guide</h2><p>Watch momentum shifts, cashout strategies, hedging techniques...</p>" },
+      5: { title: "Horse Racing Betting Guide", content: "<h2>Horse Racing Tips</h2><p>Form guide, jockey stats, track conditions, odds analysis...</p>" },
+      6: { title: "Arbitrage Betting", content: "<h2>Risk-Free Profits</h2><p>How to find arbitrage opportunities, calculator usage, bookmaker limitations...</p>" },
+      7: { title: "Betting Psychology", content: "<h2>Master Your Mindset</h2><p>Avoid chasing losses, emotional control, discipline strategies...</p>" },
+      8: { title: "Value Betting", content: "<h2>+EV Betting Explained</h2><p>Calculating expected value, finding mispriced odds...</p>" },
+      9: { title: "Best Mobile Betting Apps", content: "<h2>Top Apps in India</h2><p>Review of best betting apps, features, bonuses...</p>" },
+      10: { title: "How to Bet on Major Tournaments", content: "<h2>World Cup Betting Guide</h2><p>Tournament strategies, knockout stage tips, player props...</p>" }
+    };
+    const blog = blogs[blogId];
+    if(blog) {
+      document.getElementById('singleBlogContent').innerHTML = `<h1>${blog.title}</h1>${blog.content}<div style="margin-top: 20px; padding: 20px; background: rgba(255,51,102,0.1); border-radius: 15px;"><i class="fas fa-chart-line"></i> Want more expert tips? <a href="#" onclick="showPage('telegram')" style="color:#ff3366;">Join Telegram</a> for daily winning predictions!</div>`;
+      showPage('singleBlogPage');
+    }
+  }
+
+  // Scroll to top button
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTopBtn');
+    if(window.scrollY > 300) btn.style.opacity = '1';
+    else btn.style.opacity = '0';
+  });
+
+  // Popup after 5 seconds
+  let popupShown = false;
+  setTimeout(() => {
+    if(!popupShown) {
+      document.getElementById('popupModal').classList.add('popup-active');
+      popupShown = true;
+    }
+  }, 5000);
+  window.closePopup = () => {
+    document.getElementById('popupModal').classList.remove('popup-active');
+  };
+
+  // Contact form
+  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Message sent! We will contact you on Telegram.');
+  });
+
+  // Show home on load
+  showPage('home');
+</script>
+
+</body>
+</html>

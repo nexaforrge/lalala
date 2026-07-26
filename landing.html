@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>🚀 PREMIUM TRADING SIGNALS | MAXY PRO ALERTS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-blue: #0ff0fc;
+            --electric-purple: #b967ff;
+            --vivid-pink: #ff2e97;
+            --neon-green: #39ff14;
+            --sun-yellow: #ffde22;
+            --dark-bg: #0a0a1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --gradient-1: linear-gradient(135deg, #ff2e97, #b967ff, #0ff0fc);
+            --gradient-2: linear-gradient(135deg, #39ff14, #ffde22, #ff2e97);
+            --gradient-3: linear-gradient(135deg, #0ff0fc, #39ff14, #ffde22);
+            --gradient-bg: radial-gradient(circle at 50% 0%, rgba(11, 0, 20, 0.9) 0%, #0a0a1a 80%);
+            --text-light: #f0f0ff;
+            --text-soft: #d0d0ff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            line-height: 1.5;
+            background-color: var(--dark-bg);
+            background-image: var(--gradient-bg);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Animated Background */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.1;
+            animation: float 25s infinite alternate ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 250px;
+            height: 250px;
+            background: var(--electric-purple);
+            top: 5%;
+            left: -10%;
+        }
+
+        .circle:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            background: var(--neon-blue);
+            bottom: 10%;
+            right: -15%;
+            animation-duration: 30s;
+        }
+
+        .circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: var(--neon-green);
+            top: 50%;
+            left: 20%;
+            animation-duration: 20s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            padding: 15px 0;
+            background: rgba(5, 5, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100%{ transform: scale(1); }
+            50%{ transform: scale(1.1); }
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .logo-text .tagline {
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .join-button {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient-1);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(185,103,255,0.4);
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .join-button i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .join-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(57,255,20,0.5);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 50px 0 30px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient-3);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            color: #0a0a1a;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(15,240,252,0.4);
+        }
+
+        .hero-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #ffde22, #39ff14);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text h2 span {
+            background: linear-gradient(135deg, #ff2e97, #b967ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            color: var(--text-soft);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .channel-link-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(57,255,20,0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(6px);
+        }
+
+        .channel-link-box p {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: var(--neon-green);
+            font-weight: 600;
+        }
+
+        .channel-link {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--sun-yellow);
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .channel-link i {
+            color: var(--neon-blue);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: #0a0a1a;
+            padding: 16px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(255,222,34,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 24px;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, var(--electric-purple), var(--neon-blue), var(--neon-green)) border-box;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        .floating-element {
+            display: none; /* cleaner on mobile */
+        }
+
+        /* Stats */
+        .stats {
+            padding: 40px 0 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(20,20,40,0.6);
+            backdrop-filter: blur(8px);
+            padding: 20px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 900;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            font-weight: 600;
+        }
+
+        /* Features */
+        .features {
+            padding: 40px 0;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            font-size: 1rem;
+            color: var(--text-soft);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--neon-green);
+        }
+
+        .feature-icon {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: rgba(220,220,255,0.8);
+            font-size: 1rem;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 30px 0 40px;
+        }
+
+        .contact-card {
+            background: var(--gradient-1);
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(185,103,255,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: white;
+            opacity: 0.95;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: white;
+            color: #0a0a1a;
+            padding: 16px 30px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .contact-button i {
+            margin-right: 10px;
+            color: #0a0a1a;
+        }
+
+        /* Credits */
+        .credits {
+            padding: 30px 0;
+            text-align: center;
+            background: rgba(0,0,0,0.4);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .credits p {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        .credits a {
+            display: inline-block;
+            background: linear-gradient(135deg, #39ff14, #ffde22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            padding: 8px 16px;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(200,200,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* Medium screens */
+        @media (min-width: 500px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-text h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+            }
+            .hero-text {
+                text-align: left;
+            }
+            .cta-button {
+                margin: 0;
+            }
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .floating-element {
+                display: block;
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                border-radius: 20px;
+                z-index: 1;
+                animation: floatElement 10s infinite ease-in-out;
+            }
+            .floating-element:nth-child(1) {
+                background: var(--electric-purple);
+                top: -15px;
+                left: -15px;
+                opacity: 0.5;
+            }
+            .floating-element:nth-child(2) {
+                background: var(--neon-green);
+                bottom: -20px;
+                right: -20px;
+                opacity: 0.5;
+                animation-delay: 1s;
+            }
+        }
+
+        @keyframes floatElement {
+            0%,100%{ transform: translate(0,0) rotate(0deg); }
+            33%{ transform: translate(15px,-15px) rotate(120deg); }
+            66%{ transform: translate(-10px,15px) rotate(240deg); }
+        }
+    </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1491261172515065');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1491261172515065&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+
+<body>
+    <div class="bg-elements">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-rocket"></i></div>
+                <div class="logo-text">
+                    <h1>MAXY PRO SIGNALS</h1>
+                    <div class="tagline">⚡ COLOUR TRADING ALERTS</div>
+                </div>
+            </div>
+       
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🔥 #1 MAXY TRADING COMMUNITY</div>
+                <h2>MAXIMIZE <span>PROFITS</span> WITH COLOUR SIGNALS</h2>
+                <p>Real‑time alerts for forex & crypto — 98% accuracy, 7+ signals daily.</p>
+
+                <div class="channel-link-box">
+                    <p>🔗 CHANNEL LINK (click to join)</p>
+                    <div class="channel-link">
+                        <i class="fas fa-paper-plane"></i> https://t.me/+QQjiqwAR4B02YTVl
+                    </div>
+                </div>
+
+                <a href="https://t.me/+QQjiqwAR4B02YTVl" target="_blank" class="cta-button">
+                    <i class="fab fa-telegram"></i> JOIN FREE CHANNEL
+                </a>
+            </div>
+            <div class="hero-image">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Trading Dashboard" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number">98%</div><div class="stat-text">SUCCESS RATE</div></div>
+                <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-text">COVERAGE</div></div>
+                <div class="stat-card"><div class="stat-number">7k+</div><div class="stat-text">MEMBERS</div></div>
+                <div class="stat-card"><div class="stat-number">7+</div><div class="stat-text">DAILY SIGNALS</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>WHY TRADERS TRUST US</h2>
+                <p>Exclusive benefits you get inside our Telegram family</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>ULTRA ACCURACY</h3>
+                    <p>Proprietary algorithm + manual analysis deliver 98% win rate on colour websites.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>INSTANT ALERTS</h3>
+                    <p>Push notifications via Telegram – never miss an entry or exit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>TRAINER SUPPORT</h3>
+                    <p>Get guidance from maxxy  directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-card">
+                <h2>ADVERTISEMENT</h2>
+                <p>Chat with me  for personal ADVERTISEMENT</p>
+                <a href="https://t.me/http_scalper" target="_blank" class="contact-button">
+                    <i class="fab fa-telegram"></i> ads by scalper 
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="credits">
+        <div class="container">
+            <p>📢 ADVERTISEMENT MANAGED BY</p>
+            <a href="https://t.me/+t66Hg5aMSzNiOGFl" target="_blank">https://t.me/+t66Hg5aMSzNiOGFl</a>
+            <p style="margin-top: 8px;">For promotions & marketing, contact above channel</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 MAXY PRO SIGNALS · Risk warning: trading involves substantial risk</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Intersection Observer for fade-up
+            const cards = document.querySelectorAll('.feature-card, .stat-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(c => {
+                c.style.opacity = '0';
+                c.style.transform = 'translateY(20px)';
+                c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(c);
+            });
+
+            // Simple counter for stats (only once)
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const finalText = el.innerText;
+                        const value = parseInt(finalText) || 0;
+                        const suffix = finalText.replace(value, '');
+                        let current = 0;
+                        const step = value / 30; // smooth increment
+                        if (value === 0) return;
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= value) {
+                                el.innerText = value + suffix;
+                                clearInterval(timer);
+                            } else {
+                                el.innerText = Math.floor(current) + suffix;
+                            }
+                        }, 30);
+                        counterObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(num => counterObserver.observe(num));
+
+            // Button click effect (tracking simulation)
+            document.querySelectorAll('.join-button, .cta-button, .contact-button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    this.style.transform = 'scale(0.97)';
+                    setTimeout(() => this.style.transform = '', 150);
+                    console.log('Click track: ' + this.innerText.trim());
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

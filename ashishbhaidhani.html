@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HACKER BHAI ARMY</title>
+    <meta name="description" content="Join NEXT LEVEL Telegram group for premium insights and updates." />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ── Reset & Base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b0e14;
+            --card: #121820;
+            --text: #f0f4ff;
+            --muted: #8b9bb5;
+            --cyan: #38bdf8;
+            --cyan-dark: #0ea5e9;
+            --glow: rgba(56, 189, 248, 0.35);
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(56, 189, 248, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: var(--card);
+            border-radius: 28px;
+            padding: 32px 24px 28px;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.04);
+            backdrop-filter: blur(2px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* subtle animated border glow */
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 28px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, transparent, rgba(56, 189, 248, 0.15), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: spinGlow 8s linear infinite;
+        }
+
+        @keyframes spinGlow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── Profile Image ── */
+        .profile-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--cyan);
+            box-shadow: 0 0 30px var(--glow), 0 0 60px rgba(56, 189, 248, 0.08);
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: #1a2633;
+        }
+
+        .profile:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 40px var(--glow), 0 0 80px rgba(56, 189, 248, 0.12);
+        }
+
+        /* ring pulse behind avatar */
+        .profile-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(56, 189, 248, 0.15);
+            animation: ringPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes ringPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.12);
+                opacity: 0;
+            }
+        }
+
+        /* ── Typography ── */
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 15px;
+            margin: 6px 0 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0 0 20px;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── Social Proof ── */
+        .social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .social-proof .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: inline-block;
+            animation: dotPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
+
+        .social-proof strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .social-proof .count {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        /* ── Button ── */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+            color: #0b0e14;
+            border: none;
+            box-shadow: 0 4px 24px rgba(56, 189, 248, 0.35), 0 0 40px rgba(56, 189, 248, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 0.2px;
+        }
+
+        .btn .icon {
+            font-size: 20px;
+        }
+
+        /* shine */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: skewX(-25deg);
+            animation: shine 3.2s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -60%;
+            }
+            100% {
+                left: 120%;
+            }
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 36px rgba(56, 189, 248, 0.55), 0 0 60px rgba(56, 189, 248, 0.15);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ── Timer Ring ── */
+        .timer-wrap {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 16px 20px 18px;
+            border-radius: 18px;
+            background: rgba(56, 189, 248, 0.04);
+            border: 1px solid rgba(56, 189, 248, 0.08);
+        }
+
+        .ring-container {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+        }
+
+        .ring-container svg {
+            transform: rotate(-90deg);
+            width: 72px;
+            height: 72px;
+        }
+
+        .ring-container .bg-ring {
+            fill: none;
+            stroke: rgba(56, 189, 248, 0.10);
+            stroke-width: 5;
+        }
+
+        .ring-container .progress-ring {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 5;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.3s ease;
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+        }
+
+        .ring-container .timer-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        .ring-container .timer-center small {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .timer-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--muted);
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .timer-label strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .timer-label .urgent {
+            color: #f87171;
+            font-weight: 600;
+            animation: urgentPulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes urgentPulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* ── Footer ── */
+        .footer {
+            margin-top: 22px;
+            font-size: 11px;
+            color: #4a5568;
+            letter-spacing: 0.3px;
+        }
+
+        .footer a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 440px) {
+            .container {
+                padding: 24px 16px 22px;
+                border-radius: 22px;
+            }
+
+            .profile {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .btn {
+                font-size: 15px;
+                padding: 14px 16px;
+            }
+
+            .ring-container {
+                width: 62px;
+                height: 62px;
+            }
+
+            .ring-container svg {
+                width: 62px;
+                height: 62px;
+            }
+
+            .ring-container .timer-center {
+                font-size: 17px;
+            }
+
+            .timer-wrap {
+                padding: 14px 14px 16px;
+                gap: 14px;
+            }
+
+            .timer-label {
+                font-size: 12px;
+            }
+
+            .social-proof {
+                font-size: 12px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 18px 12px 18px;
+            }
+
+            .profile {
+                width: 80px;
+                height: 80px;
+            }
+
+            h1 {
+                font-size: 19px;
+            }
+
+            .ring-container {
+                width: 54px;
+                height: 54px;
+            }
+
+            .ring-container svg {
+                width: 54px;
+                height: 54px;
+            }
+
+            .ring-container .timer-center {
+                font-size: 15px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '988503210689980');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=988503210689980&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+  </head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Profile -->
+        <div class="profile-wrap">
+            <img
+            src="https://i.ibb.co/Rp7GDhHD/ashish.jpg"
+            class="profile"
+            alt="Ashish Bhai"
+            loading="lazy"
+            decoding="async"
+            />
+        </div>
+
+        <h1>Ashish Bhai</h1>
+        <div class="highlight"> Premium Signals &amp; Insights</div>
+
+        <p class="desc">
+            Join our exclusive Telegram community for daily updates, signals &amp; market insights.
+        </p>
+
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <span class="dot"></span>
+            <span><strong id="memberCount">1,247</strong> members joined this week</span>
+        </div>
+
+        <!-- Button -->
+        <a href="https://t.me/+gtZSWC3yG3gyMTVl" target="_blank" class="btn" id="mainCta">
+            JOIN TELEGRAM NOW
+        </a>
+
+        <!-- Timer -->
+        <div class="timer-wrap">
+            <div class="ring-container">
+                <svg viewBox="0 0 72 72">
+                    <circle class="bg-ring" cx="36" cy="36" r="30" />
+                    <circle class="progress-ring" id="timerRing" cx="36" cy="36" r="30"
+                    stroke-dasharray="188.5" stroke-dashoffset="0" />
+                </svg>
+                <div class="timer-center">
+                    <span id="timerDisplay">60</span>
+                    <small>sec</small>
+                </div>
+            </div>
+            <div class="timer-label">
+                <strong>Limited offer</strong><br />
+                <span class="urgent">⏳ Hurry, ends soon!</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            Managed by <a href="#" target="_blank">Hustler Ads</a>
+        </div>
+
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ── Config ──
+            const TOTAL_SECONDS = 60;
+            const CIRCUMFERENCE = 188.5; // 2 * PI * 30
+
+            // ── DOM refs ──
+            const timerDisplay = document.getElementById('timerDisplay');
+            const timerRing = document.getElementById('timerRing');
+            const memberCount = document.getElementById('memberCount');
+
+            // ── State ──
+            let remaining = TOTAL_SECONDS;
+            let endTime = Date.now() + remaining * 1000;
+            let animationFrame = null;
+            let redirectDone = false;
+
+            // ── Social proof counter (animate on load) ──
+            function animateMemberCount() {
+                const target = 1247;
+                const start = 1120;
+                const duration = 1800;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(start + (target - start) * eased);
+                    memberCount.textContent = current.toLocaleString();
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        memberCount.textContent = target.toLocaleString();
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            // ── Timer update ──
+            function updateTimer() {
+                const now = Date.now();
+                let diff = endTime - now;
+
+                if (diff <= 0) {
+                    diff = 0;
+                    if (!redirectDone) {
+                        redirectDone = true;
+                        // Small delay so the user sees 0 before redirect
+                        setTimeout(function() {
+                            window.location.href = 'https://t.me/+gtZSWC3yG3gyMTVl';
+                        }, 300);
+                    }
+                }
+
+                const seconds = Math.ceil(diff / 1000);
+                const clamped = Math.max(0, Math.min(seconds, TOTAL_SECONDS));
+
+                // Update display
+                timerDisplay.textContent = String(clamped).padStart(2, '0');
+
+                // Update ring
+                const progress = clamped / TOTAL_SECONDS;
+                const offset = CIRCUMFERENCE * (1 - progress);
+                timerRing.setAttribute('stroke-dashoffset', offset);
+
+                // Color shift when low
+                if (clamped <= 10) {
+                    timerRing.setAttribute('stroke', '#f87171');
+                } else if (clamped <= 20) {
+                    timerRing.setAttribute('stroke', '#fbbf24');
+                } else {
+                    timerRing.setAttribute('stroke', '#38bdf8');
+                }
+
+                // Continue if not done
+                if (clamped > 0) {
+                    animationFrame = requestAnimationFrame(updateTimer);
+                } else {
+                    // Ensure ring is at 0
+                    timerRing.setAttribute('stroke-dashoffset', CIRCUMFERENCE);
+                    timerRing.setAttribute('stroke', '#f87171');
+                }
+            }
+
+            // ── Start ──
+            animateMemberCount();
+            updateTimer();
+
+            // ── Cleanup on page hide ──
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && animationFrame) {
+                    cancelAnimationFrame(animationFrame);
+                } else if (!document.hidden) {
+                    // Re-sync when tab becomes visible
+                    endTime = Date.now() + Math.max(0, remaining) * 1000;
+                    if (!animationFrame && remaining > 0) {
+                        updateTimer();
+                    }
+                }
+            });
+
+            // ── Re-sync if user leaves and returns ──
+            window.addEventListener('focus', function() {
+                if (remaining > 0) {
+                    endTime = Date.now() + remaining * 1000;
+                    if (!animationFrame) {
+                        updateTimer();
+                    }
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

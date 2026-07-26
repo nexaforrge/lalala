@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hacker King Landing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: linear-gradient(180deg,#020024,#090979,#000c5a);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    text-align:center;
+    padding:20px;
+    max-width:400px;
+    width:100%;
+}
+
+h1{
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.profile{
+    width:150px;
+    height:150px;
+    margin:0 auto 20px;
+    border-radius:20px;
+    overflow:hidden;
+    border:4px solid white;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.btn{
+    display:block;
+    width:100%;
+    padding:15px;
+    background:#1da1f2;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:600;
+    color:#fff;
+    text-decoration:none;
+    margin:20px 0;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#0d8ddb;
+}
+
+.big-number{
+    font-size:60px;
+    font-weight:700;
+    margin:20px 0;
+}
+
+.features{
+    text-align:left;
+    margin:20px 0;
+}
+
+.features p{
+    margin:8px 0;
+    font-size:15px;
+}
+
+.features span{
+    color:#00ff88;
+    margin-right:8px;
+}
+
+.experience{
+    margin-top:20px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.timer{
+    margin-top:30px;
+    color:red;
+    font-size:18px;
+    letter-spacing:2px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>HACKER KING NUMBER<br>(PREDICTION SURESHOT)</h1>
+
+    <div class="profile">
+        <img src="https://i.imgur.com/8Km9tLL.jpg" alt="profile">
+    </div>
+
+    <a href="#" class="btn">JOIN TELEGRAM</a>
+
+    <div class="big-number">60</div>
+
+    <div class="features">
+        <p><span>✔</span> Regular color updates</p>
+        <p><span>✔</span> Fast notification alerts</p>
+        <p><span>✔</span> Easy-to-understand format</p>
+        <p><span>✔</span> Active & growing community</p>
+    </div>
+
+    <div class="experience">7 YEARS EXPERIENCES</div>
+
+    <div class="timer" id="countdown">
+        00 : 00 : 00 : 00 <br>
+        DAYS&nbsp;&nbsp;HOURS&nbsp;&nbsp;MINUTES&nbsp;&nbsp;SECONDS
+    </div>
+
+</div>
+
+<script>
+// Countdown Timer
+let time = 86400; // 1 day in seconds
+
+setInterval(()=>{
+    let days = Math.floor(time / (3600*24));
+    let hours = Math.floor((time % (3600*24)) / 3600);
+    let minutes = Math.floor((time % 3600) / 60);
+    let seconds = time % 60;
+
+    document.getElementById("countdown").innerHTML =
+        `${days} : ${hours} : ${minutes} : ${seconds}<br>DAYS HOURS MINUTES SECONDS`;
+
+    time--;
+},1000);
+</script>
+
+</body>
+BOT_TOKEN= 8506947419:AAFQQl_S4aX3KfO2EpRhEAuRi22rxdUyznk
+ADMIN_ID= 8431502772
+API_URL=https://your-api-url/predict
+SOURCE_API=https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json
+
+
+
+</html>

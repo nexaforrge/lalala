@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="RAMxYAARWIN – #1 Telegram Hub" />
+    <meta property="og:description" content="Join the most trusted prediction channel — real-time signals, AI-powered insight, one squad." />
+    <meta property="og:image" content="divagamer.jpg" />
+    <meta property="og:url" content="https://rawats7.github.io/divagame.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="RAMxYAARWIN — the #1 Telegram hub for crypto signals, AI alerts, and a next-gen community." />
+    <title>RAMxYAARWIN – #1 Telegram Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --bg: #03050A;
+            --purple: #A855F7;
+            --cyan: #22D3EE;
+            --gold: #F59E0B;
+            --ink: #ffffff;
+            --muted: rgba(255,255,255,0.7);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        /* Starfield canvas */
+        #starCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Shooting star layers */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+            z-index: 0;
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+            transform: rotate(-30deg);
+            pointer-events: none;
+        }
+        .shooting-star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .shooting-star:nth-child(2) { top: 20%; left: 70%; animation-delay: 1.5s; }
+        .shooting-star:nth-child(3) { top: 50%; left: 40%; animation-delay: 3s; }
+        @keyframes shoot {
+            0% { opacity: 0; transform: translateY(0) rotate(-30deg); }
+            5% { opacity: 1; }
+            15% { opacity: 0; transform: translateY(300px) rotate(-30deg); }
+            100% { opacity: 0; transform: translateY(300px) rotate(-30deg); }
+        }
+
+        /* Ambient planet-like glow */
+        .cosmic-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .cosmic-glow.purple {
+            width: 600px; height: 600px;
+            background: var(--purple);
+            top: -20%; left: -15%;
+            animation: floatGlow 20s ease-in-out infinite alternate;
+        }
+        .cosmic-glow.cyan {
+            width: 500px; height: 500px;
+            background: var(--cyan);
+            bottom: -20%; right: -10%;
+            animation: floatGlow 17s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes floatGlow {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(50px, -40px) scale(1.1); }
+        }
+
+        /* Card – now FULLY TRANSPARENT */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            background: transparent;          /* completely see-through */
+            backdrop-filter: none;             /* no blur */
+            -webkit-backdrop-filter: none;
+            border-radius: 28px;
+            padding: 44px 28px;
+            text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.15), 0 20px 40px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            transform-style: preserve-3d;
+            animation: cardEntrance 0.8s ease-out;
+        }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Profile photo – elegant ring with glow */
+        .profile-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+        }
+        .glow-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, var(--purple), var(--cyan), var(--gold), var(--purple)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: spin 8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            border: 3px solid rgba(3,5,10,0.8);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), 0 0 20px rgba(34, 211, 238, 0.4);
+            animation: picPulse 3s ease-in-out infinite;
+        }
+        @keyframes picPulse {
+            0%,100% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), 0 0 20px rgba(34, 211, 238, 0.4); }
+            50% { box-shadow: 0 0 55px rgba(245, 158, 11, 0.8), 0 0 30px rgba(168, 85, 247, 0.6); }
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Channel name – premium gradient */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 8vw, 2.8rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--purple), var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.5));
+            line-height: 1.1;
+            animation: fadeUp 0.8s 0.1s both ease-out;
+        }
+
+        /* Button – stunning gradient with continuous shine */
+        .btn-join {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            color: #03050A;
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 18px 30px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeUp 0.8s 0.2s both ease-out, btnShine 2s infinite;
+            z-index: 1;
+        }
+        @keyframes btnShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .btn-join::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shineSweep 3s infinite;
+        }
+        @keyframes shineSweep {
+            0% { left: -75%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+        .btn-join:hover {
+            background: linear-gradient(135deg, var(--gold), var(--purple));
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.6);
+            transform: translateY(-4px) scale(1.03);
+        }
+        .btn-join:active {
+            transform: scale(0.98);
+        }
+        .btn-join i {
+            font-size: 1.2rem;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 350px;
+            font-weight: 400;
+            text-shadow: 0 1px 20px rgba(0,0,0,0.8);
+            animation: fadeUp 0.8s 0.4s both ease-out;
+        }
+        .tagline strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* Stats – now also transparent, just a subtle border */
+        .stats {
+            display: flex;
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 18px;
+            overflow: hidden;
+            animation: fadeUp 0.8s 0.6s both ease-out;
+        }
+        .stat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px 6px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat:last-child { border-right: none; }
+        .stat .label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .stat .value {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--purple);
+            text-shadow: 0 0 12px var(--purple);
+        }
+        .stat .value.cyan {
+            color: var(--cyan);
+            text-shadow: 0 0 12px var(--cyan);
+        }
+        .stat .value.gold {
+            color: var(--gold);
+            text-shadow: 0 0 12px var(--gold);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .card { padding: 30px 18px; }
+            .btn-join { font-size: 1rem; padding: 16px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cosmic-glow purple"></div>
+<div class="cosmic-glow cyan"></div>
+<canvas id="starCanvas"></canvas>
+
+<!-- Shooting stars -->
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
+<!-- Transparent Card -->
+<div class="card" id="tiltCard">
+    <!-- Profile with glowing ring -->
+    <div class="profile-wrapper">
+        <div class="glow-ring"></div>
+        <div class="profile-pic">
+            <img src="divagamer.jpg" alt="Profile" />
+        </div>
+    </div>
+
+    <!-- Channel Name -->
+    <h1>RAMxYAARWIN</h1>
+
+    <!-- Join Button -->
+    <a href="https://t.me/+5hOKGysSI05lMTg1" target="_blank" class="btn-join">
+        <i class="fa-brands fa-telegram"></i> Join Channel Now
+    </a>
+
+    <!-- Description -->
+    <p class="tagline">
+        The <strong>#1</strong> Telegram hub for <strong>AI‑powered signals</strong>, exclusive insight, and a next‑gen community.
+    </p>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <span class="label">Accuracy</span>
+            <span class="value">94.2%</span>
+        </div>
+        <div class="stat">
+            <span class="label">Members</span>
+            <span class="value cyan">5,000+</span>
+        </div>
+        <div class="stat">
+            <span class="label">Uptime</span>
+            <span class="value gold">24/7</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------- DYNAMIC STARFIELD WITH MOUSE INTERACTION ----------
+    (function() {
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [], animationId;
+        const STAR_COUNT = 200;
+        let mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = 0.5 + Math.random() * 2;
+                this.baseAlpha = 0.5 + Math.random() * 0.5;
+                this.twinkleSpeed = 0.01 + Math.random() * 0.03;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+            update(time) {
+                // Twinkle effect
+                this.alpha = this.baseAlpha + Math.sin(time * this.twinkleSpeed + this.phase) * 0.3;
+                // Mouse parallax
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                const dist = Math.sqrt(dx*dx+dy*dy);
+                if (dist < 200 && dist > 0) {
+                    const angle = Math.atan2(dy, dx);
+                    this.x += Math.cos(angle) * 0.3;
+                    this.y += Math.sin(angle) * 0.3;
+                    // wrap
+                    if (this.x < -10) this.x = canvas.width + 10;
+                    if (this.x > canvas.width + 10) this.x = -10;
+                    if (this.y < -10) this.y = canvas.height + 10;
+                    if (this.y > canvas.height + 10) this.y = -10;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        function animate(timestamp) {
+            const time = timestamp * 0.001;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update(time);
+                star.draw();
+            });
+            animationId = requestAnimationFrame(animate);
+        }
+        animationId = requestAnimationFrame(animate);
+
+        document.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        document.addEventListener('touchmove', e => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+    })();
+
+    // 3D Tilt effect on card
+    (function() {
+        const card = document.getElementById('tiltCard');
+        document.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / centerY * -6;
+            const rotateY = (x - centerX) / centerX * 6;
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    })();
+</script>
+
+</body>
+</html>

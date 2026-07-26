@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SURESHOT BY KING — Free Telegram Trading Community</title>
+    <meta name="description" content="Join 18,400+ members in the SURESHOT BY KING Telegram channel. Get disciplined, risk-first market calls with transparent tracking. Free community — sirf discipline laani hai.">
+    <meta name="keywords" content="trading, telegram, calls, market, discipline, free, community, king, sureshot">
+    <meta name="author" content="KING">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="SURESHOT BY KING — Free Telegram Trading Community">
+    <meta property="og:description" content="Disciplined calls, risk-first approach, transparent tracking. Join 18,400+ members now.">
+    <meta property="og:image" content="kingbhai.jpg">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SURESHOT BY KING">
+    <meta name="twitter:description" content="Free Telegram community for disciplined trading calls.">
+    <meta name="twitter:image" content="kingbhai.jpg">
+    <meta name="theme-color" content="#0a0712">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Space+Grotesk:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1020509430945885');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1020509430945885&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        :root {
+            /* ---- token system: royal obsidian + gold ---- */
+            --bg: #0a0712;
+            --bg-panel: #150d22;
+            --grid-line: rgba(242, 200, 105, 0.05);
+            --hairline: rgba(246, 241, 231, 0.09);
+            --ink: #f6f1e6;
+            --ink-soft: #ad9dc4;
+            --ink-mute: #6a5c80;
+            --gold: #f2c869;
+            --gold-bright: #ffe19a;
+            --gold-deep: #b5872f;
+            --violet: #8b5cf6;
+            --violet-deep: #4c2f8f;
+            --crimson: #ff5577;
+            --gold-glow: rgba(242, 200, 105, 0.5);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.4;
+        }
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+
+        /* ---------- ambient royal spotlight + candlestick backdrop ---------- */
+        #chart-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .spotlight {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(242, 200, 105, 0.16) 0%, rgba(139, 92, 246, 0.08) 38%, transparent 70%);
+            filter: blur(10px);
+        }
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 75%);
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ---------- ticker tape ---------- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--hairline);
+            white-space: nowrap;
+            position: relative;
+        }
+        .ticker-wrap::before, .ticker-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 36px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg-panel), transparent); }
+        .ticker-wrap::after { right: 0; background: linear-gradient(270deg, var(--bg-panel), transparent); }
+        .ticker-track {
+            display: inline-flex;
+            align-items: center;
+            gap: 34px;
+            padding: 9px 0;
+            animation: scrollTicker 32s linear infinite;
+            will-change: transform;
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 7px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.02em;
+            color: var(--ink-soft);
+        }
+        .ticker-item b { color: var(--ink); font-weight: 500; }
+        .ticker-item .up { color: var(--gold); }
+        .ticker-item .down { color: var(--crimson); }
+        @keyframes scrollTicker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; }
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 44px 20px 40px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+            margin: 0 auto 30px;
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+        /* rotating royal halo ring */
+        .logo-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -11px;
+            border-radius: 34px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, var(--gold) 0deg, var(--violet) 120deg, transparent 200deg, var(--gold) 360deg);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotateHalo 6s linear infinite;
+            opacity: 0.85;
+        }
+        @keyframes rotateHalo {
+            to { transform: rotate(360deg); }
+        }
+        .logo {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(242,200,105,0.3), 0 16px 44px -14px rgba(242, 200, 105, 0.45);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .logo:active { transform: scale(1.03); }
+
+        /* live badge sits on the corner of the photo */
+        .live-tag {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #140b22;
+            border: 1px solid rgba(242,200,105,0.45);
+            color: var(--gold-bright);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            padding: 4px 10px 4px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .live-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px 1px var(--gold-glow);
+            animation: dotBlink 1.4s ease-in-out infinite;
+        }
+        @keyframes dotBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin: 22px 0 18px;
+        }
+        .badge::before, .badge::after {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: var(--hairline);
+        }
+
+        h1 {
+            font-family: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.06;
+            letter-spacing: -0.02em;
+            margin: 0 0 16px;
+            color: var(--ink);
+            min-height: 52px;
+        }
+        h1 .accent {
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            font-style: italic;
+            background: linear-gradient(120deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 18px rgba(242, 200, 105, 0.5));
+        }
+        h1 .accent::after {
+            content: "";
+            position: absolute;
+            left: 2px;
+            right: 2px;
+            bottom: -2px;
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0.75;
+        }
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.8em;
+            background: var(--gold);
+            margin-left: 3px;
+            vertical-align: text-bottom;
+            animation: blink 0.9s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .sub {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: var(--ink-soft);
+            max-width: 430px;
+            margin: 0 auto 30px;
+        }
+        .sub .mono-hl {
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            background: rgba(242,200,105,0.1);
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        /* ---------- CTA: royal gold button ---------- */
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+            color: #241206;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            padding: 18px 30px 18px 34px;
+            border-radius: 100px;
+            box-shadow:
+                0 1px 0 0 rgba(255,255,255,0.55) inset,
+                0 -2px 6px 0 rgba(0,0,0,0.22) inset,
+                0 16px 34px -12px rgba(242, 200, 105, 0.55);
+            transition: transform 0.22s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.22s ease;
+            position: relative;
+            border: none;
+            cursor: pointer;
+        }
+        .cta svg { width: 18px; height: 18px; fill: #241206; }
+        .cta .arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            margin-left: 2px;
+            border-radius: 50%;
+            background: rgba(36, 18, 6, 0.14);
+            transition: transform 0.22s ease;
+        }
+        .cta .arrow svg { width: 12px; height: 12px; fill: #241206; }
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 1px 0 0 rgba(255,255,255,0.65) inset,
+                0 -2px 6px 0 rgba(0,0,0,0.22) inset,
+                0 22px 42px -10px rgba(242, 200, 105, 0.75);
+        }
+        .cta:hover .arrow { transform: translateX(3px); }
+        .cta:active { transform: translateY(-1px) scale(0.99); }
+
+        .members {
+            margin-top: 18px;
+            font-size: 13px;
+            color: var(--ink-mute);
+            font-family: 'IBM Plex Mono', monospace;
+            letter-spacing: 0.02em;
+        }
+        .members b { color: var(--ink-soft); font-weight: 500; }
+        .members .up { color: var(--gold); }
+
+        /* ---------- footer ---------- */
+        footer {
+            text-align: center;
+            padding: 16px 20px;
+            font-size: 11px;
+            color: var(--ink-mute);
+            font-family: 'IBM Plex Mono', monospace;
+            border-top: 1px solid var(--hairline);
+            background: rgba(10, 7, 18, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+        }
+        footer a { color: var(--gold-deep); text-decoration: none; font-weight: 500; }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 480px) {
+            .hero { padding: 30px 16px 30px; }
+            .logo-wrapper { width: 118px; height: 118px; }
+            .logo-wrapper::before { inset: -9px; border-radius: 28px; }
+            .logo { border-radius: 22px; }
+            h1 { font-size: 30px; }
+            .sub { font-size: 14px; max-width: 300px; }
+            .cta { padding: 15px 26px 15px 28px; font-size: 13px; }
+            .live-tag { font-size: 9.5px; }
+        }
+        @media (max-width: 360px) {
+            .logo-wrapper { width: 102px; height: 102px; }
+            h1 { font-size: 26px; }
+            .cta { padding: 13px 22px 13px 24px; font-size: 12px; }
+        }
+
+        /* keyboard focus visibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="chart-bg"></canvas>
+    <div class="spotlight"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="page-content">
+
+        <!-- live market ticker tape -->
+        <div class="ticker-wrap">
+            <div class="ticker-track mono" id="tickerTrack"></div>
+        </div>
+
+        <div class="hero">
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <img src="kingbhai.jpg" alt="Channel Logo">
+                </div>
+                <div class="live-tag"><span class="live-dot"></span>LIVE SIGNALS</div>
+            </div>
+
+            <div class="badge">Verified Telegram Channel</div>
+
+            <h1 id="typewriter"></h1>
+            <p class="sub">Roz market ke saaf, disciplined calls — bina noise ke. <span class="mono-hl">Risk-first</span> approach, transparent tracking, aur ek community jo sirf sikhne aur kamaane pe focused hai.</p>
+
+            <a class="cta" href="https://t.me/+63u_MhUQuXhjZGNl" target="_blank" rel="noopener">
+                <svg viewBox="0 0 240 240" fill="none"><path d="M186.5 61.5L28.8 122.9c-11 4.4-10.9 10.5-2 13.2l40.4 12.6 15.6 47.7c1.9 5.2 3.4 7.3 6.9 7.3 3.6 0 5.2-1.7 7.2-3.6l19.3-18.6 40.1 29.6c7.4 4.1 12.7 2 14.6-6.9l26.4-124.4c2.7-11-4.1-16-14.8-11.9z"/></svg>
+                <span>Join Free Community</span>
+                <span class="arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#241206" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <div class="members">TRUSTED BY <b>18,400+</b> MEMBERS <span class="up">▲</span></div>
+        </div>
+
+        <footer>
+            Ads managed by <a href="https://t.me/+Xd0Cn_fQXqY5NjM1" target="_blank" rel="noopener">GBM</a> · Not financial advice. Trade at your own risk.
+        </footer>
+    </div>
+
+    <script>
+        // ---------- market ticker tape content ----------
+        (function() {
+            const symbols = [
+                { n: 'NIFTY 50', v: '24,812.30', c: '+0.64%', up: true },
+                { n: 'BANKNIFTY', v: '52,104.85', c: '+0.41%', up: true },
+                { n: 'SENSEX', v: '81,442.10', c: '+0.58%', up: true },
+                { n: 'GOLD', v: '₹71,230', c: '-0.12%', up: false },
+                { n: 'USDINR', v: '86.24', c: '+0.05%', up: true },
+                { n: 'RELIANCE', v: '2,940.15', c: '+1.12%', up: true },
+                { n: 'HDFCBANK', v: '1,712.40', c: '-0.33%', up: false },
+                { n: 'CRUDE OIL', v: '6,381', c: '+0.87%', up: true },
+            ];
+            function row() {
+                return symbols.map(s => `<span class="ticker-item"><b>${s.n}</b>${s.v} <span class="${s.up ? 'up' : 'down'}">${s.c}</span></span>`).join('');
+            }
+            document.getElementById('tickerTrack').innerHTML = row() + row();
+        })();
+
+        // ---------- typing effect ----------
+        (function() {
+            const h1 = document.getElementById('typewriter');
+            const prefix = 'SURESHOT BY ';
+            const name = 'KING';
+            let idx = 0, phase = 0, spanEl = null;
+
+            function type() {
+                if (phase === 0) {
+                    if (idx < prefix.length) {
+                        h1.innerHTML = prefix.substring(0, idx + 1) + '<span class="cursor"></span>';
+                        idx++;
+                        setTimeout(type, 78);
+                    } else {
+                        h1.innerHTML = prefix + '<span id="typed-name" class="accent"></span><span class="cursor"></span>';
+                        spanEl = document.getElementById('typed-name');
+                        idx = 0;
+                        phase = 1;
+                        setTimeout(type, 110);
+                    }
+                } else if (phase === 1) {
+                    if (idx < name.length) {
+                        spanEl.textContent = name.substring(0, idx + 1);
+                        idx++;
+                        setTimeout(type, 95);
+                    } else {
+                        h1.innerHTML = prefix + '<span class="accent">' + name + '</span>';
+                    }
+                }
+            }
+            type();
+        })();
+
+        // ---------- signature element: ambient gold/violet candlestick backdrop ----------
+        (function() {
+            const canvas = document.getElementById('chart-bg');
+            const ctx = canvas.getContext('2d');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let w, h, dpr;
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = canvas.width = window.innerWidth * dpr;
+                h = canvas.height = window.innerHeight * dpr;
+                canvas.style.width = window.innerWidth + 'px';
+                canvas.style.height = window.innerHeight + 'px';
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const candleW = 26 * (window.devicePixelRatio || 1);
+            const gap = 12 * (window.devicePixelRatio || 1);
+            let candles = [];
+            let price = 100;
+
+            function seedCandles() {
+                candles = [];
+                const count = Math.ceil(w / (candleW + gap)) + 3;
+                for (let i = 0; i < count; i++) {
+                    candles.push(nextCandle());
+                }
+            }
+            function nextCandle() {
+                const open = price;
+                const drift = (Math.random() - 0.46) * 9;
+                const close = Math.max(20, open + drift);
+                const high = Math.max(open, close) + Math.random() * 6;
+                const low = Math.min(open, close) - Math.random() * 6;
+                price = close;
+                return { open, close, high, low, up: close >= open };
+            }
+            seedCandles();
+
+            let lastAdd = performance.now();
+            const goldColor = 'rgba(242, 200, 105, 0.5)';
+            const violetColor = 'rgba(139, 92, 246, 0.4)';
+
+            function draw(t) {
+                ctx.clearRect(0, 0, w, h);
+
+                const vals = candles.flatMap(c => [c.high, c.low]);
+                const maxV = Math.max(...vals);
+                const minV = Math.min(...vals);
+                const range = Math.max(maxV - minV, 1);
+                const baseY = h * 0.62;
+                const amp = h * 0.30;
+
+                candles.forEach((c, i) => {
+                    const x = w - (candles.length - i) * (candleW + gap);
+                    const yFor = v => baseY - ((v - minV) / range) * amp;
+
+                    const yOpen = yFor(c.open);
+                    const yClose = yFor(c.close);
+                    const yHigh = yFor(c.high);
+                    const yLow = yFor(c.low);
+                    const color = c.up ? goldColor : violetColor;
+
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 1.5 * dpr;
+                    ctx.beginPath();
+                    ctx.moveTo(x + candleW / 2, yHigh);
+                    ctx.lineTo(x + candleW / 2, yLow);
+                    ctx.stroke();
+
+                    ctx.fillStyle = color;
+                    const bodyTop = Math.min(yOpen, yClose);
+                    const bodyH = Math.max(Math.abs(yClose - yOpen), 2 * dpr);
+                    ctx.fillRect(x, bodyTop, candleW, bodyH);
+                });
+
+                if (!reduceMotion && t - lastAdd > 1400) {
+                    candles.push(nextCandle());
+                    candles.shift();
+                    lastAdd = t;
+                }
+                requestAnimationFrame(draw);
+            }
+            requestAnimationFrame(draw);
+        })();
+    </script>
+</body>
+</html>

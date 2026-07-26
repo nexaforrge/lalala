@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Circle — Join Free Community</title>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1020509430945885');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1020509430945885&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #06060b;
+            --bg-card: rgba(18, 18, 26, 0.78);
+            --bg-card-hover: rgba(22, 22, 32, 0.85);
+            --ink: #e8e5de;
+            --ink-soft: #a09c94;
+            --ink-muted: #6b6760;
+            --hairline: rgba(255, 255, 255, 0.08);
+            --hairline-strong: rgba(255, 255, 255, 0.14);
+            --card: rgba(16, 16, 22, 0.75);
+            --gold: #d4a853;
+            --gold-bright: #e8c26a;
+            --gold-deep: #b8902e;
+            --gold-glow: rgba(212, 168, 83, 0.25);
+            --emerald: #0d9e6c;
+            --emerald-soft: rgba(13, 158, 108, 0.12);
+            --white-soft: #fefdfa;
+            --glass-blur: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ---- Vanta Background Container ---- */
+        #vanta-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 1;
+        }
+        #vanta-bg canvas {
+            display: block;
+        }
+
+        /* ---- Page Content Layer ---- */
+        .page-content {
+            position: relative;
+            z-index: 1;
+            pointer-events: auto;
+        }
+
+        /* ---- Ad strip ---- */
+        .ad-strip {
+            background: rgba(10, 10, 16, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: #c4bfb4;
+            text-align: center;
+            padding: 10px 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11.5px;
+            letter-spacing: .05em;
+            border-bottom: 1px solid var(--hairline);
+            position: relative;
+            z-index: 2;
+        }
+        .ad-strip a {
+            color: var(--gold-bright);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(232, 194, 106, 0.45);
+            transition: opacity .15s ease;
+        }
+        .ad-strip a:hover {
+            opacity: .75;
+        }
+
+        /* ---- Hero ---- */
+        .hero {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 56px 24px 44px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 22px;
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 14px 36px -14px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 60px -10px var(--gold-glow);
+            position: relative;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 44px -16px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.18), 0 0 80px -8px rgba(212, 168, 83, 0.4);
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .logo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10.5px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            background: rgba(212, 168, 83, 0.09);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .badge svg {
+            width: 12px;
+            height: 12px;
+        }
+        .badge svg path {
+            stroke: var(--gold-bright);
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-optical-sizing: auto;
+            font-size: 42px;
+            line-height: 1.1;
+            letter-spacing: -.01em;
+            margin: 0 0 16px;
+            color: #f5f2ea;
+        }
+        h1 span {
+            color: var(--gold-bright);
+            font-style: italic;
+            font-weight: 500;
+            text-shadow: 0 0 40px rgba(212, 168, 83, 0.5);
+        }
+
+        .sub {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: var(--ink-soft);
+            max-width: 430px;
+            margin: 0 auto 32px;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #d4a853 0%, #b88a2e 40%, #9b701f 100%);
+            color: #1a1408;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: .04em;
+            text-decoration: none;
+            padding: 17px 34px;
+            border-radius: 14px;
+            box-shadow: 0 10px 32px -8px rgba(180, 140, 50, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15), 0 0 80px -10px rgba(212, 168, 83, 0.35);
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px -8px rgba(180, 140, 50, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 100px -4px rgba(212, 168, 83, 0.5);
+            filter: brightness(1.08);
+        }
+        .cta:active {
+            transform: translateY(-1px);
+            filter: brightness(0.95);
+        }
+        .cta svg {
+            width: 18px;
+            height: 18px;
+        }
+        .cta svg path {
+            fill: #1a1408;
+        }
+
+        .members {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--ink-muted);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .members b {
+            color: #e0dacf;
+            font-weight: 600;
+        }
+
+        /* ---- Divider ---- */
+        .divider {
+            max-width: 560px;
+            margin: 4px auto 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .divider .line {
+            flex: 1;
+            height: 1px;
+            background: var(--hairline-strong);
+        }
+        .divider span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10.5px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            white-space: nowrap;
+        }
+
+        /* ---- Reviews ---- */
+        .reviews {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 20px 68px;
+            display: grid;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: 18px;
+            padding: 22px 24px;
+            display: flex;
+            gap: 15px;
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            transition: background .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+            position: relative;
+        }
+        .review:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--hairline-strong);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .avatar {
+            flex: 0 0 auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 17px;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .review-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .review-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .review-name {
+            font-weight: 600;
+            font-size: 14.5px;
+            color: #e8e4db;
+        }
+        .stars {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(212, 168, 83, 0.3);
+        }
+        .review-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #b5b0a6;
+            margin: 0;
+        }
+        .verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10.5px;
+            color: var(--emerald);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-top: 7px;
+            letter-spacing: .02em;
+        }
+        .verified svg {
+            width: 11px;
+            height: 11px;
+        }
+        .verified svg path {
+            stroke: var(--emerald);
+        }
+
+        /* ---- Bottom CTA ---- */
+        .bottom-cta {
+            text-align: center;
+            padding: 0 24px 74px;
+            position: relative;
+            z-index: 1;
+        }
+        .bottom-cta p {
+            font-family: 'Fraunces', serif;
+            font-size: 21px;
+            font-weight: 500;
+            margin: 0 0 22px;
+            color: #e8e4db;
+        }
+
+        /* ---- Footer ---- */
+        footer {
+            text-align: center;
+            padding: 22px 20px;
+            font-size: 11px;
+            color: #6b6760;
+            font-family: 'Space Grotesk', sans-serif;
+            border-top: 1px solid var(--hairline);
+            position: relative;
+            z-index: 1;
+            background: rgba(8, 8, 14, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color .15s ease;
+        }
+        footer a:hover {
+            color: var(--gold-bright);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 31px;
+            }
+            .hero {
+                padding: 40px 18px 30px;
+            }
+            .logo {
+                width: 72px;
+                height: 72px;
+                border-radius: 18px;
+            }
+            .logo::after {
+                border-radius: 18px;
+            }
+            .cta {
+                padding: 15px 26px;
+                font-size: 13.5px;
+                border-radius: 12px;
+            }
+            .cta::before {
+                border-radius: 12px;
+            }
+            .review {
+                padding: 18px 16px;
+                border-radius: 14px;
+                gap: 12px;
+            }
+            .avatar {
+                width: 38px;
+                height: 38px;
+                font-size: 14px;
+            }
+            .review-text {
+                font-size: 12.8px;
+            }
+            .bottom-cta p {
+                font-size: 18px;
+            }
+            .sub {
+                font-size: 14px;
+            }
+            .badge {
+                font-size: 9.5px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 27px;
+            }
+            .hero {
+                padding: 30px 14px 24px;
+            }
+            .logo {
+                width: 60px;
+                height: 60px;
+                border-radius: 16px;
+            }
+            .logo::after {
+                border-radius: 16px;
+            }
+            .cta {
+                padding: 13px 20px;
+                font-size: 12.5px;
+                border-radius: 10px;
+            }
+            .cta::before {
+                border-radius: 10px;
+            }
+            .review {
+                padding: 14px 12px;
+                border-radius: 12px;
+            }
+            .review-text {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Vanta Birds Background -->
+    <div id="vanta-bg"></div>
+
+    <!-- All Content Layered Above -->
+    <div class="page-content">
+
+        <div class="ad-strip">
+            Ads managed by <a href="https://t.me/+Xd0Cn_fQXqY5NjM1" target="_blank" rel="noopener">GBM</a>
+        </div>
+
+        <div class="hero">
+            <div class="logo">
+                <img src="kingbhai.jpg" alt="Channel Logo">
+            </div>
+
+            <div class="badge">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Verified Telegram Channel
+            </div>
+
+            <h1>SURESHOT BY <span>KING</span></h1>
+            <p class="sub">Roz market ke saaf, disciplined calls — bina noise ke. Risk-first approach, transparent tracking, aur ek community jo sirf sikhne aur kamaane pe focused hai.</p>
+
+            <a class="cta" href="https://t.me/+63u_MhUQuXhjZGNl" target="_blank" rel="noopener">
+                <svg viewBox="0 0 240 240" fill="none"><path d="M186.5 61.5L28.8 122.9c-11 4.4-10.9 10.5-2 13.2l40.4 12.6 15.6 47.7c1.9 5.2 3.4 7.3 6.9 7.3 3.6 0 5.2-1.7 7.2-3.6l19.3-18.6 40.1 29.6c7.4 4.1 12.7 2 14.6-6.9l26.4-124.4c2.7-11-4.1-16-14.8-11.9z" fill="#1a1408"/></svg>
+                JOIN FREE COMMUNITY
+            </a>
+
+            <div class="members">Currently trusted by <b>18,400+</b> members</div>
+        </div>
+
+        <div class="divider"><div class="line"></div><span>Kya keh rahe hain members</span><div class="line"></div></div>
+
+        <div class="reviews">
+
+            <div class="review">
+                <div class="avatar" style="background:linear-gradient(135deg, #0d9e6c, #087d52);">R</div>
+                <div class="review-body">
+                    <div class="review-top">
+                        <span class="review-name">Rohit Sharma</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Risk management yahan sabse accha hai — koi overtrade nahi karwate. 3 mahine se follow kar raha hu, calls disciplined hain aur SL hamesha clear hota hai.</p>
+                    <span class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified member</span>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="avatar" style="background:linear-gradient(135deg, #b8902e, #9b701f);">P</div>
+                <div class="review-body">
+                    <div class="review-top">
+                        <span class="review-name">Priya Mehta</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Free hote hue bhi content ka level premium jaisa lagta hai. Analysis samajhne me easy hai aur team har query ka reply deti hai.</p>
+                    <span class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified member</span>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="avatar" style="background:linear-gradient(135deg, #2c3e6b, #1b2a4a);">A</div>
+                <div class="review-body">
+                    <div class="review-top">
+                        <span class="review-name">Aman Verma</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Sabse better baat — koi guaranteed profit ka jhoothaa promise nahi karte. Sirf strategy aur discipline sikhate hain, jo long term me kaam aata hai.</p>
+                    <span class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified member</span>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="avatar" style="background:linear-gradient(135deg, #0d9e6c, #087d52);">S</div>
+                <div class="review-body">
+                    <div class="review-top">
+                        <span class="review-name">Sneha Kapoor</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Naya tha trading me, but yahan ke basics itne clear hain ki beginner bhi confidently follow kar sakta hai. Risk management ka focus mujhe sabse zyada pasand aaya.</p>
+                    <span class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12L10 17L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified member</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-cta">
+            <p>Community free hai. Sirf discipline aapko laani hai.</p>
+            <a class="cta" href="https://t.me/+63u_MhUQuXhjZGNl" target="_blank" rel="noopener">
+                <svg viewBox="0 0 240 240" fill="none"><path d="M186.5 61.5L28.8 122.9c-11 4.4-10.9 10.5-2 13.2l40.4 12.6 15.6 47.7c1.9 5.2 3.4 7.3 6.9 7.3 3.6 0 5.2-1.7 7.2-3.6l19.3-18.6 40.1 29.6c7.4 4.1 12.7 2 14.6-6.9l26.4-124.4c2.7-11-4.1-16-14.8-11.9z" fill="#1a1408"/></svg>
+                JOIN FREE COMMUNITY
+            </a>
+        </div>
+
+        <footer>
+            Ads managed by <a href="https://t.me/+Xd0Cn_fQXqY5NjM1" target="_blank" rel="noopener">GBM</a> &middot; Not financial advice. Trade at your own risk.
+        </footer>
+
+    </div>
+
+    <!-- Three.js r134 (required for Vanta) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- Vanta Birds -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
+
+    <script>
+        (function() {
+            function initVanta() {
+                if (typeof THREE === 'undefined' || typeof VANTA === 'undefined') {
+                    setTimeout(initVanta, 120);
+                    return;
+                }
+
+                VANTA.BIRDS({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    backgroundColor: 0x06060b,   /* deep dark background */
+                    color1: 0xd4a853,            /* gold accent */
+                    color2: 0xb8902e,            /* deeper gold */
+                    birdSize: 1.4,
+                    wingSpan: 22,
+                    speedLimit: 5,
+                    separation: 32,
+                    alignment: 35,
+                    cohesion: 28,
+                    quantity: 2.8
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initVanta, 100);
+                });
+            } else {
+                setTimeout(initVanta, 100);
+            }
+        })();
+    </script>
+
+</body>
+</html>

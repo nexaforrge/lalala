@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONTABO HACK PANEL</title>
+<style>
+body{margin:0;background:#010101;color:#00ff9f;font-family:monospace}
+.container{padding:20px}
+h1{text-align:center;text-shadow:0 0 15px #00ff9f}
+input,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
+input{background:#000;color:#00ff9f;border:1px solid #00ff9f}
+button{background:#00ff9f;color:#000;font-weight:bold}
+.section{padding:15px;margin:10px 0;border:1px solid #00ff9f;border-radius:10px;cursor:pointer}
+.content{display:none;background:#000;padding:15px;border-radius:10px;margin-top:10px;white-space:pre-wrap;color:#00ffe1}
+.type{border-right:2px solid #00ff9f;white-space:nowrap;overflow:hidden}
+</style>
+</head>
+<body>
+
+<div class="container" id="login">
+<h1 class="type" id="typing"></h1>
+<input type="password" id="pass" placeholder="ENTER PASSWORD">
+<button onclick="check()">ACCESS SYSTEM</button>
+</div>
+
+
+
+
+<div class="container" id="main" style="display:none">
+<h1>⚡ CONTABO CONTROL</h1>
+
+IP : 5.189.136.54 <br>
+USER = root <BR>
+PASSWORD : wsW9TjNBHT <br>
+
+<div class="section" onclick="toggle('deploy')">🚀 DEPLOY NEW BOT</div>
+<div id="deploy" class="content">
+STEP 1 → CONNECT VPS
+ssh root@IP
+
+STEP 2 → UPDATE SYSTEM
+apt update && apt upgrade -y
+
+STEP 3 → INSTALL TOOLS
+apt install git python3 python3-pip -y
+
+STEP 4 → CLONE CODE
+git clone YOUR_GITHUB_LINK
+cd YOUR_REPO
+
+STEP 5 → INSTALL REQUIREMENTS
+pip install -r requirements.txt
+
+STEP 6 → RUN BOT
+python3 bot.py
+</div>
+
+<div class="section" onclick="toggle('screen')">🧠 RUN BOT IN BACKGROUND</div>
+<div id="screen" class="content">
+CREATE SCREEN:
+screen -S bot
+
+RUN BOT:
+python3 bot.py
+
+DETACH:
+CTRL + A then D
+
+CHECK SCREENS:
+screen -ls
+
+REJOIN:
+screen -r bot
+</div>
+
+<div class="section" onclick="toggle('update')">🔄 UPDATE BOT</div>
+<div id="update" class="content">
+cd repo
+
+PULL NEW CODE:
+git pull
+
+INSTALL NEW LIBS:
+pip install -r requirements.txt
+
+RESTART BOT
+</div>
+
+<div class="section" onclick="toggle('delete')">❌ DELETE BOT</div>
+<div id="delete" class="content">
+STOP BOT FIRST
+screen -r bot
+CTRL + C
+
+DELETE FILE:
+rm -rf repo_name
+</div>
+
+<div class="section" onclick="toggle('multi')">⚡ MULTIPLE BOTS</div>
+<div id="multi" class="content">
+screen -S bot1
+screen -S bot2
+screen -S bot3
+
+Each screen = one bot
+</div>
+
+<div class="section" onclick="toggle('logs')">📜 CHECK LOGS</div>
+<div id="logs" class="content">
+RUN WITH LOG:
+python3 bot.py > log.txt
+
+VIEW LOG:
+cat log.txt
+
+LIVE VIEW:
+tail -f log.txt
+</div>
+
+<div class="section" onclick="toggle('auto')">🔁 AUTO START BOT</div>
+<div id="auto" class="content">
+crontab -e
+
+ADD LINE:
+@reboot screen -dmS bot python3 /root/repo/bot.py
+</div>
+
+<div class="section" onclick="toggle('errors')">⚠️ FIX ERRORS</div>
+<div id="errors" class="content">
+MODULE ERROR:
+pip install module_name
+
+PERMISSION:
+chmod +x file
+
+PORT ISSUE:
+lsof -i:PORT
+kill -9 PID
+
+GIT ERROR:
+git stash
+git pull
+</div>
+
+<div class="section" onclick="toggle('server')">🌐 SERVER RESTART FIX</div>
+<div id="server" class="content">
+LOGIN AGAIN:
+ssh root@IP
+
+GO TO BOT:
+cd repo
+
+RUN AGAIN:
+screen -S bot
+python3 bot.py
+</div>
+
+<div class="section" onclick="toggle('monitor')">📊 SERVER STATUS</div>
+<div id="monitor" class="content">
+CPU/RAM:
+top
+
+DISK:
+df -h
+
+PROCESS:
+ps aux
+</div>
+
+</div>
+
+<script>
+let text="INITIALIZING SECURE TERMINAL...";
+let i=0;
+function type(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML+=text.charAt(i);
+  i++;
+  setTimeout(type,50);
+ }
+}
+type();
+
+function check(){
+let p=document.getElementById('pass').value;
+if(p==='9286'){
+document.getElementById('login').style.display='none';
+document.getElementById('main').style.display='block';
+}else{alert('ACCESS DENIED');}
+}
+
+function toggle(id){
+let el=document.getElementById(id);
+el.style.display = el.style.display==='block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>

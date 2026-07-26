@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="RAMxYAARWIN – #1 Telegram Hub" />
+    <meta property="og:description" content="Join the most trusted prediction channel — real-time signals, AI-powered insight, one squad." />
+    <meta property="og:image" content="divagamer.jpg" />
+    <meta property="og:url" content="https://rawats7.github.io/divagame.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="RAMxYAARWIN — the #1 Telegram hub for crypto signals, AI alerts, and a next-gen community." />
+    <title>RAMxYAARWIN – #1 Telegram Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --bg: #050510;
+            --gold: #FFD700;
+            --cyan: #00E5FF;
+            --magenta: #FF007F;
+            --purple: #7B2FFF;
+            --ink: #ffffff;
+            --muted: rgba(255,255,255,0.75);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Vortex canvas background */
+        #vortexCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Glowing ambient orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .ambient-orb.orb1 {
+            width: 500px; height: 500px;
+            background: var(--magenta);
+            top: -15%; left: -10%;
+            animation: floatOrb 14s ease-in-out infinite alternate;
+        }
+        .ambient-orb.orb2 {
+            width: 400px; height: 400px;
+            background: var(--cyan);
+            bottom: -15%; right: -10%;
+            animation: floatOrb 12s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* Card – TRANSPARENT */
+        .card {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 440px;
+            background: transparent;          /* 100% see-through */
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 32px;
+            padding: 44px 28px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255,215,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(255,215,0,0.15);
+        }
+
+        /* Profile photo – dual ring rotation */
+        .profile-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+        }
+        .outer-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, var(--gold), var(--magenta), var(--cyan), var(--gold)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: spinClockwise 8s linear infinite;
+        }
+        .inner-ring {
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255,255,255,0.5);
+            animation: spinCounter 12s linear infinite;
+        }
+        @keyframes spinClockwise { to { transform: rotate(360deg); } }
+        @keyframes spinCounter { to { transform: rotate(-360deg); } }
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            border: 3px solid rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px rgba(255,215,0,0.5), 0 0 15px rgba(255,0,127,0.4);
+            animation: picGlow 3s ease-in-out infinite;
+        }
+        @keyframes picGlow {
+            0%,100% { box-shadow: 0 0 30px rgba(255,215,0,0.5), 0 0 15px rgba(255,0,127,0.4); }
+            50% { box-shadow: 0 0 50px rgba(0,229,255,0.6), 0 0 30px rgba(255,215,0,0.6); }
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Channel name */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 8vw, 2.8rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cyan) 40%, var(--magenta) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px rgba(255,215,0,0.4));
+            line-height: 1.1;
+            animation: fadeUp 0.7s 0.2s both ease-out;
+        }
+
+        /* Button – bold, animated gradient, shine */
+        .btn-join {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--magenta));
+            color: #050510;
+            font-weight: 800;
+            font-size: 1.2rem;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 18px 28px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255,215,0,0.4);
+            transition: all 0.3s ease;
+            animation: fadeUp 0.7s 0.35s both ease-out;
+            z-index: 1;
+        }
+        .btn-join::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: skewX(-20deg);
+            animation: shineMove 3s infinite;
+        }
+        @keyframes shineMove {
+            0% { left: -75%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+        .btn-join:hover {
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            box-shadow: 0 12px 35px rgba(0,229,255,0.5);
+            transform: translateY(-4px) scale(1.02);
+        }
+        .btn-join:active {
+            transform: scale(0.98);
+        }
+        .btn-join i {
+            font-size: 1.2rem;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 340px;
+            font-weight: 500;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+            animation: fadeUp 0.7s 0.5s both ease-out;
+        }
+        .tagline strong {
+            color: var(--gold);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        /* Stats row – slightly tinted for readability */
+        .stats {
+            display: flex;
+            width: 100%;
+            background: rgba(0,0,0,0.25);  /* barely-there dark tint */
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeUp 0.7s 0.65s both ease-out;
+        }
+        .stat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px 6px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat:last-child {
+            border-right: none;
+        }
+        .stat .label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .stat .value {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+        .stat .value.magenta {
+            color: var(--magenta);
+        }
+
+        /* Fade up animation for elements */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .card {
+                padding: 32px 18px;
+                border-radius: 24px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .btn-join {
+                font-size: 1rem;
+                padding: 16px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ambient-orb orb1"></div>
+<div class="ambient-orb orb2"></div>
+<canvas id="vortexCanvas"></canvas>
+
+<div class="card">
+    <!-- Profile photo with rotating rings -->
+    <div class="profile-wrapper">
+        <div class="outer-ring"></div>
+        <div class="inner-ring"></div>
+        <div class="profile-pic">
+            <img src="divagamer.jpg" alt="Profile" />
+        </div>
+    </div>
+
+    <!-- Channel Name -->
+    <h1>RAMxYAARWIN</h1>
+
+    <!-- Join Button -->
+    <a href="https://t.me/+5hOKGysSI05lMTg1" target="_blank" class="btn-join">
+        <i class="fa-brands fa-telegram"></i> Join Channel Now
+    </a>
+
+    <!-- Description -->
+    <p class="tagline">
+        The <strong>#1</strong> Telegram hub for <strong>AI‑powered signals</strong>, exclusive insight, and a next‑gen community.
+    </p>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <span class="label">Accuracy</span>
+            <span class="value">94.2%</span>
+        </div>
+        <div class="stat">
+            <span class="label">Members</span>
+            <span class="value magenta">5,000+</span>
+        </div>
+        <div class="stat">
+            <span class="label">Uptime</span>
+            <span class="value" style="color:#ffffff;">24/7</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const canvas = document.getElementById('vortexCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [], animationId;
+        const PARTICLE_COUNT = 120;
+        const NUM_RINGS = 4;
+        const CONNECT_DIST = 100;
+        let mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        class Particle {
+            constructor(ringIndex, totalInRing) {
+                this.ring = ringIndex;
+                this.angle = (Math.PI * 2 / totalInRing) * (Math.random() * totalInRing);
+                this.baseRadius = 140 + ringIndex * 55;
+                this.radius = this.baseRadius;
+                this.angularSpeed = 0.002 - ringIndex * 0.0003;
+                this.size = 1.2 + Math.random() * 2.5;
+                this.x = 0; this.y = 0;
+                const colors = ['rgba(255,215,0,', 'rgba(0,229,255,', 'rgba(255,0,127,', 'rgba(123,47,255,'];
+                this.color = colors[ringIndex % colors.length];
+                this.opacity = 0.7 + Math.random() * 0.3;
+            }
+            update(centerX, centerY, mouseX, mouseY) {
+                this.angle += this.angularSpeed;
+                const dx = this.x - mouseX;
+                const dy = this.y - mouseY;
+                const distToMouse = Math.sqrt(dx*dx + dy*dy);
+                if (distToMouse < 150 && distToMouse > 0) {
+                    this.radius += (this.baseRadius - this.radius) * 0.02;
+                } else {
+                    this.radius += (this.baseRadius - this.radius) * 0.05;
+                }
+                this.x = centerX + Math.cos(this.angle) * this.radius;
+                this.y = centerY + Math.sin(this.angle) * this.radius;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.shadowColor = this.color + '0.9)';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            for (let r = 0; r < NUM_RINGS; r++) {
+                const count = PARTICLE_COUNT / NUM_RINGS;
+                for (let i = 0; i < count; i++) {
+                    const p = new Particle(r, count);
+                    p.x = centerX + Math.cos(p.angle) * p.baseRadius;
+                    p.y = centerY + Math.sin(p.angle) * p.baseRadius;
+                    particles.push(p);
+                }
+            }
+        }
+
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i+1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx+dy*dy);
+                    if (dist < CONNECT_DIST) {
+                        const alpha = (1 - dist/CONNECT_DIST) * 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = 'rgba(255,215,0,' + alpha + ')';
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            particles.forEach(p => {
+                p.update(cx, cy, mouse.x, mouse.y);
+                p.draw();
+            });
+            drawLines();
+            animationId = requestAnimationFrame(animate);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        document.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        document.addEventListener('touchmove', e => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) cancelAnimationFrame(animationId);
+            else animationId = requestAnimationFrame(animate);
+        });
+
+        animationId = requestAnimationFrame(animate);
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SAHIL OG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            background: radial-gradient(135deg, #0a001a 0%, #000510 60%, #0a0005 100%);
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            position: fixed;
+        }
+
+        /* ===== MINI ORB ===== */
+        #miniOrb {
+            width: 54px;
+            height: 54px;
+            background: #030408;
+            border-radius: 8px;
+            border: 1.5px solid #7c3aed;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 14px rgba(124, 58, 237, 0.3);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            position: fixed;
+            z-index: 9999;
+            touch-action: none;
+        }
+
+        #miniOrb:active {
+            cursor: grabbing;
+        }
+
+        #miniOrb.dragging {
+            box-shadow: 0 0 0 2px #a855f7, 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        #miniOrb img {
+            width: 68%;
+            height: 68%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 4px #a855f7);
+            pointer-events: none;
+        }
+
+        #miniOrb.visible {
+            display: flex;
+        }
+
+        /* ===== MAIN WIDGET — SQUARE ===== */
+        #widgetPanel {
+            width: 260px;
+            max-width: 80vw;
+            background: rgba(6, 8, 18, 0.97);
+            border-radius: 12px;
+            padding: 14px 14px 18px;
+            border: 1.5px solid #7c3aed;
+            box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            position: fixed;
+            z-index: 10001;
+        }
+
+        #widgetPanel.dragging {
+            box-shadow: 0 0 0 2px #a855f7, 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* HEADER */
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.4);
+            padding-bottom: 10px;
+            cursor: grab;
+        }
+
+        .widget-title {
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #e0aaff, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .widget-title i {
+            font-size: 11px;
+            color: #a855f7;
+        }
+
+        .close-widget {
+            color: #7c3aed;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .close-widget:hover {
+            color: #e0aaff;
+        }
+
+        .close-widget:active {
+            transform: scale(0.85);
+        }
+
+        /* SCREEN */
+        .screen-core {
+            background: #030408;
+            border-radius: 8px;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            padding: 14px 10px 12px;
+            min-height: 140px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Corner brackets */
+        .screen-core::before,
+        .screen-core::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: #a855f7;
+            border-style: solid;
+        }
+
+        .screen-core::before {
+            top: 0;
+            left: 0;
+            border-width: 2px 0 0 2px;
+        }
+
+        .screen-core::after {
+            bottom: 0;
+            right: 0;
+            border-width: 0 2px 2px 0;
+        }
+
+        /* DNA Canvas */
+        #dnaCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #dnaCanvas.active {
+            opacity: 1;
+        }
+
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            font-family: 'Space Grotesk', monospace;
+            z-index: 5;
+            position: relative;
+        }
+
+        .badge-status {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 7px;
+            letter-spacing: 1px;
+            color: #a855f7;
+        }
+
+        #idBadge {
+            color: #5b21b6;
+            font-size: 7px;
+            letter-spacing: 1px;
+        }
+
+        /* RESULT */
+        .result-giga {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 900;
+            font-family: 'Cambria', 'Georgia', 'Times New Roman', serif;
+            letter-spacing: 2px;
+            line-height: 1;
+            background: linear-gradient(135deg, #ffffff 0%, #e0aaff 25%, #a855f7 50%, #06b6d4 75%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+            margin: 10px 0 6px;
+            z-index: 5;
+            position: relative;
+        }
+
+        .status-line {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 7px;
+            color: #5b21b6;
+            text-align: center;
+            letter-spacing: 1.5px;
+            z-index: 5;
+            position: relative;
+        }
+
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* BUTTONS */
+        .action-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .prime-btn {
+            flex: 3;
+            background: linear-gradient(105deg, #7c3aed, #a855f7, #06b6d4);
+            border: none;
+            border-radius: 6px;
+            padding: 13px 0;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4), 0 0 20px rgba(6, 182, 212, 0.1);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            transition: transform 0.08s, box-shadow 0.08s;
+        }
+
+        .prime-btn i {
+            font-size: 13px;
+        }
+
+        .prime-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+        }
+
+        .prime-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .tele-btn {
+            flex: 1;
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .tele-btn i {
+            font-size: 20px;
+            color: #a855f7;
+        }
+
+        .tele-btn:hover {
+            background: rgba(124, 58, 237, 0.25);
+        }
+
+        .tele-btn:active {
+            transform: scale(0.93);
+        }
+
+        /* FOOTER DOTS */
+        .footer-dots {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 1px;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .dot.on {
+            background: #a855f7;
+            box-shadow: 0 0 4px #a855f7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MINI ORB -->
+    <div id="miniOrb" class="visible">
+        <img src="https://i.ibb.co/20PjptVL/photo-2026-06-26-10-38-19.jpg" alt="core">
+    </div>
+
+    <!-- MAIN WIDGET -->
+    <div id="widgetPanel">
+        <div class="widget-header" id="dragHandle">
+            <div class="widget-title"><i class="fas fa-crown"></i> SAHIL-OG</div>
+            <div class="close-widget" id="closeBtn"><i class="fas fa-times"></i></div>
+        </div>
+
+        <div class="screen-core" id="dynamicScreen">
+            <canvas id="dnaCanvas"></canvas>
+            <div class="info-bar">
+                <div class="badge-status" id="statusBadge"><i class="fas fa-shield-alt"></i> STANDBY</div>
+                <div id="idBadge">ID: ----</div>
+            </div>
+            <div class="result-giga" id="resultText">[⌬ IDLE]</div>
+            <div class="status-line" id="statusLine">awaiting scan <span class="blink">_</span></div>
+        </div>
+
+        <div class="action-row">
+            <button class="prime-btn" id="scanBtn"><i class="fas fa-dna"></i> SCAN</button>
+            <div class="tele-btn" id="tgBtn"><i class="fab fa-telegram-plane"></i></div>
+        </div>
+
+        <div class="footer-dots">
+            <div class="dot on"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot on"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const API_URL = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?ts=';
+
+            const miniOrb = document.getElementById('miniOrb');
+            const widgetPanel = document.getElementById('widgetPanel');
+            const dragHandle = document.getElementById('dragHandle');
+            const closeWidgetBtn = document.getElementById('closeBtn');
+            const screenDiv = document.getElementById('dynamicScreen');
+            const resultText = document.getElementById('resultText');
+            const statusLine = document.getElementById('statusLine');
+            const statusBadge = document.getElementById('statusBadge');
+            const idBadge = document.getElementById('idBadge');
+            const scanBtn = document.getElementById('scanBtn');
+            const tgBtn = document.getElementById('tgBtn');
+            const dnaCanvas = document.getElementById('dnaCanvas');
+            const ctx = dnaCanvas.getContext('2d');
+
+            let isScanning = false;
+            let panelDragged = false;
+            let orbPos = { left: 0, top: 0 };
+            let panelPos = { left: 0, top: 0 };
+            let savedPanelPos = { left: null, top: null };
+            let animId = null,
+                dnaT = 0;
+
+            /* ---- DNA HELIX ---- */
+            function resizeDNA() {
+                const r = screenDiv.getBoundingClientRect();
+                dnaCanvas.width = r.width;
+                dnaCanvas.height = r.height;
+            }
+
+            function drawDNA() {
+                resizeDNA();
+                ctx.clearRect(0, 0, dnaCanvas.width, dnaCanvas.height);
+                const W = dnaCanvas.width,
+                    H = dnaCanvas.height;
+                const cy = H / 2;
+                const amp = H * 0.32;
+                const nodes = 16;
+
+                // Strand 1 – RED
+                ctx.beginPath();
+                for (let i = 0; i <= 100; i++) {
+                    const x = (i / 100) * W;
+                    const y = cy + amp * Math.sin((i / 100) * Math.PI * 4 + dnaT);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(239,68,68,0.85)';
+                ctx.lineWidth = 2.5;
+                ctx.shadowColor = '#ef4444';
+                ctx.shadowBlur = 8;
+                ctx.stroke();
+
+                // Strand 2 – GREEN
+                ctx.beginPath();
+                for (let i = 0; i <= 100; i++) {
+                    const x = (i / 100) * W;
+                    const y = cy + amp * Math.sin((i / 100) * Math.PI * 4 + dnaT + Math.PI);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(34,197,94,0.85)';
+                ctx.lineWidth = 2.5;
+                ctx.shadowColor = '#22c55e';
+                ctx.shadowBlur = 8;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Cross rungs + nodes
+                for (let i = 0; i < nodes; i++) {
+                    const x = (i / nodes) * W + W / nodes / 2;
+                    const phase = (i / nodes) * Math.PI * 4 + dnaT;
+                    const y1 = cy + amp * Math.sin(phase);
+                    const y2 = cy + amp * Math.sin(phase + Math.PI);
+                    const col = i % 2 === 0;
+
+                    ctx.beginPath();
+                    ctx.moveTo(x, y1);
+                    ctx.lineTo(x, y2);
+                    ctx.strokeStyle = col ? 'rgba(239,68,68,0.4)' : 'rgba(34,197,94,0.4)';
+                    ctx.lineWidth = 1.5;
+                    ctx.shadowColor = col ? '#ef4444' : '#22c55e';
+                    ctx.shadowBlur = 5;
+                    ctx.stroke();
+
+                    [
+                        [y1, '#ef4444'],
+                        [y2, '#22c55e']
+                    ].forEach(([ny, c]) => {
+                        ctx.beginPath();
+                        ctx.arc(x, ny, 3.5, 0, Math.PI * 2);
+                        ctx.fillStyle = c;
+                        ctx.shadowColor = c;
+                        ctx.shadowBlur = 10;
+                        ctx.fill();
+                    });
+                }
+                ctx.shadowBlur = 0;
+
+                // Horizontal sweep glow
+                const sx = ((dnaT * 35) % W);
+                const g = ctx.createLinearGradient(sx - 10, 0, sx + 10, 0);
+                g.addColorStop(0, 'rgba(239,68,68,0)');
+                g.addColorStop(0.4, 'rgba(239,68,68,0.35)');
+                g.addColorStop(0.6, 'rgba(34,197,94,0.35)');
+                g.addColorStop(1, 'rgba(34,197,94,0)');
+                ctx.fillStyle = g;
+                ctx.fillRect(sx - 10, 0, 20, H);
+
+                dnaT += 0.06;
+                animId = requestAnimationFrame(drawDNA);
+            }
+
+            function startDNA() {
+                dnaCanvas.classList.add('active');
+                if (!animId) drawDNA();
+            }
+
+            function stopDNA() {
+                if (animId) { cancelAnimationFrame(animId);
+                    animId = null; }
+                ctx.clearRect(0, 0, dnaCanvas.width, dnaCanvas.height);
+                dnaCanvas.classList.remove('active');
+            }
+
+            /* ---- STATES ---- */
+            function renderIdle() {
+                resultText.style.fontSize = '40px';
+                resultText.style.letterSpacing = '2px';
+                resultText.textContent = '[⌬ IDLE]';
+                resultText.style.background =
+                    'linear-gradient(135deg,#ffffff 0%,#e0aaff 25%,#a855f7 50%,#06b6d4 75%,#ffffff 100%)';
+                resultText.style.webkitBackgroundClip = 'text';
+                resultText.style.backgroundClip = 'text';
+                resultText.style.color = 'transparent';
+                statusLine.innerHTML = 'awaiting scan <span class="blink">_</span>';
+                statusBadge.innerHTML = '<i class="fas fa-shield-alt"></i> STANDBY';
+                statusBadge.style.color = '#a855f7';
+                statusBadge.style.borderColor = 'rgba(124,58,237,0.3)';
+                statusBadge.style.background = 'rgba(124,58,237,0.15)';
+                idBadge.textContent = 'ID: ----';
+                stopDNA();
+            }
+
+            /* ---- FETCH ---- */
+            async function fetchResult() {
+                const res = await fetch(API_URL + Date.now(), { cache: 'no-store' });
+                const json = await res.json();
+                let list = json?.data?.list || json?.data || json?.list || json?.rows || json?.data?.records || [];
+                if (!Array.isArray(list) || !list.length) throw new Error('no data');
+                list.sort((a, b) => String(b.issueNumber || b.period || '').localeCompare(String(a.issueNumber || a
+                    .period || '')));
+                const latest = list[0];
+                let period = String(latest.issueNumber || latest.issue || latest.period || latest.periodNo || latest.Id ||
+                    '');
+                let raw = latest.number ?? latest.result ?? latest.openCode ?? latest.open ?? latest.code;
+                if (!period || raw === undefined) throw new Error('invalid');
+                const numVal = parseInt(String(raw), 10);
+                let display = !isNaN(numVal) ? `${numVal >= 5 ? 'BIG' : 'SMALL'} ${numVal}` : String(raw);
+                return { period, display };
+            }
+
+            /* ---- SCAN ---- */
+            async function startScan() {
+                if (isScanning) return;
+                isScanning = true;
+                scanBtn.disabled = true;
+
+                startDNA();
+                resultText.style.fontSize = '18px';
+                resultText.style.letterSpacing = '3px';
+                resultText.textContent = 'ANALYZING';
+                resultText.style.background = 'linear-gradient(90deg,#a855f7,#06b6d4,#a855f7)';
+                resultText.style.webkitBackgroundClip = 'text';
+                resultText.style.backgroundClip = 'text';
+                resultText.style.color = 'transparent';
+                statusBadge.innerHTML = '<i class="fas fa-dna fa-spin"></i> DECODING DNA';
+                statusBadge.style.color = '#06b6d4';
+                statusBadge.style.borderColor = '#06b6d4';
+                statusBadge.style.background = 'rgba(6,182,212,0.1)';
+                statusLine.innerHTML = 'sequence active <span class="blink">_</span>';
+                idBadge.textContent = 'ID: ···';
+
+                try {
+                    const data = await fetchResult();
+                    stopDNA();
+                    resultText.style.fontSize = '40px';
+                    resultText.style.letterSpacing = '2px';
+                    resultText.textContent = data.display;
+                    resultText.style.background =
+                        'linear-gradient(135deg,#ffffff 0%,#e0aaff 25%,#a855f7 50%,#06b6d4 75%,#ffffff 100%)';
+                    resultText.style.webkitBackgroundClip = 'text';
+                    resultText.style.backgroundClip = 'text';
+                    resultText.style.color = 'transparent';
+                    statusBadge.innerHTML = '<i class="fas fa-check-circle"></i> SECURE';
+                    statusBadge.style.color = '#06b6d4';
+                    statusBadge.style.borderColor = '#06b6d4';
+                    statusBadge.style.background = 'rgba(6,182,212,0.12)';
+                    statusLine.innerHTML = 'confidence 99.9% &bull; verified';
+                    idBadge.textContent = 'ID: ' + data.period.slice(-6);
+                } catch (err) {
+                    stopDNA();
+                    resultText.style.fontSize = '28px';
+                    resultText.textContent = 'FAILED';
+                    resultText.style.background = 'linear-gradient(135deg,#ff8866,#ff3300)';
+                    resultText.style.webkitBackgroundClip = 'text';
+                    resultText.style.backgroundClip = 'text';
+                    resultText.style.color = 'transparent';
+                    statusBadge.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ERROR';
+                    statusBadge.style.color = '#f87171';
+                    statusBadge.style.borderColor = '#ff4444';
+                    statusBadge.style.background = 'rgba(255,50,50,0.12)';
+                    statusLine.innerHTML = 'retry scan <span class="blink">_</span>';
+                } finally {
+                    isScanning = false;
+                    scanBtn.disabled = false;
+                }
+            }
+
+            /* ---- DRAG ---- */
+            function clampPos(p, w, h) {
+                p.left = Math.max(0, Math.min(p.left, window.innerWidth - w));
+                p.top = Math.max(0, Math.min(p.top, window.innerHeight - h));
+            }
+
+            function applyOrb() {
+                miniOrb.style.left = orbPos.left + 'px';
+                miniOrb.style.top = orbPos.top + 'px';
+                miniOrb.style.right = 'auto';
+            }
+
+            function initOrb() {
+                const sz = miniOrb.offsetWidth || 54;
+                orbPos.left = window.innerWidth - sz - 18;
+                orbPos.top = window.innerHeight - sz - 30;
+                clampPos(orbPos, sz, sz);
+                applyOrb();
+            }
+
+            function applyPanel() {
+                widgetPanel.style.left = panelPos.left + 'px';
+                widgetPanel.style.top = panelPos.top + 'px';
+                widgetPanel.style.transform = 'none';
+            }
+
+            function centerPanelTransform() {
+                widgetPanel.style.left = '50%';
+                widgetPanel.style.top = '50%';
+                widgetPanel.style.transform = 'translate(-50%,-50%)';
+            }
+
+            function makeDraggable(handle, target, posRef, onTap) {
+                let dragging = false,
+                    startX, startY, origL, origT, moveDist = 0;
+                const THRESH = 5;
+
+                function getCoord(e) {
+                    return e.touches ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : { x: e.clientX, y: e
+                            .clientY };
+                }
+
+                function onStart(e) {
+                    if (e.target === closeWidgetBtn || e.target.closest?.('.close-widget')) return;
+                    dragging = true;
+                    moveDist = 0;
+                    const rect = target.getBoundingClientRect();
+                    origL = rect.left;
+                    origT = rect.top;
+                    const { x, y } = getCoord(e);
+                    startX = x;
+                    startY = y;
+                    target.classList.add('dragging');
+                    if (target === widgetPanel) {
+                        target.style.transform = 'none';
+                        target.style.left = origL + 'px';
+                        target.style.top = origT + 'px';
+                        panelPos.left = origL;
+                        panelPos.top = origT;
+                    }
+                    e.preventDefault();
+                }
+
+                function onMove(e) {
+                    if (!dragging) return;
+                    const { x, y } = getCoord(e);
+                    const dx = x - startX,
+                        dy = y - startY;
+                    moveDist = Math.abs(dx) + Math.abs(dy);
+                    let newL = Math.min(window.innerWidth - target.offsetWidth, Math.max(0, origL + dx));
+                    let newT = Math.min(window.innerHeight - target.offsetHeight, Math.max(0, origT + dy));
+                    target.style.left = newL + 'px';
+                    target.style.top = newT + 'px';
+                    target.style.transform = 'none';
+                    posRef.left = newL;
+                    posRef.top = newT;
+                    if (target === widgetPanel) { panelDragged = true;
+                        savedPanelPos.left = newL;
+                        savedPanelPos.top = newT; }
+                }
+
+                function onEnd() {
+                    if (!dragging) return;
+                    dragging = false;
+                    target.classList.remove('dragging');
+                    if (moveDist < THRESH && onTap) onTap();
+                }
+                handle.addEventListener('mousedown', onStart);
+                document.addEventListener('mousemove', onMove);
+                document.addEventListener('mouseup', onEnd);
+                handle.addEventListener('touchstart', onStart, { passive: false });
+                document.addEventListener('touchmove', onMove, { passive: false });
+                document.addEventListener('touchend', onEnd);
+            }
+
+            makeDraggable(miniOrb, miniOrb, orbPos, toggleWidget);
+            makeDraggable(dragHandle, widgetPanel, panelPos, null);
+
+            function toggleWidget() {
+                widgetPanel.style.display === 'flex' ? closeWidget() : openWidget();
+            }
+
+            function openWidget() {
+                if (panelDragged && savedPanelPos.left !== null) {
+                    panelPos.left = savedPanelPos.left;
+                    panelPos.top = savedPanelPos.top;
+                    clampPos(panelPos, widgetPanel.offsetWidth || 260, widgetPanel.offsetHeight || 260);
+                    applyPanel();
+                } else centerPanelTransform();
+                widgetPanel.style.display = 'flex';
+                renderIdle();
+                miniOrb.classList.remove('visible');
+                isScanning = false;
+            }
+
+            function closeWidget() {
+                const rect = widgetPanel.getBoundingClientRect();
+                savedPanelPos.left = rect.left;
+                savedPanelPos.top = rect.top;
+                panelDragged = true;
+                stopDNA();
+                widgetPanel.style.display = 'none';
+                miniOrb.classList.add('visible');
+            }
+
+            closeWidgetBtn.addEventListener('click', function(e) { e.stopPropagation();
+                closeWidget(); });
+            scanBtn.addEventListener('click', startScan);
+            tgBtn.addEventListener('click', function() { window.open('https://t.me/+DWlCAgThbj5lZDg1', '_blank'); });
+
+            // Background sync
+            setInterval(function() {
+                if (!isScanning) fetchResult().catch(function() {});
+            }, 28000);
+
+            // Resize
+            window.addEventListener('resize', function() {
+                const sz = miniOrb.offsetWidth || 54;
+                clampPos(orbPos, sz, sz);
+                applyOrb();
+                if (widgetPanel.style.display === 'flex') {
+                    if (panelDragged && savedPanelPos.left !== null) {
+                        panelPos.left = savedPanelPos.left;
+                        panelPos.top = savedPanelPos.top;
+                        clampPos(panelPos, widgetPanel.offsetWidth || 260, widgetPanel.offsetHeight || 260);
+                        savedPanelPos.left = panelPos.left;
+                        savedPanelPos.top = panelPos.top;
+                        applyPanel();
+                    }
+                }
+            });
+            window.addEventListener('orientationchange', function() { setTimeout(function() { window.dispatchEvent(
+                    new Event('resize')); }, 100); });
+
+            /* ---- INIT ---- */
+            (function init() {
+                miniOrb.classList.add('visible');
+                initOrb();
+                widgetPanel.style.display = 'none';
+                centerPanelTransform();
+            })();
+        })();
+    </script>
+</body>
+</html>
